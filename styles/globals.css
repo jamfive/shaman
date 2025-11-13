@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Custom properties */
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Improved contrast for light theme */
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Custom base styles */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ensure text has good contrast in light mode */
+[data-theme="light"] .text-base-content {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #0a0a0a;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] div {
+  color: #1a1a1a;
+}

@@ -1,0 +1,99 @@
+{
+  "puglia": {
+    "aventi_diritto": 0,
+    "votanti": 0,
+    "affluenza_percentuale": 0,
+    "sezioni_totali": 0,
+    "sezioni_scrutinate": 0,
+    "voti_validi": 0,
+    "voti_nulli": 0,
+    "voti_bianchi": 0,
+    "candidati": [],
+    "province": [
+      {
+        "nome": "Bari",
+        "codice": "BA",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      },
+      {
+        "nome": "Barletta-Andria-Trani",
+        "codice": "BT",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      },
+      {
+        "nome": "Brindisi",
+        "codice": "BR",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      },
+      {
+        "nome": "Foggia",
+        "codice": "FG",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      },
+      {
+        "nome": "Lecce",
+        "codice": "LE",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      },
+      {
+        "nome": "Taranto",
+        "codice": "TA",
+        "aventi_diritto": 0,
+        "votanti": 0,
+        "affluenza_percentuale": 0,
+        "sezioni_totali": 0,
+        "sezioni_scrutinate": 0,
+        "voti_validi": 0,
+        "voti_nulli": 0,
+        "voti_bianchi": 0,
+        "candidati": [],
+        "comuni": []
+      }
+    ]
+  }
+}
