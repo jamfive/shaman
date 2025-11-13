@@ -78,6 +78,7 @@ const Navbar: React.FC = () => {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <li><Link href="/candidati">Candidati</Link></li>
             <li><Link href="/risultati">Risultati</Link></li>
             <li><Link href="/affluenze">Affluenze</Link></li>
             <li><Link href="/province">Province</Link></li>
@@ -89,6 +90,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
+          <li><Link href="/candidati">Candidati</Link></li>
           <li><Link href="/risultati">Risultati</Link></li>
           <li><Link href="/affluenze">Affluenze</Link></li>
           <li>
