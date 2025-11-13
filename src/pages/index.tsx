@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const HomePage: React.FC = () => {
   return (
@@ -21,12 +22,12 @@ const HomePage: React.FC = () => {
                   Risultati, affluenze e analisi complete.
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <a href="/risultati" className="btn btn-primary">
+                  <Link href="/risultati" className="btn btn-primary">
                     Risultati
-                  </a>
-                  <a href="/affluenze" className="btn btn-outline">
+                  </Link>
+                  <Link href="/affluenze" className="btn btn-outline">
                     Affluenze
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -38,7 +39,7 @@ const HomePage: React.FC = () => {
                 <h3 className="card-title">Candidati</h3>
                 <p>Visualizza tutti i candidati alla presidenza della Regione Puglia</p>
                 <div className="card-actions justify-end">
-                  <a href="/candidati" className="btn btn-sm btn-primary">Vedi</a>
+                  <Link href="/candidati" className="btn btn-sm btn-primary">Vedi</Link>
                 </div>
               </div>
             </div>
@@ -48,7 +49,7 @@ const HomePage: React.FC = () => {
                 <h3 className="card-title">Province</h3>
                 <p>Risultati divisi per provincia: Bari, BAT, Brindisi, Foggia, Lecce, Taranto</p>
                 <div className="card-actions justify-end">
-                  <a href="/province" className="btn btn-sm btn-primary">Vedi</a>
+                  <Link href="/province" className="btn btn-sm btn-primary">Vedi</Link>
                 </div>
               </div>
             </div>
@@ -58,7 +59,7 @@ const HomePage: React.FC = () => {
                 <h3 className="card-title">Affluenze</h3>
                 <p>Partecipazione al voto in tempo reale per tutte le province</p>
                 <div className="card-actions justify-end">
-                  <a href="/affluenze" className="btn btn-sm btn-primary">Vedi</a>
+                  <Link href="/affluenze" className="btn btn-sm btn-primary">Vedi</Link>
                 </div>
               </div>
             </div>

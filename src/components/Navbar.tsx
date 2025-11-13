@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [darkMode, setDarkModeLocal] = React.useState(false);
-  const [themeMode, setThemeMode] = React.useState<'auto' | 'light' | 'dark'>('auto');
+  const [themeMode, setThemeMode] = React.useState<'auto' | 'warmgoblin' | 'dark'>('auto');
 
   const provinces = ['bari', 'bat', 'brindisi', 'foggia', 'lecce', 'taranto'];
 
-  const applyTheme = React.useCallback((mode: 'auto' | 'light' | 'dark') => {
+  const applyTheme = React.useCallback((mode: 'auto' | 'warmgoblin' | 'dark') => {
     let isDark: boolean;
     
     if (mode === 'auto') {
@@ -17,19 +17,19 @@ const Navbar: React.FC = () => {
     }
     
     setDarkModeLocal(isDark);
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'warmgoblin');
   }, []);
 
   React.useEffect(() => {
     // Check saved mode or default to auto
-    const savedMode = (localStorage.getItem('themeMode') as 'auto' | 'light' | 'dark') || 'auto';
+    const savedMode = (localStorage.getItem('themeMode') as 'auto' | 'warmgoblin' | 'dark') || 'auto';
     setThemeMode(savedMode);
     applyTheme(savedMode);
 
     // Listen for system theme changes (only matters when mode is 'auto')
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
-      const currentMode = (localStorage.getItem('themeMode') as 'auto' | 'light' | 'dark') || 'auto';
+      const currentMode = (localStorage.getItem('themeMode') as 'auto' | 'warmgoblin' | 'dark') || 'auto';
       if (currentMode === 'auto') {
         applyTheme('auto');
       }
@@ -41,12 +41,12 @@ const Navbar: React.FC = () => {
   }, [applyTheme]);
 
   const toggleDarkMode = () => {
-    // Cycle through: auto -> light -> dark -> auto
-    let newMode: 'auto' | 'light' | 'dark';
+    // Cycle through: auto -> warmgoblin -> dark -> auto
+    let newMode: 'auto' | 'warmgoblin' | 'dark';
     
     if (themeMode === 'auto') {
-      newMode = 'light';
-    } else if (themeMode === 'light') {
+      newMode = 'warmgoblin';
+    } else if (themeMode === 'warmgoblin') {
       newMode = 'dark';
     } else {
       newMode = 'auto';
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
         <button 
           className="btn btn-ghost btn-circle" 
           onClick={toggleDarkMode}
-          title={themeMode === 'auto' ? 'Auto (Sistema)' : themeMode === 'light' ? 'Chiaro' : 'Scuro'}
+          title={themeMode === 'auto' ? 'Auto (Sistema)' : themeMode === 'warmgoblin' ? 'Chiaro' : 'Scuro'}
         >
           {themeMode === 'auto' ? (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
