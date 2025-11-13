@@ -19,12 +19,13 @@ interface CandidatiPageProps {
 
 const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes }) => {
   return (
-
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <div className="text-sm breadcrumbs mb-6">
         <ul>
-          <li><Link href="/">Home</Link></li>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
           <li>Candidati</li>
         </ul>
       </div>
@@ -33,7 +34,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-4">Candidati alla Presidenza</h1>
         <p className="text-lg opacity-80">
-          Elezioni Regionali Puglia 2025 - Lista completa dei candidati
+          Elezioni Regionali <span className="font-bold">Puglia 2025</span> - Lista completa dei candidati
         </p>
       </div>
 
@@ -41,16 +42,18 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
       <div className="stats stats-vertical lg:stats-horizontal shadow mb-8 w-full">
         <div className="stat">
           <div className="stat-title">Totale Voti</div>
-          <div className="stat-value text-primary">{totalVotes.toLocaleString('it-IT')}</div>
+          <div className="stat-value text-primary">
+            {totalVotes.toLocaleString("it-IT")}
+          </div>
           <div className="stat-desc">Voti espressi</div>
         </div>
-        
+
         <div className="stat">
           <div className="stat-title">Candidati</div>
           <div className="stat-value text-secondary">{candidates.length}</div>
           <div className="stat-desc">In competizione</div>
         </div>
-        
+
         <div className="stat">
           <div className="stat-title">Coalizioni</div>
           <div className="stat-value">3</div>
@@ -67,12 +70,22 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <h2 className="card-title text-2xl mb-2">{candidate.name}</h2>
-                  <div className="badge badge-primary mb-2">{candidate.party}</div>
-                  <p className="text-sm opacity-70">Coalizione: {candidate.coalition}</p>
+                  <div className="badge badge-primary mb-2">
+                    {candidate.party}
+                  </div>
+                  <p className="text-sm opacity-70">
+                    Coalizione: {candidate.coalition}
+                  </p>
                 </div>
-                <div className="avatar placeholder">
+                
+                <div className="avatar avatar-placeholder">
                   <div className="bg-neutral text-neutral-content rounded-full w-16">
-                    <span className="text-2xl">{candidate.name.split(' ').map(n => n[0]).join('')}</span>
+                    <span className="text-3xl">
+                      {candidate.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -82,25 +95,29 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
                 <div>
                   <div className="flex justify-between mb-1">
                     <span className="font-semibold">Voti ottenuti</span>
-                    <span className="font-bold text-lg">{candidate.votes.toLocaleString('it-IT')}</span>
+                    <span className="font-bold text-lg">
+                      {candidate.votes.toLocaleString("it-IT")}
+                    </span>
                   </div>
-                  <progress 
-                    className="progress progress-primary w-full" 
-                    value={candidate.percentage} 
+                  <progress
+                    className="progress progress-primary w-full"
+                    value={candidate.percentage}
                     max="100"
                   ></progress>
                 </div>
 
                 <div className="flex justify-between items-center">
                   <span className="text-sm opacity-70">Percentuale</span>
-                  <span className="text-3xl font-bold text-primary">{candidate.percentage}%</span>
+                  <span className="text-3xl font-bold text-primary">
+                    {candidate.percentage}%
+                  </span>
                 </div>
               </div>
 
               {/* Actions */}
               <div className="card-actions justify-end mt-4">
                 <button className="btn btn-outline btn-sm">Dettagli</button>
-                <button className="btn btn-primary btn-sm">Programma</button>
+                
               </div>
             </div>
           </div>
@@ -109,10 +126,23 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
 
       {/* Info Alert */}
       <div className="alert alert-info mt-8">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          className="stroke-current shrink-0 w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
         </svg>
-        <span>I dati visualizzati sono aggiornati in tempo reale. Ultimo aggiornamento: 13 novembre 2025, ore 20:00</span>
+        <span>
+          I dati visualizzati sono aggiornati in tempo reale. Ultimo
+          aggiornamento: 13 novembre 2025, ore 20:00
+        </span>
       </div>
     </div>
   );

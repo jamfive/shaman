@@ -50,18 +50,24 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-primary: oklch(80.6% 0.16495 78.049);
+    --color-primary-content: oklch(33.421% 0.04211 86.402);
   }
 }
 
 /* Improved contrast for light theme */
-[data-theme="light"] {
-  --background: #ffffff;
+[data-theme="warmgoblin"] {
+  --background: var(--color-base-100);
   --foreground: #0a0a0a;
+  --color-primary: oklch(54% 0.245 262.881);
+  --color-primary-content: oklch(100% 0 0);
 }
 
 [data-theme="dark"] {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --color-primary: oklch(80.6% 0.16495 78.049);
+  --color-primary-content: oklch(33.421% 0.04211 86.402);
 }
 
 /* Custom base styles */

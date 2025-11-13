@@ -21,7 +21,7 @@ const AffluentePage: React.FC = () => {
       <div className="min-h-screen bg-base-100">
         <div className="container mx-auto px-4 py-8">
           <header className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-2">Affluenze Elezioni Regionali</h1>
+            <h1 className="text-4xl font-bold mb-2">Affluenze <span className="font-light">Elezioni Regionali</span></h1>
             <h2 className="text-2xl font-light text-primary">Puglia 2025</h2>
           </header>
 
@@ -66,7 +66,7 @@ const AffluentePage: React.FC = () => {
                         <td className="text-right">{provincia.aventi_diritto.toLocaleString('it-IT') || '--'}</td>
                         <td className="text-right">{provincia.votanti.toLocaleString('it-IT') || '--'}</td>
                         <td className="text-right">
-                          <span className="badge badge-primary">
+                          <span className="badge badge-primary text-primary-content!">
                             {provincia.percentuale}%
                           </span>
                         </td>
@@ -87,7 +87,7 @@ const AffluentePage: React.FC = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>I dati vengono aggiornati ogni 30 minuti durante le ore di votazione.</span>
+                <span>I dati delle affluenze vengono aggiornati ad orari spcifici durante le ore di votazione.</span>
               </div>
             </div>
           </div>
