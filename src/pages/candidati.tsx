@@ -19,6 +19,7 @@ interface CandidatiPageProps {
 
 const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes }) => {
   return (
+    <div className='bg-base-100'>
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <div className="text-sm breadcrumbs mb-6">
@@ -39,38 +40,18 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
       </div>
 
       {/* Stats Card */}
-      <div className="stats stats-vertical lg:stats-horizontal shadow mb-8 w-full">
-        <div className="stat">
-          <div className="stat-title">Totale Voti</div>
-          <div className="stat-value text-primary">
-            {totalVotes.toLocaleString("it-IT")}
-          </div>
-          <div className="stat-desc">Voti espressi</div>
-        </div>
-
-        <div className="stat">
-          <div className="stat-title">Candidati</div>
-          <div className="stat-value text-secondary">{candidates.length}</div>
-          <div className="stat-desc">In competizione</div>
-        </div>
-
-        <div className="stat">
-          <div className="stat-title">Coalizioni</div>
-          <div className="stat-value">3</div>
-          <div className="stat-desc">Schieramenti politici</div>
-        </div>
-      </div>
+      {/* <StatsCard totalVotes={totalVotes} candidates={candidates} /> */}
 
       {/* Candidates Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {candidates.map((candidate) => (
-          <div key={candidate.id} className="card bg-base-100 shadow-xl">
+          <div key={candidate.id} className="card bg-base-200 shadow-xl">
             <div className="card-body">
               {/* Candidate Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <h2 className="card-title text-2xl mb-2">{candidate.name}</h2>
-                  <div className="badge badge-primary mb-2">
+                  <div className="badge badge-primary mb-2 text-primary-content!">
                     {candidate.party}
                   </div>
                   <p className="text-sm opacity-70">
@@ -144,6 +125,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({ candidates, totalVotes })
           aggiornamento: 13 novembre 2025, ore 20:00
         </span>
       </div>
+    </div>
     </div>
   );
 };

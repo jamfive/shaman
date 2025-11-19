@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import NetworkLogo from "./NetworkLogo";
 
 const Navbar: React.FC = () => {
   const [darkMode, setDarkModeLocal] = React.useState(false);
@@ -125,11 +126,12 @@ const Navbar: React.FC = () => {
           </ul>
         </div>
         <Link href="/" className="btn btn-ghost text-xl font-bold">
-          Puglia Regionali 2025
+          <NetworkLogo />
+          <span className="mt-2">Puglia <span className="font-light">Regionali 2025</span> </span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 translate-y-1">
           <li>
             <Link href="/candidati">Candidati</Link>
           </li>
@@ -166,7 +168,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar-end">
         <button
-          className="btn btn-ghost btn-circle"
+          className="btn btn-ghost btn-circle dark:hover:bg-white/15 mt-1"
           onClick={toggleDarkMode}
           title={
             themeMode === "auto"
