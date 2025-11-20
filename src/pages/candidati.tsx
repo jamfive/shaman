@@ -89,13 +89,13 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
                 <div className="card-body">
                   {/* Candidate Header */}
                   <div className="flex items-start justify-between mb-6">
-                    <div className="flex-1">
-                      <h2 className="card-title text-2xl mb-2 font-bold">
+                    <div className="flex-1 min-w-0 pr-4">
+                      <h2 className="card-title text-2xl mb-2 font-bold truncate">
                         {candidate.name}
                       </h2>
                       <div className="flex flex-wrap gap-2 mb-3">
                       
-                        <div className="badge badge-ghost opacity-70">
+                        <div className="badge badge-ghost opacity-70 truncate max-w-full">
                           {candidate.coalition}
                         </div>
                       </div>
