@@ -281,7 +281,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 68.5,
       votedCount: 834501,
       totalVoters: 1218191,
-      leadingCandidate: "Michele Emiliano",
+      leadingCandidate: "Antonio Decaro",
       leadingPercentage: 45.2,
     },
     {
@@ -293,7 +293,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 62.3,
       votedCount: 234598,
       totalVoters: 376561,
-      leadingCandidate: "Raffaele Fitto",
+      leadingCandidate: "Luigi Lobuono",
       leadingPercentage: 41.8,
     },
     {
@@ -305,7 +305,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 65.7,
       votedCount: 246563,
       totalVoters: 375286,
-      leadingCandidate: "Michele Emiliano",
+      leadingCandidate: "Antonio Decaro",
       leadingPercentage: 43.5,
     },
     {
@@ -317,7 +317,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 59.8,
       votedCount: 352998,
       totalVoters: 590304,
-      leadingCandidate: "Raffaele Fitto",
+      leadingCandidate: "Luigi Lobuono",
       leadingPercentage: 46.7,
     },
     {
@@ -329,7 +329,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 71.2,
       votedCount: 543810,
       totalVoters: 763778,
-      leadingCandidate: "Michele Emiliano",
+      leadingCandidate: "Antonio Decaro",
       leadingPercentage: 48.3,
     },
     {
@@ -341,7 +341,7 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
       turnout: 64.9,
       votedCount: 357030,
       totalVoters: 550046,
-      leadingCandidate: "Michele Emiliano",
+      leadingCandidate: "Antonio Decaro",
       leadingPercentage: 44.1,
     },
   ];
