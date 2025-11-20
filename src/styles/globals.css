@@ -35,6 +35,8 @@
   --size-field: 0.25rem;
   --swiper-navigation-color: var(--color-slate-400);
   --swiper-pagination-color: var(--color-slate-500);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Inter", sans-serif; /* User requested no serifs */
   --border: 1px;
   --depth: 1;
   --noise: 0;
@@ -44,6 +46,8 @@
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Inter", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -108,4 +112,91 @@ body {
 
 [data-theme="dark"] .badge-primary {
   color: #ffffff !important;
+}
+
+/* Glassmorphism Utilities */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .glass-nav {
+  background: rgba(10, 10, 10, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+[data-theme="dark"] .glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* TV / Large Screen Optimization */
+@media (min-width: 1536px) {
+  html {
+    font-size: 20px; /* Increase base font size for better readability on TVs */
+  }
+
+  .container {
+    max-width: 1800px !important; /* Utilize more horizontal space */
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem; /* Larger card titles */
+  }
+
+  .btn-lg {
+    font-size: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Increase navbar height and text */
+  .navbar {
+    min-height: 5rem;
+  }
+
+  .navbar .text-xl {
+    font-size: 1.5rem;
+  }
 }

@@ -1,6 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import { GetStaticProps } from 'next';
+import React from "react";
+import Link from "next/link";
+import { GetStaticProps } from "next";
+import { motion } from "framer-motion";
+import {
+  Map,
+  Users,
+  Building2,
+  TrendingUp,
+  ChevronRight,
+  Info,
+} from "lucide-react";
 
 interface Province {
   name: string;
@@ -22,145 +31,240 @@ interface ProvincePageProps {
   avgTurnout: number;
 }
 
-const ProvincePage: React.FC<ProvincePageProps> = ({ 
-  provinces, 
-  totalPopulation, 
-  totalMunicipalities, 
-  avgTurnout 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+const ProvincePage: React.FC<ProvincePageProps> = ({
+  provinces,
+  totalPopulation,
+  totalMunicipalities,
+  avgTurnout,
 }) => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Breadcrumb */}
-      <div className="text-sm breadcrumbs mb-6">
-        <ul>
-          <li><Link href="/">Home</Link></li>
-          <li>Province</li>
-        </ul>
+    <div className="min-h-screen bg-base-100 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[10%] right-[20%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-[10%] left-[10%] w-[60%] h-[60%] rounded-full bg-secondary/5 blur-[100px]" />
       </div>
 
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Province della Puglia</h1>
-        <p className="text-lg opacity-80">
-          Risultati elettorali suddivisi per provincia - Elezioni Regionali 2025
-        </p>
-      </div>
-
-      {/* Regional Stats */}
-      <div className="stats stats-vertical lg:stats-horizontal shadow mb-8 w-full">
-        <div className="stat">
-          <div className="stat-figure text-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-          </div>
-          <div className="stat-title">Province</div>
-          <div className="stat-value text-primary">{provinces.length}</div>
-          <div className="stat-desc">Territori della Puglia</div>
-        </div>
-        
-        <div className="stat">
-          <div className="stat-figure text-secondary">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-            </svg>
-          </div>
-          <div className="stat-title">Comuni</div>
-          <div className="stat-value text-secondary">{totalMunicipalities}</div>
-          <div className="stat-desc">Totale comuni pugliesi</div>
-        </div>
-        
-        <div className="stat">
-          <div className="stat-title">Popolazione</div>
-          <div className="stat-value">{totalPopulation.toLocaleString('it-IT')}</div>
-          <div className="stat-desc">Abitanti totali</div>
+      <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
+        {/* Breadcrumb */}
+        <div className="text-sm breadcrumbs mb-8 opacity-60">
+          <ul>
+            <li>
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+            </li>
+            <li>Province</li>
+          </ul>
         </div>
 
-        <div className="stat">
-          <div className="stat-title">Affluenza Media</div>
-          <div className="stat-value">{avgTurnout.toFixed(1)}%</div>
-          <div className="stat-desc">Media regionale</div>
-        </div>
-      </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center md:text-left"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            Province della <span className="text-gradient">Puglia</span>
+          </h1>
+          <p className="text-lg opacity-80 max-w-2xl">
+            Risultati elettorali suddivisi per provincia - Elezioni Regionali
+            2025
+          </p>
+        </motion.div>
 
-      {/* Provinces Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {provinces.map((province) => (
-          <Link 
-            key={province.slug} 
-            href={`/provincia/${province.slug}`}
-            className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow cursor-pointer"
-          >
-            <div className="card-body">
-              {/* Province Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h2 className="card-title text-2xl mb-1">{province.name}</h2>
-                 
-                </div>
-                <div className="badge badge-lg badge-primary">{province.slug.toUpperCase()}</div>
+        {/* Regional Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+        >
+          <div className="card glass-card p-6">
+            <div className="flex flex-col gap-2">
+              <div className="p-2 bg-primary/10 text-primary rounded-lg w-fit">
+                <Map size={20} />
               </div>
-
-              {/* Province Stats */}
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-70">Popolazione:</span>
-                  <span className="font-semibold">{province.population.toLocaleString('it-IT')}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-70">Comuni:</span>
-                  <span className="font-semibold">{province.municipalities}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-70">Votanti:</span>
-                  <span className="font-semibold">{province.votedCount.toLocaleString('it-IT')}</span>
-                </div>
-              </div>
-
-              {/* Turnout */}
-              <div className="mb-4">
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-semibold">Affluenza</span>
-                  <span className="text-lg font-bold text-primary">{province.turnout}%</span>
-                </div>
-                <progress 
-                  className="progress progress-primary w-full" 
-                  value={province.turnout} 
-                  max="100"
-                ></progress>
-              </div>
-
-              {/* Leading Candidate */}
-              <div className="divider my-2"></div>
               <div>
-                <p className="text-xs opacity-70 mb-1">Candidato in testa:</p>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-sm">{province.leadingCandidate}</span>
-                  <span className="badge badge-success">{province.leadingPercentage}%</span>
-                </div>
-              </div>
-
-              {/* Link indicator */}
-              <div className="card-actions justify-end mt-4">
-                <div className="btn btn-primary btn-sm">
-                  Vedi dettagli
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
+                <div className="text-3xl font-bold">{provinces.length}</div>
+                <div className="text-xs uppercase tracking-wider opacity-60">
+                  Province
                 </div>
               </div>
             </div>
-          </Link>
-        ))}
-      </div>
+          </div>
 
-      {/* Info Alert */}
-      <div className="alert alert-info mt-8">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <span>Clicca su una provincia per visualizzare i risultati dettagliati e l&apos;affluenza per comune</span>
+          <div className="card glass-card p-6">
+            <div className="flex flex-col gap-2">
+              <div className="p-2 bg-secondary/10 text-secondary rounded-lg w-fit">
+                <Building2 size={20} />
+              </div>
+              <div>
+                <div className="text-3xl font-bold">{totalMunicipalities}</div>
+                <div className="text-xs uppercase tracking-wider opacity-60">
+                  Comuni
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="card glass-card p-6">
+            <div className="flex flex-col gap-2">
+              <div className="p-2 bg-accent/10 text-accent rounded-lg w-fit">
+                <Users size={20} />
+              </div>
+              <div>
+                <div className="text-3xl font-bold">
+                  {(totalPopulation / 1000000).toFixed(1)}M
+                </div>
+                <div className="text-xs uppercase tracking-wider opacity-60">
+                  Abitanti
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="card glass-card p-6">
+            <div className="flex flex-col gap-2">
+              <div className="p-2 bg-info/10 text-info rounded-lg w-fit">
+                <TrendingUp size={20} />
+              </div>
+              <div>
+                <div className="text-3xl font-bold">
+                  {avgTurnout.toFixed(1)}%
+                </div>
+                <div className="text-xs uppercase tracking-wider opacity-60">
+                  Affluenza Media
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Provinces Cards */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {provinces.map((province) => (
+            <motion.div key={province.slug} variants={item}>
+              <Link
+                href={`/provincia/${province.slug}`}
+                className="card glass-card hover:shadow-xl transition-all duration-300 group h-full"
+              >
+                <div className="card-body">
+                  {/* Province Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div>
+                      <h2 className="card-title text-2xl mb-1 font-bold group-hover:text-primary transition-colors">
+                        {province.name}
+                      </h2>
+                      <div className="text-xs opacity-60 uppercase tracking-wider">
+                        Capoluogo: {province.capital}
+                      </div>
+                    </div>
+                    <div className="badge badge-lg badge-primary badge-outline font-mono">
+                      {province.slug.toUpperCase()}
+                    </div>
+                  </div>
+
+                  {/* Province Stats */}
+                  <div className="space-y-3 mb-6 bg-base-100/50 p-4 rounded-xl">
+                    <div className="flex justify-between text-sm">
+                      <span className="opacity-70">Popolazione</span>
+                      <span className="font-semibold font-mono">
+                        {province.population.toLocaleString("it-IT")}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="opacity-70">Comuni</span>
+                      <span className="font-semibold font-mono">
+                        {province.municipalities}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="opacity-70">Votanti</span>
+                      <span className="font-semibold font-mono">
+                        {province.votedCount.toLocaleString("it-IT")}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Turnout */}
+                  <div className="mb-6">
+                    <div className="flex justify-between mb-2 items-end">
+                      <span className="text-xs font-bold uppercase tracking-wider opacity-60">
+                        Affluenza
+                      </span>
+                      <span className="text-2xl font-bold text-primary">
+                        {province.turnout}%
+                      </span>
+                    </div>
+                    <progress
+                      className="progress progress-primary w-full h-2"
+                      value={province.turnout}
+                      max="100"
+                    ></progress>
+                  </div>
+
+                  {/* Leading Candidate */}
+                  <div className="mt-auto pt-4 border-t border-base-content/10">
+                    <p className="text-xs opacity-60 mb-2 uppercase tracking-wider font-semibold">
+                      In testa
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">
+                        {province.leadingCandidate}
+                      </span>
+                      <span className="badge badge-success badge-sm font-bold">
+                        {province.leadingPercentage}%
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Link indicator */}
+                  <div className="card-actions justify-end mt-6">
+                    <div className="btn btn-ghost btn-sm gap-2 group-hover:translate-x-1 transition-transform">
+                      Dettagli <ChevronRight size={16} />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Info Alert */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="alert glass-card mt-12 border-l-4 border-l-info"
+        >
+          <Info className="stroke-info" />
+          <span className="text-sm">
+            Clicca su una provincia per visualizzare i risultati dettagliati e
+            l&apos;affluenza per comune
+          </span>
+        </motion.div>
       </div>
     </div>
   );
@@ -243,8 +347,12 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
   ];
 
   const totalPopulation = provinces.reduce((sum, p) => sum + p.population, 0);
-  const totalMunicipalities = provinces.reduce((sum, p) => sum + p.municipalities, 0);
-  const avgTurnout = provinces.reduce((sum, p) => sum + p.turnout, 0) / provinces.length;
+  const totalMunicipalities = provinces.reduce(
+    (sum, p) => sum + p.municipalities,
+    0
+  );
+  const avgTurnout =
+    provinces.reduce((sum, p) => sum + p.turnout, 0) / provinces.length;
 
   return {
     props: {
