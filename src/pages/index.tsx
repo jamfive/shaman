@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
 
         <main className="container mx-auto px-4 py-12 pt-24 relative z-10">
           {/* Hero Section */}
-          <div className="hero min-h-[60vh] flex flex-col justify-center items-center text-center mb-16">
+          <div className="hero min-h-[30vh] flex flex-col justify-center items-center text-center mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -44,15 +44,12 @@ const HomePage: React.FC = () => {
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+              <h1 className="text-5xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
                 Elezioni Regionali <br />
                 <span className="text-gradient">Puglia 2025</span>
               </h1>
 
-              <p className="py-6 text-xl opacity-80 max-w-2xl mx-auto leading-relaxed">
-                La piattaforma ufficiale per seguire in tempo reale lo spoglio,
-                le affluenze e i risultati definitivi delle elezioni regionali.
-              </p>
+             
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Link

@@ -77,11 +77,11 @@ const AffluentePage: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            <h1 className="text-4xl font-bold mb-4 tracking-tight text-left">
               Affluenze{" "}
-              <span className="font-light text-gradient">Elettorali</span>
+              <span className="font-bold text-gradient">Elettorali</span>
             </h1>
-            <h2 className="text-xl font-light opacity-80 tracking-widest uppercase">
+            <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left">
               Puglia 2025
             </h2>
           </motion.header>

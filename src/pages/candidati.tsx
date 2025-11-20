@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
-import { User, ChevronRight, Info } from "lucide-react";
+import { ChevronRight, Info } from "lucide-react";
 
 interface Candidate {
   id: number;
@@ -48,7 +48,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
 
       <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
         {/* Breadcrumb */}
-        <div className="text-sm breadcrumbs mb-8 opacity-60">
+        <div className="text-sm breadcrumbs mb-4 opacity-60">
           <ul>
             <li>
               <Link href="/" className="hover:text-primary transition-colors">
@@ -66,10 +66,10 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
           transition={{ duration: 0.6 }}
           className="mb-12 text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          <h1 className="text-4xl font-bold mb-4 tracking-tight">
             Candidati alla <span className="text-gradient">Presidenza</span>
           </h1>
-          <p className="text-lg opacity-80 max-w-2xl">
+          <p className="text-lg opacity-80 max-w-5xl">
             Elezioni Regionali{" "}
             <span className="font-semibold">Puglia 2025</span>. Scopri i profili
             dei candidati, le liste collegate e i risultati in tempo reale.
@@ -81,7 +81,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-4 gap-6"
         >
           {candidates.map((candidate) => (
             <motion.div key={candidate.id} variants={item}>
@@ -94,17 +94,15 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
                         {candidate.name}
                       </h2>
                       <div className="flex flex-wrap gap-2 mb-3">
-                        <div className="badge badge-primary badge-outline font-medium">
-                          {candidate.party}
-                        </div>
+                      
                         <div className="badge badge-ghost opacity-70">
                           {candidate.coalition}
                         </div>
                       </div>
                     </div>
 
-                    <div className="avatar placeholder">
-                      <div className="bg-primary/10 text-primary rounded-full w-16 h-16 ring ring-primary/20 ring-offset-base-100 ring-offset-2 group-hover:ring-primary/40 transition-all">
+                    <div className="avatar avatar-placeholder ">
+                      <div className="bg-primary/10 text-primary w-16 rounded-full ring ring-primary/20 ring-offset-base-100 ring-offset-2 group-hover:ring-primary/40 transition-all">
                         <span className="text-2xl font-bold">
                           {candidate.name
                             .split(" ")

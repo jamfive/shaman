@@ -24,7 +24,7 @@ const RisultatiPage: React.FC = () => {
 
         <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-8 opacity-60">
+          <div className="text-sm breadcrumbs mb-4 opacity-60">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
@@ -35,17 +35,17 @@ const RisultatiPage: React.FC = () => {
             </ul>
           </div>
 
-          <header className="text-center mb-12">
+          <header className="mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+              <h1 className="text-4xl font-bold mb-4 tracking-tight">
                 Risultati{" "}
                 <span className="font-light text-gradient">Elettorali</span>
               </h1>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center gap-3">
                 <h2 className="text-xl font-light opacity-80 tracking-widest uppercase">
                   Puglia 2025
                 </h2>

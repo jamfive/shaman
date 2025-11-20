@@ -76,11 +76,11 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia }) => {
             >
               <ChevronLeft size={16} /> Torna alle Province
             </Link>
-            <h1 className="text-4xl md:text-6xl font-bold mb-2 tracking-tight">
+            <h1 className="text-4xl  font-bold mb-2 tracking-tight">
               Provincia di{" "}
               <span className="text-gradient">{provinciaName}</span>
             </h1>
-            <h2 className="text-xl opacity-80 font-light">
+            <h2 className="text-base opacity-80 font-light">
               Dettaglio risultati e affluenze
             </h2>
           </motion.div>

@@ -78,9 +78,9 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center md:text-left"
+          className="mb-8 text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+          <h1 className="text-4xl font-bold mb-1 tracking-tight">
             Province della <span className="text-gradient">Puglia</span>
           </h1>
           <p className="text-lg opacity-80 max-w-2xl">
