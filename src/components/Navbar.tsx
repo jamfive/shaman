@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
             </label>
             <Link
               href="/"
-              className="btn btn-ghost text-xl font-bold gap-2 hover:bg-transparent"
+              className="btn btn-ghost text-xl font-bold gap-2 hover:bg-transparent p-6 "
             >
               <NetworkLogo />
               <div className="flex flex-col items-start leading-none">

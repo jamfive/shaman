@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
-import { ChevronRight, Info } from "lucide-react";
+import { Info } from "lucide-react";
+import Image from "next/image";
 
-interface Candidate {
-  id: number;
-  name: string;
-  party: string;
-  coalition: string;
-  votes: number;
-  percentage: number;
-  image?: string;
+interface Lista {
+  pos: number;
+  desc_lis_c: string;
+  img_lis_c: string;
+  voti: number;
+  perc: string;
+  seggi: number;
 }
 
-interface CandidatiPageProps {
-  candidates: Candidate[];
-  totalVotes: number;
+interface Candidate {
+  cogn: string;
+  nome: string;
+  d_nasc: number;
+  l_nasc: string;
+  pos: number;
+  voti: number;
+  perc: string;
+  tot_vot_lis: number;
+  perc_lis: string;
+  liste: Lista[];
+}
+
+interface ScrutiniData {
+  int: {
+    ele_t: number;
+    vot_t: number;
+    perc_vot: string;
+  };
+  cand: Candidate[];
 }
 
 const container = {
@@ -34,10 +50,28 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-const CandidatiPage: React.FC<CandidatiPageProps> = ({
-  candidates,
-  totalVotes,
-}) => {
+const CandidatiPage: React.FC = () => {
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+
+  useEffect(() => {
+    const timestamp = new Date().getTime();
+    fetch(`/data/scrutini-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: ScrutiniData) => {
+        console.log("Scrutini data fetched:", data);
+        setCandidates(data.cand);
+      })
+      .catch((error) => {
+        console.error("Error fetching scrutini data:", error);
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-base-100 relative overflow-hidden">
       {/* Background Elements */}
@@ -48,7 +82,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
 
       <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
         {/* Breadcrumb */}
-        <div className="text-sm breadcrumbs mb-4 opacity-60">
+        <div className="text-sm breadcrumbs mb-2 opacity-60">
           <ul>
             <li>
               <Link href="/" className="hover:text-primary transition-colors">
@@ -64,7 +98,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center md:text-left"
+          className="mb-8 text-center md:text-left"
         >
           <h1 className="text-4xl font-bold mb-4 tracking-tight">
             Candidati alla <span className="text-gradient">Presidenza</span>
@@ -81,74 +115,72 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
         >
-          {candidates.map((candidate) => (
-            <motion.div key={candidate.id} variants={item}>
-              <div className="card glass-card hover:shadow-xl transition-all duration-300 border border-white/20 group">
-                <div className="card-body">
-                  {/* Candidate Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex-1 min-w-0 pr-4">
-                      <h2 className="card-title text-2xl mb-2 font-bold truncate">
-                        {candidate.name}
+          {candidates.map((candidate) => {
+            const fullName = `${candidate.nome} ${candidate.cogn}`;
+            const imageSlug = candidate.cogn.toLowerCase();
+            
+            // Determina la coalizione in base al cognome
+            let coalition = "Lista civica";
+            if (candidate.cogn.toLowerCase() === "decaro") {
+              coalition = "Coalizione di CSX";
+            } else if (candidate.cogn.toLowerCase() === "lobuono") {
+              coalition = "Coalizione di CDX";
+            }
+            
+            const percentage = parseFloat(candidate.perc) || 0;
+            
+            return (
+              <motion.div key={candidate.pos} variants={item}>
+                <div className="card glass-card hover:shadow-xl transition-all duration-300 border border-white/20 group overflow-hidden">
+                  {/* Immagine candidato */}
+                  <figure className="relative w-full aspect-square overflow-hidden">
+                    <Image
+                      src={`/img/candidati/${imageSlug}.webp`}
+                      alt={fullName}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  </figure>
+                  
+                  <div className="card-body p-4">
+                    {/* Candidate Header */}
+                    <div className="mb-3">
+                      <h2 className="text-lg font-bold leading-tight mb-1">
+                        {fullName}
                       </h2>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                      
-                        <div className="badge badge-ghost opacity-70 truncate max-w-full">
-                          {candidate.coalition}
-                        </div>
+                      <div className="badge badge-ghost badge-sm opacity-70 truncate max-w-full">
+                        {coalition}
                       </div>
                     </div>
 
-                    <div className="avatar avatar-placeholder ">
-                      <div className="bg-primary/10 text-primary w-16 rounded-full ring ring-primary/20 ring-offset-base-100 ring-offset-2 group-hover:ring-primary/40 transition-all">
-                        <span className="text-2xl font-bold">
-                          {candidate.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Votes and Percentage */}
-                  <div className="space-y-4 bg-base-100/50 p-4 rounded-xl">
-                    <div>
-                      <div className="flex justify-between mb-2 text-sm">
-                        <span className="opacity-70">Voti ottenuti</span>
+                    {/* Votes and Percentage */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-baseline text-xs">
+                        <span className="opacity-60">Voti</span>
                         <span className="font-bold font-mono">
-                          {candidate.votes.toLocaleString("it-IT")}
+                          {candidate.voti.toLocaleString("it-IT")}
                         </span>
                       </div>
-                      <progress
-                        className="progress progress-primary w-full h-2"
-                        value={candidate.percentage}
-                        max="100"
-                      ></progress>
+                      
+                      <div className="flex justify-between items-center">
+                        <progress
+                          className="progress progress-primary h-1.5 flex-1 mr-2"
+                          value={percentage}
+                          max="100"
+                        ></progress>
+                        <span className="text-xl font-bold text-primary">
+                          {percentage}%
+                        </span>
+                      </div>
                     </div>
-
-                    <div className="flex justify-between items-end">
-                      <span className="text-xs opacity-60 uppercase tracking-wider font-semibold">
-                        Percentuale
-                      </span>
-                      <span className="text-3xl font-bold text-primary">
-                        {candidate.percentage}%
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="card-actions justify-end mt-4">
-                    <button className="btn btn-ghost btn-sm gap-2 group-hover:translate-x-1 transition-transform">
-                      Dettagli <ChevronRight size={16} />
-                    </button>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Info Alert */}
@@ -156,7 +188,7 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="alert glass-card mt-12 border-l-4 border-l-info"
+          className="alert glass-card mt-8 border-l-4 border-l-info"
         >
           <Info className="stroke-info" />
           <div>
@@ -170,52 +202,6 @@ const CandidatiPage: React.FC<CandidatiPageProps> = ({
       </div>
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps<CandidatiPageProps> = async () => {
-  const candidates: Candidate[] = [
-    {
-      id: 1,
-      name: "Antonio Decaro",
-      party: "Partito Democratico",
-      coalition: "Centro-sinistra",
-      votes: 0,
-      percentage: 0,
-    },
-    {
-      id: 2,
-      name: "Luigi Lobuono",
-      party: "Fratelli d'Italia",
-      coalition: "Centro-destra",
-      votes: 0,
-      percentage: 0,
-    },
-    {
-      id: 3,
-      name: "Sabino Mangano",
-      party: "Alleanza civica per la Puglia",
-      coalition: "Lista civica",
-      votes: 0,
-      percentage: 0,
-    },
-    {
-      id: 4,
-      name: "Ada Donno",
-      party: "Puglia pacifista e popolare",
-      coalition: "Lista civica",
-      votes: 0,
-      percentage: 0,
-    },
-  ];
-
-  const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
-
-  return {
-    props: {
-      candidates,
-      totalVotes,
-    },
-  };
 };
 
 export default CandidatiPage;

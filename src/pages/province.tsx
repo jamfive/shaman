@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
@@ -7,21 +7,48 @@ import {
   Users,
   Building2,
   TrendingUp,
+  TrendingDown,
+  Minus,
   ChevronRight,
   Info,
 } from "lucide-react";
+import { ShamanConfig } from "@/ShamanConfig";
 
 interface Province {
   name: string;
   slug: string;
-  capital: string;
   population: number;
   municipalities: number;
   turnout: number;
+  turnoutPrevious: number;
   votedCount: number;
   totalVoters: number;
   leadingCandidate: string;
   leadingPercentage: number;
+}
+
+interface ComVot {
+  perc_r: string;
+  enti_t: number;
+  enti_p: number;
+  perc: string;
+}
+
+interface EntiF {
+  desc: string;
+  ele_t: number;
+  com_vot: ComVot[];
+}
+
+interface AffluenteData {
+  enti: {
+    ente_p: {
+      desc: string;
+      ele_t: number;
+      com_vot: ComVot[];
+    };
+    enti_f: EntiF[];
+  };
 }
 
 interface ProvincePageProps {
@@ -47,11 +74,48 @@ const item = {
 };
 
 const ProvincePage: React.FC<ProvincePageProps> = ({
-  provinces,
+  provinces: initialProvinces,
   totalPopulation,
   totalMunicipalities,
   avgTurnout,
 }) => {
+  const [provinces, setProvinces] = useState<Province[]>(initialProvinces);
+  const phase = ShamanConfig.phase // Primo checkpoint: 12:00
+
+  useEffect(() => {
+    const timestamp = new Date().getTime();
+    fetch(`/data/affluenze-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: AffluenteData) => {
+        const updatedProvinces = initialProvinces.map((province) => {
+          const provinciaData = data.enti.enti_f.find(
+            (p) => p.desc.toLowerCase() === province.name.toLowerCase()
+          );
+          
+          if (provinciaData && phase >= 0) {
+            const currentData = provinciaData.com_vot[phase];
+            return {
+              ...province,
+              turnout: parseFloat(currentData.perc) || 0,
+              turnoutPrevious: parseFloat(currentData.perc_r) || 0,
+              totalVoters: provinciaData.ele_t,
+              votedCount: 0, // Calcolabile se necessario
+            };
+          }
+          return province;
+        });
+        setProvinces(updatedProvinces);
+      })
+      .catch((error) => {
+        console.error("Error fetching affluenze data:", error);
+      });
+  }, [initialProvinces, phase]);
   return (
     <div className="min-h-screen bg-base-100 relative overflow-hidden">
       {/* Background Elements */}
@@ -177,9 +241,6 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                       <h2 className="card-title text-2xl mb-1 font-bold group-hover:text-primary transition-colors">
                         {province.name}
                       </h2>
-                      <div className="text-xs opacity-60 uppercase tracking-wider">
-                        Capoluogo: {province.capital}
-                      </div>
                     </div>
                     <div className="badge badge-lg badge-primary badge-outline font-mono">
                       {province.slug.toUpperCase()}
@@ -214,9 +275,37 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                       <span className="text-xs font-bold uppercase tracking-wider opacity-60">
                         Affluenza
                       </span>
-                      <span className="text-2xl font-bold text-primary">
-                        {province.turnout}%
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl font-bold text-primary">
+                          {province.turnout}%
+                        </span>
+                        {(() => {
+                          const delta = province.turnout - province.turnoutPrevious;
+                          if (delta > 0) {
+                            return (
+                              <div className="flex items-center gap-1">
+                                <TrendingUp size={14} className="text-success" />
+                                <span className="text-success font-semibold text-xs">+{delta.toFixed(1)}%</span>
+                              </div>
+                            );
+                          } else if (delta < 0) {
+                            return (
+                              <div className="flex items-center gap-1">
+                                <TrendingDown size={14} className="text-error" />
+                                <span className="text-error font-semibold text-xs">{delta.toFixed(1)}%</span>
+                              </div>
+                            );
+                          } else if (province.turnoutPrevious > 0) {
+                            return (
+                              <div className="flex items-center gap-1">
+                                <Minus size={14} className="opacity-50" />
+                                <span className="opacity-50 font-semibold text-xs">0%</span>
+                              </div>
+                            );
+                          }
+                          return null;
+                        })()}
+                      </div>
                     </div>
                     <progress
                       className="progress progress-primary w-full h-2"
@@ -275,72 +364,72 @@ export const getStaticProps: GetStaticProps<ProvincePageProps> = async () => {
     {
       name: "Bari",
       slug: "bari",
-      capital: "Bari",
       population: 1218191,
       municipalities: 41,
-      turnout: 68.5,
-      votedCount: 834501,
-      totalVoters: 1218191,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Antonio Decaro",
       leadingPercentage: 45.2,
     },
     {
       name: "Barletta-Andria-Trani",
       slug: "bat",
-      capital: "Andria",
       population: 376561,
       municipalities: 10,
-      turnout: 62.3,
-      votedCount: 234598,
-      totalVoters: 376561,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Luigi Lobuono",
       leadingPercentage: 41.8,
     },
     {
       name: "Brindisi",
       slug: "brindisi",
-      capital: "Brindisi",
       population: 375286,
       municipalities: 20,
-      turnout: 65.7,
-      votedCount: 246563,
-      totalVoters: 375286,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Antonio Decaro",
       leadingPercentage: 43.5,
     },
     {
       name: "Foggia",
       slug: "foggia",
-      capital: "Foggia",
       population: 590304,
       municipalities: 61,
-      turnout: 59.8,
-      votedCount: 352998,
-      totalVoters: 590304,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Luigi Lobuono",
       leadingPercentage: 46.7,
     },
     {
       name: "Lecce",
       slug: "lecce",
-      capital: "Lecce",
       population: 763778,
-      municipalities: 97,
-      turnout: 71.2,
-      votedCount: 543810,
-      totalVoters: 763778,
+      municipalities: 96,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Antonio Decaro",
       leadingPercentage: 48.3,
     },
     {
       name: "Taranto",
       slug: "taranto",
-      capital: "Taranto",
       population: 550046,
       municipalities: 29,
-      turnout: 64.9,
-      votedCount: 357030,
-      totalVoters: 550046,
+      turnout: 0,
+      turnoutPrevious: 0,
+      votedCount: 0,
+      totalVoters: 0,
       leadingCandidate: "Antonio Decaro",
       leadingPercentage: 44.1,
     },

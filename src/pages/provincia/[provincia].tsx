@@ -70,6 +70,28 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
       });
   }, [provincia]);
 
+  // Scroll to anchor with offset for navbar
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      const element = document.getElementById(hash);
+      
+      if (element) {
+        // Aspetta che il DOM sia completamente renderizzato
+        setTimeout(() => {
+          const navbarHeight = 80; // Altezza della navbar in px
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset-40;
+          const offsetPosition = elementPosition - navbarHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    }
+  }, [provinciaData]); // Esegui dopo che i dati sono caricati
+
   const provinciaName =
     provincia === "bat"
       ? "Barletta-Andria-Trani"
@@ -81,7 +103,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
     bat: 10,
     brindisi: 20,
     foggia: 61,
-    lecce: 96,
+    lecce: 97,
     taranto: 29,
   };
 
@@ -99,9 +121,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
   return (
     <>
       <Head>
-        <title>
-          Provincia di {provinciaName} - Elezioni Regionali Puglia 2025
-        </title>
+        <title>{`Provincia di ${provinciaName} - Elezioni Regionali Puglia 2025`}</title>
         <meta
           name="description"
           content={`Risultati e affluenze della provincia di ${provinciaName} per le elezioni regionali della Puglia 2025`}
@@ -117,7 +137,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
 
         <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-8 opacity-60">
+          <div className="text-sm breadcrumbs mb-4 opacity-60">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
@@ -141,7 +161,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-4"
           >
             <Link
               href="/province"
@@ -163,7 +183,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4"
           >
             <div className="card glass-card p-6">
               <div className="flex items-center gap-4">
@@ -258,6 +278,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
 
           {/* Turnout Section */}
           <motion.div
+            id="affluenza-comuni"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -321,7 +342,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                               </div>
                             </td>
                             <td className="text-right">
-                              <span className="badge badge-primary font-bold">
+                              <span className="badge badge-primary font-bold text-primary-content!">
                                 {affluenza}{affluenza !== "--" ? "%" : ""}
                               </span>
                             </td>

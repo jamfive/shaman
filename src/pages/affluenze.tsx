@@ -126,7 +126,7 @@ const AffluentePage: React.FC = () => {
 
         <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-8 opacity-60">
+          <div className="text-sm breadcrumbs mb-4 opacity-60">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
@@ -141,7 +141,7 @@ const AffluentePage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-4"
           >
             <h1 className="text-4xl font-bold mb-4 tracking-tight text-left">
               Affluenze{" "}
@@ -162,7 +162,7 @@ const AffluentePage: React.FC = () => {
               <motion.div
                 key={index}
                 variants={item}
-                className="card glass-card text-center py-6"
+                className={`card glass-card text-center py-6 ${index <= phase ? 'opacity-100!' : 'opacity-30!'}`}
               >
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex items-center gap-2 opacity-70 text-sm">
@@ -245,12 +245,25 @@ const AffluentePage: React.FC = () => {
                         ? (parseFloat(affluenza.replaceAll(",", ".")) - parseFloat(precedente.replaceAll(",", ".")  )).toFixed(2)
                         : null;
                       
+                      // Converti il nome provincia in slug per il link
+                      const provinciaSlugMap: { [key: string]: string } = {
+                        "BARI": "bari",
+                        "BARLETTA-ANDRIA-TRANI": "bat",
+                        "BRINDISI": "brindisi",
+                        "FOGGIA": "foggia",
+                        "LECCE": "lecce",
+                        "TARANTO": "taranto"
+                      };
+                      const provinciaSlug = provinciaSlugMap[provincia.desc.toUpperCase()];
+                      
                       console.log(`Provincia: ${provincia.desc}, Phase: ${phase}, Affluenza: ${affluenza}`);
                       
                       return (
                         <tr
                           key={index}
-                          className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
+                          onClick={() => provinciaSlug && (window.location.href = `/provincia/${provinciaSlug}#affluenza-comuni`)}
+                          className="hover:bg-base-content/5 transition-colors border-b-base-content/5 cursor-pointer"
+                          title={`Vai ai dettagli di ${provincia.desc}`}
                         >
                           <td className="font-medium pl-6 py-4">
                             {provincia.desc}
@@ -268,7 +281,7 @@ const AffluentePage: React.FC = () => {
                             {entiPervenuti}
                           </td>
                           <td className="text-right">
-                            <span className="badge badge-primary font-bold">
+                            <span className="badge badge-primary font-bold text-primary-content!">
                               {affluenza}{affluenza !== "--" ? "%" : ""}
                             </span>
                           </td>
