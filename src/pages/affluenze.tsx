@@ -3,8 +3,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
+import { ShamanConfig } from "@/ShamanConfig";
 
-const phase = 0;
+const phase = ShamanConfig.phase
 
 interface ComVot {
   perc_r: string;
@@ -227,7 +228,7 @@ const AffluentePage: React.FC = () => {
                         "BARLETTA-ANDRIA-TRANI": 10,
                         "BRINDISI": 20,
                         "FOGGIA": 61,
-                        "LECCE": 96,
+                        "LECCE": 97,
                         "TARANTO": 29
                       };
                       
