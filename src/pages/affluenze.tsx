@@ -1,30 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Users, Clock, TrendingUp, Info } from "lucide-react";
+import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
+
+const phase = 0;
+
+interface ComVot {
+  perc_r: string;
+  enti_t: number;
+  enti_p: number;
+  perc: string;
+}
+
+interface EntiF {
+  desc: string;
+  ele_t: number;
+  com_vot: ComVot[];
+}
+
+interface EnteP {
+  desc: string;
+  com_vot: ComVot[];
+}
+
+interface Province {
+  enti: {
+    ente_p: EnteP;
+    enti_f: EntiF[];
+  };
+}
+
+interface TimeStat {
+  time: string;
+  value: string;
+  label: string;
+}
 
 const AffluentePage: React.FC = () => {
-  const provinces = [
-    { name: "Bari", votanti: 0, aventi_diritto: 0, percentuale: 0 },
-    {
-      name: "Barletta-Andria-Trani",
-      votanti: 0,
-      aventi_diritto: 0,
-      percentuale: 0,
-    },
-    { name: "Brindisi", votanti: 0, aventi_diritto: 0, percentuale: 0 },
-    { name: "Foggia", votanti: 0, aventi_diritto: 0, percentuale: 0 },
-    { name: "Lecce", votanti: 0, aventi_diritto: 0, percentuale: 0 },
-    { name: "Taranto", votanti: 0, aventi_diritto: 0, percentuale: 0 },
-  ];
+  const [provinciesData, setProvinciesData] = useState<Province>();
+  const [timeStats, setTimeStats] = useState<TimeStat[]>([]);
 
-  const timeStats = [
-    { time: "12:00", value: "--%", label: "Domenica" },
-    { time: "19:00", value: "--%", label: "Domenica" },
-    { time: "23:00", value: "--%", label: "Domenica" },
-    { time: "15:00", value: "--%", label: "Lunedì" },
-  ];
+  useEffect(() => {
+    // Cache busting: aggiungi timestamp per evitare problemi di cache
+    const timestamp = new Date().getTime();
+    fetch(`/data/affluenze-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data fetched:", data.enti);
+        setProvinciesData(data);
+        setTimeStats([
+          {
+            time: "12:00",
+            value: phase >= 0 ? data.enti.ente_p.com_vot[0]?.perc+"%" || "--%": "--%",
+            label: "Domenica",
+          },
+          {
+            time: "19:00",
+            value: phase >= 1 ? data.enti.ente_p.com_vot[1]?.perc+"%" || "--%": "--%",
+            label: "Domenica",
+          },
+          {
+            time: "23:00",
+            value: phase >= 2 ? data.enti.ente_p.com_vot[2]?.perc+"%" || "--%": "--%",
+            label: "Domenica",
+          },
+          {
+            time: "15:00",
+            value: phase >= 3 ? data.enti.ente_p.com_vot[3]?.perc+"%" || "--%": "--%",
+            label: "Lunedì",
+          },
+        ]); 
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (provinciesData) {
+      console.log("Provinces data updated:", provinciesData);
+    }
+  }, [provinciesData]);
+
+  
 
   const container = {
     hidden: { opacity: 0 },
@@ -82,7 +147,7 @@ const AffluentePage: React.FC = () => {
               <span className="font-bold text-gradient">Elettorali</span>
             </h1>
             <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left">
-              Puglia 2025
+              {provinciesData?.enti.ente_p.desc || "Puglia"} 2025
             </h2>
           </motion.header>
 
@@ -141,43 +206,101 @@ const AffluentePage: React.FC = () => {
                     <tr className="border-b-base-content/10 text-base-content/60 uppercase text-xs tracking-wider">
                       <th className="bg-transparent py-4 pl-6">Provincia</th>
                       <th className="text-right bg-transparent">
-                        Aventi diritto
+                        Comuni
                       </th>
-                      <th className="text-right bg-transparent">Votanti</th>
+                      <th className="text-right bg-transparent">
+                        Elettori
+                      </th>
+                      <th className="text-right bg-transparent">
+                        Enti Totali
+                      </th>
+                      <th className="text-right bg-transparent">Enti Pervenuti</th>
                       <th className="text-right bg-transparent">Affluenza %</th>
-                      <th className="bg-transparent pr-6">Trend</th>
+                      <th className="text-right bg-transparent">Precedente %</th>
+                      <th className="text-right bg-transparent pr-6">Trend</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {provinces.map((provincia, index) => (
-                      <tr
-                        key={index}
-                        className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
-                      >
-                        <td className="font-medium pl-6 py-4">
-                          {provincia.name}
-                        </td>
-                        <td className="text-right opacity-70 font-mono">
-                          {provincia.aventi_diritto.toLocaleString("it-IT") ||
-                            "--"}
-                        </td>
-                        <td className="text-right opacity-70 font-mono">
-                          {provincia.votanti.toLocaleString("it-IT") || "--"}
-                        </td>
-                        <td className="text-right">
-                          <span className="badge badge-primary badge-outline font-bold">
-                            {provincia.percentuale}%
-                          </span>
-                        </td>
-                        <td className="pr-6 w-32">
-                          <progress
-                            className="progress progress-primary w-full h-2"
-                            value={provincia.percentuale}
-                            max="100"
-                          ></progress>
-                        </td>
-                      </tr>
-                    ))}
+                    {provinciesData?.enti.enti_f.map((provincia, index) => {
+                      const comuniMap: { [key: string]: number } = {
+                        "BARI": 41,
+                        "BARLETTA-ANDRIA-TRANI": 10,
+                        "BRINDISI": 20,
+                        "FOGGIA": 61,
+                        "LECCE": 96,
+                        "TARANTO": 29
+                      };
+                      
+                      const currentData = phase >= 0 ? provincia.com_vot[phase] : null;
+                      const affluenza = currentData?.perc || "--";
+                      const precedente = currentData?.perc_r || "--";
+                      const elettori = provincia.ele_t || "--";
+                      const entiTotali = currentData?.enti_t || "--";
+                      const entiPervenuti = currentData?.enti_p || "--";
+                      const comuni = comuniMap[provincia.desc.toUpperCase()] || "--";
+                      
+                      // Calcola il delta percentuale
+                      const delta = affluenza !== "--" && precedente !== "--" 
+                        ? (parseFloat(affluenza.replaceAll(",", ".")) - parseFloat(precedente.replaceAll(",", ".")  )).toFixed(2)
+                        : null;
+                      
+                      console.log(`Provincia: ${provincia.desc}, Phase: ${phase}, Affluenza: ${affluenza}`);
+                      
+                      return (
+                        <tr
+                          key={index}
+                          className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
+                        >
+                          <td className="font-medium pl-6 py-4">
+                            {provincia.desc}
+                          </td>
+                          <td className="text-right opacity-70 font-mono text-sm">
+                            {comuni}
+                          </td>
+                          <td className="text-right opacity-70 font-mono">
+                            {elettori !== "--" ? elettori.toLocaleString("it-IT") : "--"}
+                          </td>
+                          <td className="text-right opacity-70 font-mono">
+                            {entiTotali}
+                          </td>
+                          <td className="text-right opacity-70 font-mono">
+                            {entiPervenuti}
+                          </td>
+                          <td className="text-right">
+                            <span className="badge badge-primary font-bold">
+                              {affluenza}{affluenza !== "--" ? "%" : ""}
+                            </span>
+                          </td>
+                          <td className="text-right opacity-70 font-mono text-sm">
+                            {precedente}{precedente !== "--" ? "%" : ""}
+                          </td>
+                          <td className="pr-6">
+                            {delta !== null ? (
+                              <div className="flex items-center justify-end gap-1">
+                                {parseFloat(delta) > 0 ? (
+                                  <>
+                                    <TrendingUp size={16} className="text-success" />
+                                    <span className="text-success font-semibold text-sm">+{delta}%</span>
+                                  </>
+                                ) : parseFloat(delta) < 0 ? (
+                                  <>
+                                    <TrendingDown size={16} className="text-error" />
+                                    <span className="text-error font-semibold text-sm">{delta}%</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Minus size={16} className="opacity-50" />
+                                    <span className="opacity-50 font-semibold text-sm">{delta}%</span>
+                                  </>
+                                )}
+                              </div>
+                            ) : (
+                              <span className="opacity-30 text-sm">--</span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

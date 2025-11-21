@@ -23,6 +23,18 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia }) => {
       ? "Barletta-Andria-Trani"
       : capitalizeFirstLetter(provincia);
 
+  // Numero comuni per provincia (fonte: tuttitalia.it)
+  const comuniMap: { [key: string]: number } = {
+    bari: 41,
+    bat: 10,
+    brindisi: 20,
+    foggia: 61,
+    lecce: 96,
+    taranto: 29,
+  };
+
+  const numComuni = comuniMap[provincia] || 0;
+
   return (
     <>
       <Head>
@@ -131,7 +143,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia }) => {
                   <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
                     Comuni
                   </div>
-                  <div className="text-3xl font-bold">--</div>
+                  <div className="text-3xl font-bold">{numComuni}</div>
                   <div className="text-xs opacity-50">coinvolti</div>
                 </div>
               </div>
