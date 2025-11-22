@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Users, Map, BarChart2, ArrowRight, Activity } from "lucide-react";
+import { Map, BarChart2, ArrowRight, Activity } from "lucide-react";
 
 const HomePage: React.FC = () => {
   return (
