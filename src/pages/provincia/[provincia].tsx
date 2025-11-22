@@ -48,11 +48,46 @@ interface ProvinciaData {
   };
 }
 
+interface CandidateResult {
+  cogn: string;
+  nome: string;
+  voti: number;
+  perc: string;
+  tot_vot_lis: number;
+  perc_lis: string;
+  liste: Array<{
+    pos: number;
+    desc_lis_c: string;
+    img_lis_c: string;
+    voti: number;
+    perc: string;
+  }>;
+}
+
+interface ScrutiniData {
+  cand: CandidateResult[];
+}
+
 const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
   const [provinciaData, setProvinciaData] = useState<ProvinciaData>();
+  const [candidatesResults, setCandidatesResults] = useState<CandidateResult[]>([]);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
+    
+    // Mappa slug provincia a nome file
+    const fileNameMap: { [key: string]: string } = {
+      'bat': 'barletta-andria-trani',
+      'bari': 'bari',
+      'brindisi': 'brindisi',
+      'foggia': 'foggia',
+      'lecce': 'lecce',
+      'taranto': 'taranto'
+    };
+    
+    const provinciaFileName = fileNameMap[provincia] || provincia;
+    
+    // Carica affluenze provincia
     fetch(`/data/affluenze-${provincia}.json?t=${timestamp}`, {
       cache: 'no-store',
       headers: {
@@ -67,6 +102,25 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
       })
       .catch((error) => {
         console.error(`Error fetching data for ${provincia}:`, error);
+      });
+    
+    // Carica risultati candidati dalla provincia specifica
+    fetch(`/data/scrutini-provincia-${provinciaFileName}.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: ScrutiniData) => {
+        console.log(`Candidates data fetched for ${provincia}:`, data);
+        // Ordina candidati per voti decrescenti
+        const sortedCandidates = [...data.cand].sort((a, b) => b.voti - a.voti);
+        setCandidatesResults(sortedCandidates);
+      })
+      .catch((error) => {
+        console.error(`Error fetching candidates data for ${provincia}:`, error);
       });
   }, [provincia]);
 
@@ -259,17 +313,48 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td colSpan={4} className="py-12 text-center">
-                        <div className="flex flex-col items-center justify-center opacity-50 gap-3">
-                          <AlertCircle size={48} className="stroke-1" />
-                          <p className="text-lg">
-                            Dati non ancora disponibili per la provincia di{" "}
-                            {provinciaName}
-                          </p>
-                        </div>
-                      </td>
-                    </tr>
+                    {candidatesResults.length > 0 ? (
+                      candidatesResults.map((candidate, index) => {
+                        const fullName = `${candidate.nome} ${candidate.cogn}`;
+                        const coalitionLabel = candidate.cogn.toLowerCase() === "decaro" 
+                          ? "Coalizione di CSX" 
+                          : candidate.cogn.toLowerCase() === "lobuono"
+                          ? "Coalizione di CDX"
+                          : "Lista civica";
+                        const percentage = parseFloat(candidate.perc) || 0;
+                        
+                        return (
+                          <tr key={index} className="hover:bg-base-content/5 transition-colors border-b-base-content/5">
+                            <td className="font-medium pl-6 py-4">{fullName}</td>
+                            <td className="py-4">
+                              <div className="badge badge-outline badge-sm">{coalitionLabel}</div>
+                            </td>
+                            <td className="text-right font-mono font-semibold py-4">
+                              {candidate.voti.toLocaleString("it-IT")}
+                            </td>
+                            <td className="text-right pr-6 py-4">
+                              <div className="flex items-center justify-end gap-2">
+                                <span className="badge badge-primary font-bold">
+                                  {percentage.toFixed(2)}%
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td colSpan={4} className="py-12 text-center">
+                          <div className="flex flex-col items-center justify-center opacity-50 gap-3">
+                            <AlertCircle size={48} className="stroke-1" />
+                            <p className="text-lg">
+                              Dati non ancora disponibili per la provincia di{" "}
+                              {provinciaName}
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>

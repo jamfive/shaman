@@ -212,10 +212,7 @@ const AffluentePage: React.FC = () => {
                       <th className="text-right bg-transparent">
                         Elettori
                       </th>
-                      <th className="text-right bg-transparent">
-                        Enti Totali
-                      </th>
-                      <th className="text-right bg-transparent">Enti Pervenuti</th>
+                      <th className="text-right bg-transparent">Sezioni</th>
                       <th className="text-right bg-transparent">Affluenza %</th>
                       <th className="text-right bg-transparent">Precedente %</th>
                       <th className="text-right bg-transparent pr-6">Trend</th>
@@ -236,8 +233,8 @@ const AffluentePage: React.FC = () => {
                       const affluenza = currentData?.perc || "--";
                       const precedente = currentData?.perc_r || "--";
                       const elettori = provincia.ele_t || "--";
-                      const entiTotali = currentData?.enti_t || "--";
-                      const entiPervenuti = currentData?.enti_p || "--";
+                      const entiTotali = currentData?.enti_t ?? "--";
+                      const entiPervenuti = currentData?.enti_p ?? "--";
                       const comuni = comuniMap[provincia.desc.toUpperCase()] || "--";
                       
                       // Calcola il delta percentuale
@@ -274,11 +271,27 @@ const AffluentePage: React.FC = () => {
                           <td className="text-right opacity-70 font-mono">
                             {elettori !== "--" ? elettori.toLocaleString("it-IT") : "--"}
                           </td>
-                          <td className="text-right opacity-70 font-mono">
-                            {entiTotali}
-                          </td>
-                          <td className="text-right opacity-70 font-mono">
-                            {entiPervenuti}
+                          <td className="text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <span className="opacity-70 font-mono">
+                                {entiPervenuti}/{entiTotali}
+                              </span>
+                              {entiPervenuti !== "--" && entiTotali !== "--" && (
+                                <span className="relative flex h-2 w-2">
+                                  {entiPervenuti < entiTotali ? (
+                                    <>
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
+                                    </>
+                                  )}
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="text-right">
                             <span className="badge badge-primary font-bold text-primary-content!">
