@@ -40,14 +40,20 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+    }
+  },
 };
 
 const CandidatiPage: React.FC = () => {
@@ -114,7 +120,7 @@ const CandidatiPage: React.FC = () => {
         <motion.div
           variants={container}
           initial="hidden"
-          animate="show"
+          animate={candidates.length > 0 ? "show" : "hidden"}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {candidates.map((candidate) => {

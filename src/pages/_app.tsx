@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { Roboto } from "next/font/google";
 import '../styles/globals.css';
 import { Providers } from '../components/Providers';
@@ -11,10 +12,13 @@ const roboto = Roboto({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const hideNavbar = router.pathname.startsWith('/widget');
+
   return (
     <div className={`${roboto.variable} antialiased`}>
       <Providers>
-        <Navbar />
+        {!hideNavbar && <Navbar />}
         <Component {...pageProps} />
       </Providers>
     </div>

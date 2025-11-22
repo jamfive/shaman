@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       <div className="min-h-screen bg-base-100 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px] animate-pulse" />
+          <div className="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px] animate-pulse" style={{animationDuration: "5s"}} />
           <div
             className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[120px] animate-pulse"
             style={{ animationDelay: "2s" }}

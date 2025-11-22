@@ -200,7 +200,7 @@ const Navbar: React.FC = () => {
                 <div className="indicator">
                   <Sun size={20} className="hidden dark:block" />
                   <Moon size={20} className="block dark:hidden" />
-                  <span className="badge badge-xs badge-primary indicator-item">
+                  <span className="badge badge-xs badge-primary indicator-item text-primary-content!">
                     A
                   </span>
                 </div>
