@@ -1,1 +1,2376 @@
-{"int":{"st":"ESERCIZIO","c_ele":7,"t_ele":"Regionali Speciali","f_elet":"VOTANTI","dt_ele":20251123000000,"l_terr":"PROVINCIA","area":"I","dt_agg":null},"note":["LA PERCENTUALE RIPORTATA NELLA COLONNA DELLA PRECEDENTE ELEZIONE E' SEMPRE RIFERITA A TUTTE LE SEZIONI DEL COMUNE."],"note_din":null,"enti":{"ente_p":{"desc":"BARI","cod":9,"ele_m":0,"ele_f":0,"ele_t":1107116,"com":[{"cod_reg":16,"com_att":0,"num_com":4}],"com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":1224,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":1224,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":1224,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":1224,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},"enti_f":[{"tipo":"COMUNE","desc":"ACQUAVIVA DELLE FONTI","cod":10,"ele_m":0,"ele_f":0,"ele_t":17570,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"ADELFIA","cod":20,"ele_m":0,"ele_f":0,"ele_t":15580,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"ALBEROBELLO","cod":30,"ele_m":0,"ele_f":0,"ele_t":9606,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":9,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":9,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":9,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":9,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"ALTAMURA","cod":40,"ele_m":0,"ele_f":0,"ele_t":58329,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"BARI","cod":60,"ele_m":0,"ele_f":0,"ele_t":276535,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":344,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":344,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":344,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":344,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"BINETTO","cod":80,"ele_m":0,"ele_f":0,"ele_t":1861,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"BITETTO","cod":100,"ele_m":0,"ele_f":0,"ele_t":10300,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"BITONTO","cod":110,"ele_m":0,"ele_f":0,"ele_t":47434,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":51,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":51,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":51,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":51,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"BITRITTO","cod":120,"ele_m":0,"ele_f":0,"ele_t":10774,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CAPURSO","cod":140,"ele_m":0,"ele_f":0,"ele_t":13694,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":15,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":15,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":15,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":15,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CASAMASSIMA","cod":150,"ele_m":0,"ele_f":0,"ele_t":16922,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":16,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CASSANO DELLE MURGE","cod":160,"ele_m":0,"ele_f":0,"ele_t":13179,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CASTELLANA GROTTE","cod":170,"ele_m":0,"ele_f":0,"ele_t":18711,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CELLAMARE","cod":180,"ele_m":0,"ele_f":0,"ele_t":5030,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":6,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":6,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":6,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":6,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CONVERSANO","cod":190,"ele_m":0,"ele_f":0,"ele_t":24102,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"CORATO","cod":200,"ele_m":0,"ele_f":0,"ele_t":43368,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":44,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":44,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":44,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":44,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"GIOIA DEL COLLE","cod":210,"ele_m":0,"ele_f":0,"ele_t":23496,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"GIOVINAZZO","cod":220,"ele_m":0,"ele_f":0,"ele_t":18928,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"GRAVINA IN PUGLIA","cod":230,"ele_m":0,"ele_f":0,"ele_t":36791,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"GRUMO APPULA","cod":240,"ele_m":0,"ele_f":0,"ele_t":11315,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"LOCOROTONDO","cod":250,"ele_m":0,"ele_f":0,"ele_t":12681,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":12,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"MODUGNO","cod":270,"ele_m":0,"ele_f":0,"ele_t":31102,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":34,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"MOLA DI BARI","cod":280,"ele_m":0,"ele_f":0,"ele_t":25921,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":28,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":28,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":28,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":28,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"MOLFETTA","cod":290,"ele_m":0,"ele_f":0,"ele_t":56553,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":60,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"MONOPOLI","cod":300,"ele_m":0,"ele_f":0,"ele_t":44805,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":52,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":52,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":52,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":52,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"NOCI","cod":310,"ele_m":0,"ele_f":0,"ele_t":17078,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":17,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":17,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":17,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":17,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"NOICATTARO","cod":320,"ele_m":0,"ele_f":0,"ele_t":21536,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"PALO DEL COLLE","cod":330,"ele_m":0,"ele_f":0,"ele_t":19037,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":20,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"POGGIORSINI","cod":331,"ele_m":0,"ele_f":0,"ele_t":1136,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":2,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"POLIGNANO A MARE","cod":340,"ele_m":0,"ele_f":0,"ele_t":17555,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":18,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"PUTIGNANO","cod":350,"ele_m":0,"ele_f":0,"ele_t":24204,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":25,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"RUTIGLIANO","cod":360,"ele_m":0,"ele_f":0,"ele_t":15812,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":19,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":19,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":19,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":19,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"RUVO DI PUGLIA","cod":370,"ele_m":0,"ele_f":0,"ele_t":21439,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"SAMMICHELE DI BARI","cod":380,"ele_m":0,"ele_f":0,"ele_t":6265,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":8,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":8,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":8,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":8,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"SANNICANDRO DI BARI","cod":390,"ele_m":0,"ele_f":0,"ele_t":10160,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":11,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"SANTERAMO IN COLLE","cod":400,"ele_m":0,"ele_f":0,"ele_t":23811,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":23,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"TERLIZZI","cod":420,"ele_m":0,"ele_f":0,"ele_t":23225,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"TORITTO","cod":430,"ele_m":0,"ele_f":0,"ele_t":7801,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":10,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":10,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":10,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":10,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"TRIGGIANO","cod":450,"ele_m":0,"ele_f":0,"ele_t":24773,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":30,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":30,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":30,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":30,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"TURI","cod":460,"ele_m":0,"ele_f":0,"ele_t":12389,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":13,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]},{"tipo":"COMUNE","desc":"VALENZANO","cod":470,"ele_m":0,"ele_f":0,"ele_t":16308,"una_lis":null,"tipo_tras":"SZ","com_vot":[{"com":1,"dt_com":20251123120000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":2,"dt_com":20251123190000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":3,"dt_com":20251123230000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"},{"com":4,"dt_com":20251124150000,"enti_p":0,"enti_t":22,"perc":"0","vot_m":0,"vot_f":0,"vot_t":0,"perc_r":"0"}]}]}}
+{
+  "int": {
+    "st": "ESERCIZIO",
+    "c_ele": 7,
+    "t_ele": "Regionali Speciali",
+    "f_elet": "VOTANTI",
+    "dt_ele": 20251123000000,
+    "l_terr": "PROVINCIA",
+    "area": "I",
+    "dt_agg": null
+  },
+  "note": [
+    "LA PERCENTUALE RIPORTATA NELLA COLONNA DELLA PRECEDENTE ELEZIONE E' SEMPRE RIFERITA A TUTTE LE SEZIONI DEL COMUNE."
+  ],
+  "note_din": null,
+  "enti": {
+    "ente_p": {
+      "desc": "BARI",
+      "cod": 9,
+      "ele_m": 0,
+      "ele_f": 0,
+      "ele_t": 1107116,
+      "com": [
+        {
+          "cod_reg": 16,
+          "com_att": 0,
+          "num_com": 4
+        }
+      ],
+      "com_vot": [
+        {
+          "com": 1,
+          "dt_com": 20251123120000,
+          "enti_p": 0,
+          "enti_t": 1224,
+          "perc": "0",
+          "vot_m": 0,
+          "vot_f": 0,
+          "vot_t": 0,
+          "perc_r": "0"
+        },
+        {
+          "com": 2,
+          "dt_com": 20251123190000,
+          "enti_p": 0,
+          "enti_t": 1224,
+          "perc": "0",
+          "vot_m": 0,
+          "vot_f": 0,
+          "vot_t": 0,
+          "perc_r": "0"
+        },
+        {
+          "com": 3,
+          "dt_com": 20251123230000,
+          "enti_p": 0,
+          "enti_t": 1224,
+          "perc": "0",
+          "vot_m": 0,
+          "vot_f": 0,
+          "vot_t": 0,
+          "perc_r": "0"
+        },
+        {
+          "com": 4,
+          "dt_com": 20251124150000,
+          "enti_p": 0,
+          "enti_t": 1224,
+          "perc": "0",
+          "vot_m": 0,
+          "vot_f": 0,
+          "vot_t": 0,
+          "perc_r": "0"
+        }
+      ]
+    },
+    "enti_f": [
+      {
+        "tipo": "COMUNE",
+        "desc": "ACQUAVIVA DELLE FONTI",
+        "cod": 10,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 17570,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "ADELFIA",
+        "cod": 20,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 15580,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "ALBEROBELLO",
+        "cod": 30,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 9606,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 9,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 9,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 9,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 9,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "ALTAMURA",
+        "cod": 40,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 58329,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "BARI",
+        "cod": 60,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 276535,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 344,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 344,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 344,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 344,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "BINETTO",
+        "cod": 80,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 1861,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "BITETTO",
+        "cod": 100,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 10300,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "BITONTO",
+        "cod": 110,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 47434,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 51,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 51,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 51,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 51,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "BITRITTO",
+        "cod": 120,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 10774,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CAPURSO",
+        "cod": 140,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 13694,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 15,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 15,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 15,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 15,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CASAMASSIMA",
+        "cod": 150,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 16922,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 16,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CASSANO DELLE MURGE",
+        "cod": 160,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 13179,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CASTELLANA GROTTE",
+        "cod": 170,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 18711,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CELLAMARE",
+        "cod": 180,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 5030,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 6,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 6,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 6,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 6,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CONVERSANO",
+        "cod": 190,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 24102,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "CORATO",
+        "cod": 200,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 43368,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 44,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 44,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 44,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 44,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "GIOIA DEL COLLE",
+        "cod": 210,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 23496,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "GIOVINAZZO",
+        "cod": 220,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 18928,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "GRAVINA IN PUGLIA",
+        "cod": 230,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 36791,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "GRUMO APPULA",
+        "cod": 240,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 11315,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "LOCOROTONDO",
+        "cod": 250,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 12681,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 12,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "MODUGNO",
+        "cod": 270,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 31102,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 34,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "MOLA DI BARI",
+        "cod": 280,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 25921,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 28,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 28,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 28,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 28,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "MOLFETTA",
+        "cod": 290,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 56553,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 60,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "MONOPOLI",
+        "cod": 300,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 44805,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 52,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 52,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 52,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 52,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "NOCI",
+        "cod": 310,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 17078,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 17,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 17,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 17,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 17,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "NOICATTARO",
+        "cod": 320,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 21536,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "PALO DEL COLLE",
+        "cod": 330,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 19037,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 20,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "POGGIORSINI",
+        "cod": 331,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 1136,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 2,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "POLIGNANO A MARE",
+        "cod": 340,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 17555,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 18,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "PUTIGNANO",
+        "cod": 350,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 24204,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 25,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "RUTIGLIANO",
+        "cod": 360,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 15812,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 19,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 19,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 19,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 19,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "RUVO DI PUGLIA",
+        "cod": 370,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 21439,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "SAMMICHELE DI BARI",
+        "cod": 380,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 6265,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 8,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 8,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 8,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 8,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "SANNICANDRO DI BARI",
+        "cod": 390,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 10160,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 11,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "SANTERAMO IN COLLE",
+        "cod": 400,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 23811,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 23,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "TERLIZZI",
+        "cod": 420,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 23225,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "TORITTO",
+        "cod": 430,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 7801,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 10,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 10,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 10,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 10,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "TRIGGIANO",
+        "cod": 450,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 24773,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 30,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 30,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 30,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 30,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "TURI",
+        "cod": 460,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 12389,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 13,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      },
+      {
+        "tipo": "COMUNE",
+        "desc": "VALENZANO",
+        "cod": 470,
+        "ele_m": 0,
+        "ele_f": 0,
+        "ele_t": 16308,
+        "una_lis": null,
+        "tipo_tras": "SZ",
+        "com_vot": [
+          {
+            "com": 1,
+            "dt_com": 20251123120000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 2,
+            "dt_com": 20251123190000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 3,
+            "dt_com": 20251123230000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          },
+          {
+            "com": 4,
+            "dt_com": 20251124150000,
+            "enti_p": 0,
+            "enti_t": 22,
+            "perc": "0",
+            "vot_m": 0,
+            "vot_f": 0,
+            "vot_t": 0,
+            "perc_r": "0"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -295,11 +295,11 @@ const AffluentePage: React.FC = () => {
                           </td>
                           <td className="text-right">
                             <span className="badge badge-primary font-bold text-primary-content!">
-                              {affluenza}{affluenza !== "--" ? "%" : ""}
+                              {parseFloat(affluenza).toFixed(2)}{affluenza !== "--" ? "%" : ""}
                             </span>
                           </td>
                           <td className="text-right opacity-70 font-mono text-sm">
-                            {precedente}{precedente !== "--" ? "%" : ""}
+                            {parseFloat(precedente).toFixed(2)}{precedente !== "--" ? "%" : ""}
                           </td>
                           <td className="pr-6">
                             {delta !== null ? (

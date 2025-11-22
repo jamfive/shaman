@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { GetServerSideProps } from "next";
 import { motion } from "framer-motion";
 import { capitalizeFirstLetter } from "../../lib/utils";
@@ -248,9 +249,16 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                   <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
                     Affluenza
                   </div>
-                  <div className="text-3xl font-bold">{affluenzaProvincia}{affluenzaProvincia !== "--" ? "%" : ""}</div>
+                  <div className="text-3xl font-bold">
+                    {affluenzaProvincia}
+                    {affluenzaProvincia !== "--" ? "%" : ""}
+                  </div>
                   <div className="text-xs opacity-50">
-                    su {elettoriProvincia !== "--" ? elettoriProvincia.toLocaleString("it-IT") : "--"} elettori
+                    su{" "}
+                    {elettoriProvincia !== "--"
+                      ? elettoriProvincia.toLocaleString("it-IT")
+                      : "--"}{" "}
+                    elettori
                   </div>
                 </div>
               </div>
@@ -265,7 +273,9 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                   <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
                     Sezioni
                   </div>
-                  <div className="text-3xl font-bold">{sezioniPervenute} / {sezioniTotali}</div>
+                  <div className="text-3xl font-bold">
+                    {sezioniPervenute} / {sezioniTotali}
+                  </div>
                   <div className="text-xs opacity-50">scrutinate</div>
                 </div>
               </div>
@@ -316,25 +326,54 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                     {candidatesResults.length > 0 ? (
                       candidatesResults.map((candidate, index) => {
                         const fullName = `${candidate.nome} ${candidate.cogn}`;
-                        const coalitionLabel = candidate.cogn.toLowerCase() === "decaro" 
-                          ? "Coalizione di CSX" 
-                          : candidate.cogn.toLowerCase() === "lobuono"
-                          ? "Coalizione di CDX"
-                          : "Lista civica";
+                        const coalitionLabel =
+                          candidate.cogn.toLowerCase() === "decaro"
+                            ? "Coalizione di CSX"
+                            : candidate.cogn.toLowerCase() === "lobuono"
+                            ? "Coalizione di CDX"
+                            : "Lista civica";
                         const percentage = parseFloat(candidate.perc) || 0;
-                        
+
                         return (
-                          <tr key={index} className="hover:bg-base-content/5 transition-colors border-b-base-content/5">
-                            <td className="font-medium pl-6 py-4">{fullName}</td>
+                          <tr
+                            key={index}
+                            className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
+                          >
+                            <td className="font-medium pl-6 py-4">
+                              {fullName}
+                            </td>
                             <td className="py-4">
-                              <div className="badge badge-outline badge-sm">{coalitionLabel}</div>
+                              <div className="flex items-center gap-2">
+                                <div className="badge badge-outline badge-sm">
+                                  {coalitionLabel}
+                                </div>
+                                {/* Simboli liste */}
+                                <div className="flex flex-wrap gap-1">
+                                  {candidate.liste.map((lista) => (
+                                    <div
+                                      key={lista.pos}
+                                      className="tooltip tooltip-top"
+                                      data-tip={lista.desc_lis_c}
+                                    >
+                                      <div className="size-8 relative rounded hover:opacity-80 transition-opacity">
+                                        <Image
+                                          src={`/img/regionali2025/${lista.img_lis_c}`}
+                                          alt={lista.desc_lis_c}
+                                          fill
+                                          className="object-contain"
+                                        />
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
                             </td>
                             <td className="text-right font-mono font-semibold py-4">
                               {candidate.voti.toLocaleString("it-IT")}
                             </td>
                             <td className="text-right pr-6 py-4">
                               <div className="flex items-center justify-end gap-2">
-                                <span className="badge badge-primary font-bold">
+                                <span className="badge badge-primary font-bold text-primary-content!">
                                   {percentage.toFixed(2)}%
                                 </span>
                               </div>
@@ -370,11 +409,23 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             className="card glass-card overflow-hidden"
           >
             <div className="card-body p-0">
-              <div className="p-6 border-b border-base-content/5 bg-base-100/30">
+              <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex gap-2">
                 <h3 className="text-2xl font-bold flex items-center gap-2">
                   <Vote className="text-secondary" size={24} />
                   Affluenza per Comune
                 </h3>
+                <p className={`translate-y-2 ${Number(sezioniPervenute) > 0 ? 'opacity-100' : 'opacity-0' }`}>
+                  Ultima rilevazione:{" "}
+                  {
+                    [
+                      "Domenica 23 novembre",
+                      "Domenica 23 novembre",
+                      "Domenica 23 novembre",
+                      "Lunedì 24 novembre",
+                    ][phase]
+                  }{" "}
+                  {["12:00", "19:00", "23:00", "15:00"][phase] || "--:--"}
+                </p>
               </div>
 
               <div className="overflow-x-auto">
@@ -385,30 +436,38 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                       <th className="text-right py-4">Elettori</th>
                       <th className="text-right py-4">Sezioni</th>
                       <th className="text-right py-4">Affluenza %</th>
+                      <th className="text-right py-4">Precedente %</th>
                       <th className="text-right py-4 pr-6">Trend</th>
                     </tr>
                   </thead>
                   <tbody>
                     {provinciaData && provinciaData.enti.enti_f.length > 0 ? (
                       provinciaData.enti.enti_f.map((comune, index) => {
-                        const comuneData = phase >= 0 ? comune.com_vot[phase] : null;
+                        const comuneData =
+                          phase >= 0 ? comune.com_vot[phase] : null;
                         const affluenza = comuneData?.perc || "--";
                         const precedente = comuneData?.perc_r || "--";
                         const sezioniT = comuneData?.enti_t || 0;
                         const sezioniP = comuneData?.enti_p || 0;
-                        const sezioniComplete = sezioniT > 0 && sezioniP === sezioniT;
-                        
+                        const sezioniComplete =
+                          sezioniT > 0 && sezioniP === sezioniT;
+
                         // Calcola il delta percentuale
-                        const delta = affluenza !== "--" && precedente !== "--" 
-                          ? (parseFloat(affluenza) - parseFloat(precedente)).toFixed(2)
-                          : null;
-                        
+                        const delta =
+                          affluenza !== "--" && precedente !== "--"
+                            ? (
+                                parseFloat(affluenza) - parseFloat(precedente)
+                              ).toFixed(2)
+                            : null;
+
                         return (
                           <tr
                             key={index}
                             className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
                           >
-                            <td className="font-medium pl-6 py-4">{comune.desc}</td>
+                            <td className="font-medium pl-6 py-4">
+                              {comune.desc}
+                            </td>
                             <td className="text-right opacity-70 font-mono">
                               {comune.ele_t.toLocaleString("it-IT")}
                             </td>
@@ -418,36 +477,60 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                   {sezioniP}/{sezioniT}
                                 </span>
                                 {sezioniT > 0 && (
-                                  <div className={`w-2 h-2 rounded-full ${
-                                    sezioniComplete 
-                                      ? 'bg-success' 
-                                      : 'bg-error animate-pulse'
-                                  }`} title={sezioniComplete ? 'Tutte le sezioni pervenute' : 'Scrutinio in corso'} />
+                                  <div
+                                    className={`w-2 h-2 rounded-full ${
+                                      sezioniComplete
+                                        ? "bg-success"
+                                        : "bg-error animate-pulse"
+                                    }`}
+                                    title={
+                                      sezioniComplete
+                                        ? "Tutte le sezioni pervenute"
+                                        : "Scrutinio in corso"
+                                    }
+                                  />
                                 )}
                               </div>
                             </td>
                             <td className="text-right">
                               <span className="badge badge-primary font-bold text-primary-content!">
-                                {affluenza}{affluenza !== "--" ? "%" : ""}
+                                {parseFloat(affluenza).toFixed(2)}
+                                {affluenza !== "--" ? "%" : ""}
                               </span>
+                            </td>
+                            <td className="text-right opacity-70 font-mono text-sm">
+                              {parseFloat(precedente).toFixed(2)}
+                              {precedente !== "--" ? "%" : ""}
                             </td>
                             <td className="text-right pr-6">
                               {delta !== null ? (
                                 <div className="flex items-center justify-end gap-1">
                                   {parseFloat(delta) > 0 ? (
                                     <>
-                                      <TrendingUp size={16} className="text-success" />
-                                      <span className="text-success font-semibold text-sm">+{delta}%</span>
+                                      <TrendingUp
+                                        size={16}
+                                        className="text-success"
+                                      />
+                                      <span className="text-success font-semibold text-sm">
+                                        +{delta}%
+                                      </span>
                                     </>
                                   ) : parseFloat(delta) < 0 ? (
                                     <>
-                                      <TrendingDown size={16} className="text-error" />
-                                      <span className="text-error font-semibold text-sm">{delta}%</span>
+                                      <TrendingDown
+                                        size={16}
+                                        className="text-error"
+                                      />
+                                      <span className="text-error font-semibold text-sm">
+                                        {delta}%
+                                      </span>
                                     </>
                                   ) : (
                                     <>
                                       <Minus size={16} className="opacity-50" />
-                                      <span className="opacity-50 font-semibold text-sm">{delta}%</span>
+                                      <span className="opacity-50 font-semibold text-sm">
+                                        {delta}%
+                                      </span>
                                     </>
                                   )}
                                 </div>

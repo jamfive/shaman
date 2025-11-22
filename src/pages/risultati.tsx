@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Info, X } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
 
 interface Lista {
@@ -49,29 +49,31 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
+  show: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-    }
+    },
   },
 };
 
 const CandidatiPage: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+    null
+  );
   const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
   const [sezioniTotali, setSezioniTotali] = useState<number>(0);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
     fetch(`/data/scrutini-puglia.json?t=${timestamp}`, {
-      cache: 'no-store',
+      cache: "no-store",
       headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+      },
     })
       .then((response) => response.json())
       .then((data: ScrutiniData) => {
@@ -115,9 +117,12 @@ const CandidatiPage: React.FC = () => {
         >
           <div className="bg-base-200/50 rounded-lg p-2">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs font-semibold opacity-70">Sezioni scrutinate</span>
+              <span className="text-xs font-semibold opacity-70">
+                Sezioni scrutinate
+              </span>
               <span className="text-xs font-bold font-mono">
-                {sezioniScrutinate.toLocaleString("it-IT")} / {sezioniTotali.toLocaleString("it-IT")}
+                {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
+                {sezioniTotali.toLocaleString("it-IT")}
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -127,7 +132,10 @@ const CandidatiPage: React.FC = () => {
                 max={sezioniTotali}
               ></progress>
               <span className="text-xs font-bold text-primary">
-                {sezioniTotali > 0 ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(1) : 0}%
+                {sezioniTotali > 0
+                  ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(1)
+                  : 0}
+                %
               </span>
             </div>
           </div>
@@ -145,14 +153,17 @@ const CandidatiPage: React.FC = () => {
               Candidati e <span className="text-gradient">Risultati</span>
             </h1>
           </div>
-          
+
           {/* Progress Bar Desktop */}
           <div className="hidden md:block md:flex-1 md:max-w-md">
             <div className="bg-base-200/50 rounded-lg p-2">
               <div className="flex justify-between items-center mb-1">
-                <span className="text-xs font-semibold opacity-70">Sezioni scrutinate</span>
+                <span className="text-xs font-semibold opacity-70">
+                  Sezioni scrutinate
+                </span>
                 <span className="text-xs font-bold font-mono">
-                  {sezioniScrutinate.toLocaleString("it-IT")} / {sezioniTotali.toLocaleString("it-IT")}
+                  {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
+                  {sezioniTotali.toLocaleString("it-IT")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -162,7 +173,10 @@ const CandidatiPage: React.FC = () => {
                   max={sezioniTotali}
                 ></progress>
                 <span className="text-xs font-bold text-primary">
-                  {sezioniTotali > 0 ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(1) : 0}%
+                  {sezioniTotali > 0
+                    ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(2)
+                    : 0}
+                  %
                 </span>
               </div>
             </div>
@@ -180,7 +194,7 @@ const CandidatiPage: React.FC = () => {
             const fullName = `${candidate.nome} ${candidate.cogn}`;
             const imageSlug = candidate.cogn.toLowerCase();
             const percentage = parseFloat(candidate.perc) || 0;
-            
+
             return (
               <motion.div key={candidate.pos} variants={item}>
                 <div
@@ -197,7 +211,7 @@ const CandidatiPage: React.FC = () => {
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   </figure>
-                  
+
                   <div className="card-body p-3">
                     {/* Candidate Header */}
                     <div className="mb-2">
@@ -210,7 +224,11 @@ const CandidatiPage: React.FC = () => {
                           <div
                             key={lista.pos}
                             className="tooltip tooltip-top z-50"
-                            data-tip={`${lista.desc_lis_c}\nVoti: ${lista.voti.toLocaleString("it-IT")} (${lista.perc}%)`}
+                            data-tip={`${
+                              lista.desc_lis_c
+                            }\nVoti: ${lista.voti.toLocaleString("it-IT")} (${
+                              lista.perc
+                            }%)`}
                           >
                             <div className="size-10 relative rounded border border-base-content/10 hover:border-primary/50 transition-colors">
                               <Image
@@ -235,7 +253,7 @@ const CandidatiPage: React.FC = () => {
                           {candidate.voti.toLocaleString("it-IT")}
                         </span>
                       </div>
-                      
+
                       <div className="flex justify-between items-center mb-2">
                         <progress
                           className="progress progress-primary h-1.5 flex-1 mr-2"
@@ -243,7 +261,7 @@ const CandidatiPage: React.FC = () => {
                           max="100"
                         ></progress>
                         <span className="text-lg font-bold text-primary">
-                          {percentage}%
+                          {percentage.toFixed(2)}%
                         </span>
                       </div>
 
@@ -254,7 +272,7 @@ const CandidatiPage: React.FC = () => {
                           {candidate.tot_vot_lis.toLocaleString("it-IT")}
                         </span>
                       </div>
-                      
+
                       <div className="flex justify-between items-center">
                         <progress
                           className="progress progress-secondary h-1.5 flex-1 mr-2"
@@ -262,7 +280,7 @@ const CandidatiPage: React.FC = () => {
                           max="100"
                         ></progress>
                         <span className="text-lg font-bold text-secondary">
-                          {parseFloat(candidate.perc_lis) || 0}%
+                          {parseFloat(candidate.perc_lis).toFixed(2) || 0}%
                         </span>
                       </div>
                     </div>
@@ -274,7 +292,6 @@ const CandidatiPage: React.FC = () => {
         </motion.div>
 
         {/* Info Alert */}
-      
       </div>
 
       {/* Modal dettaglio candidato */}
@@ -316,6 +333,32 @@ const CandidatiPage: React.FC = () => {
               </button>
             </div>
 
+            {/* Progress Bar Sezioni nella modale */}
+            <div className="bg-base-200/50 rounded-lg p-3 mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-semibold opacity-70">
+                  Sezioni scrutinate
+                </span>
+                <span className="text-sm font-bold font-mono">
+                  {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
+                  {sezioniTotali.toLocaleString("it-IT")}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <progress
+                  className="progress progress-primary h-2.5 flex-1"
+                  value={sezioniScrutinate}
+                  max={sezioniTotali}
+                ></progress>
+                <span className="text-sm font-bold text-primary">
+                  {sezioniTotali > 0
+                    ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(2)
+                    : 0}
+                  %
+                </span>
+              </div>
+            </div>
+
             {/* Statistiche totali - Layout compatto */}
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div className="card bg-linear-to-br from-primary/10 to-primary/5 border border-primary/20 p-4">
@@ -327,12 +370,12 @@ const CandidatiPage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="badge badge-primary badge-sm font-bold text-primary-content!">
-                    {parseFloat(selectedCandidate.perc) || 0}%
+                    {parseFloat(selectedCandidate.perc).toFixed(2) || 0}%
                   </div>
                   <span className="text-xs opacity-50">sul totale</span>
                 </div>
               </div>
-              
+
               <div className="card bg-linear-to-br from-secondary/10 to-secondary/5 border border-secondary/20 p-4">
                 <div className="text-xs font-semibold text-secondary/70 uppercase tracking-wider mb-2">
                   Voti Liste
@@ -342,22 +385,28 @@ const CandidatiPage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="badge badge-secondary badge-sm font-bold text-white">
-                    {parseFloat(selectedCandidate.perc_lis) || 0}%
+                    {parseFloat(selectedCandidate.perc_lis).toFixed(2) || 0}%
                   </div>
                   <span className="text-xs opacity-50">sul totale</span>
                 </div>
               </div>
-              
+
               <div className="card bg-linear-to-br from-accent/10 to-accent/5 border border-accent/20 p-4">
                 <div className="text-xs font-semibold text-accent/70 uppercase tracking-wider mb-2">
                   Voto Disgiunto
                 </div>
                 <div className="text-2xl font-bold text-accent mb-1">
-                  {(selectedCandidate.voti - selectedCandidate.tot_vot_lis).toLocaleString("it-IT", { signDisplay: 'always' })}
+                  {(
+                    selectedCandidate.voti - selectedCandidate.tot_vot_lis
+                  ).toLocaleString("it-IT", { signDisplay: "always" })}
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="badge badge-accent badge-sm font-bold">
-                    {(parseFloat(selectedCandidate.perc) - parseFloat(selectedCandidate.perc_lis)).toFixed(2)}%
+                    {(
+                      parseFloat(selectedCandidate.perc) -
+                      parseFloat(selectedCandidate.perc_lis)
+                    ).toFixed(2)}
+                    %
                   </div>
                   <span className="text-xs opacity-50">differenza</span>
                 </div>
@@ -366,7 +415,9 @@ const CandidatiPage: React.FC = () => {
 
             {/* Tabella liste - Layout compatto */}
             <div className="overflow-x-auto">
-              <h4 className="font-bold text-sm mb-2 opacity-70">Liste collegate ({selectedCandidate.liste.length})</h4>
+              <h4 className="font-bold text-sm mb-2 opacity-70">
+                Liste collegate ({selectedCandidate.liste.length})
+              </h4>
               <table className="table table-sm table-zebra">
                 <thead>
                   <tr className="text-xs">
@@ -395,14 +446,18 @@ const CandidatiPage: React.FC = () => {
                         {lista.voti.toLocaleString("it-IT")}
                       </td>
                       <td className="text-right">
-                        <span className="badge badge-primary badge-sm text-primary-content!">{lista.perc}%</span>
+                        <span className="badge badge-primary badge-sm text-primary-content!">
+                          {lista.perc}%
+                        </span>
                       </td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr className="font-bold">
-                    <td colSpan={2} className="text-xs">Totale Liste</td>
+                    <td colSpan={2} className="text-xs">
+                      Totale Liste
+                    </td>
                     <td className="text-right font-mono text-xs">
                       {selectedCandidate.tot_vot_lis.toLocaleString("it-IT")}
                     </td>
@@ -417,7 +472,7 @@ const CandidatiPage: React.FC = () => {
             </div>
 
             {/* Footer modale */}
-            <div className="modal-action mt-4">
+            <div className="modal-action mt-4 hidden">
               <button
                 className="btn btn-sm btn-primary"
                 onClick={() => setSelectedCandidate(null)}
@@ -426,7 +481,10 @@ const CandidatiPage: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className="modal-backdrop" onClick={() => setSelectedCandidate(null)} />
+          <div
+            className="modal-backdrop"
+            onClick={() => setSelectedCandidate(null)}
+          />
         </div>
       )}
     </div>
