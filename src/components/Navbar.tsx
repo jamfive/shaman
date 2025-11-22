@@ -6,7 +6,6 @@ import {
   Moon,
   Sun,
   BarChart2,
-  Users,
   Map,
   Activity,
 } from "lucide-react";
@@ -129,15 +128,6 @@ const Navbar: React.FC = () => {
             <ul className="menu menu-horizontal px-1 gap-1">
               <li>
                 <Link
-                  href="/candidati"
-                  className="font-medium hover:text-primary focus:text-primary gap-2"
-                >
-                  <Users size={18} />
-                  Candidati
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/risultati"
                   className="font-medium hover:text-primary focus:text-primary gap-2"
                 >
@@ -226,11 +216,6 @@ const Navbar: React.FC = () => {
           {/* Sidebar content */}
           <li className="menu-title">
             <span>Menu</span>
-          </li>
-          <li>
-            <Link href="/candidati" className="flex items-center gap-2" onClick={closeDrawer}>
-              <Users size={18} /> Candidati
-            </Link>
           </li>
           <li>
             <Link href="/risultati" className="flex items-center gap-2" onClick={closeDrawer}>

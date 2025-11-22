@@ -77,20 +77,19 @@ const HomePage: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            <Link href="/candidati" className="group">
+            <Link href="/risultati" className="group">
               <div className="card glass-card h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
                 <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                  <Users size={150} />
+                  <BarChart2 size={150} />
                 </div>
                 <div className="card-body relative z-10">
                   <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Users className="text-primary" size={24} />
+                    <BarChart2 className="text-primary" size={24} />
                   </div>
-                  <h3 className="card-title text-2xl mb-2">Candidati</h3>
-                  <p className="opacity-70 mb-4">
-                    Profili completi dei candidati alla presidenza e liste
-                    collegate.
-                  </p>
+                  <h3 className="card-title text-2xl mb-2">Risultati</h3>
+                    <p className="opacity-70 mb-4">
+                    Risultati in tempo reale di tutte le liste e candidati.
+                    </p>
                   <div className="card-actions justify-end mt-auto">
                     <span className="btn btn-ghost btn-sm gap-2 group-hover:translate-x-2 transition-transform">
                       Esplora <ArrowRight size={16} />

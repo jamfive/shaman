@@ -1,174 +1,318 @@
-import React from "react";
-import Head from "next/head";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BarChart2, PieChart, Activity, Info, AlertCircle } from "lucide-react";
+import { Info, X } from "lucide-react";
+import Image from "next/image";
 
-const RisultatiPage: React.FC = () => {
+interface Lista {
+  pos: number;
+  desc_lis_c: string;
+  img_lis_c: string;
+  voti: number;
+  perc: string;
+  seggi: number;
+}
+
+interface Candidate {
+  cogn: string;
+  nome: string;
+  d_nasc: number;
+  l_nasc: string;
+  pos: number;
+  voti: number;
+  perc: string;
+  tot_vot_lis: number;
+  perc_lis: string;
+  liste: Lista[];
+}
+
+interface ScrutiniData {
+  int: {
+    ele_t: number;
+    vot_t: number;
+    perc_vot: string;
+  };
+  cand: Candidate[];
+}
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+    }
+  },
+};
+
+const CandidatiPage: React.FC = () => {
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+
+  useEffect(() => {
+    const timestamp = new Date().getTime();
+    fetch(`/data/scrutini-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: ScrutiniData) => {
+        console.log("Scrutini data fetched:", data);
+        setCandidates(data.cand);
+      })
+      .catch((error) => {
+        console.error("Error fetching scrutini data:", error);
+      });
+  }, []);
+
   return (
-    <>
-      <Head>
-        <title>Risultati Elezioni Regionali Puglia 2025</title>
-        <meta
-          name="description"
-          content="Risultati in tempo reale delle elezioni regionali della Puglia 2025"
-        />
-      </Head>
+    <div className="min-h-screen bg-base-100 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[10%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary/5 blur-[100px]" />
+      </div>
 
-      <div className="min-h-screen bg-base-100 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]" />
-          <div className="absolute bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-accent/5 blur-[100px]" />
+      <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
+        {/* Breadcrumb */}
+        <div className="text-sm breadcrumbs mb-2 opacity-60">
+          <ul>
+            <li>
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+            </li>
+            <li>Risultati</li>
+          </ul>
         </div>
 
-        <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
-          {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-4 opacity-60">
-            <ul>
-              <li>
-                <Link href="/" className="hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>Risultati</li>
-            </ul>
-          </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 text-center md:text-left"
+        >
+          <h1 className="text-4xl font-bold mb-4 tracking-tight">
+            Candidati e <span className="text-gradient">Risultati</span>
+          </h1>
+         
+        </motion.div>
 
-          <header className="mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl font-bold mb-4 tracking-tight">
-                Risultati{" "}
-                <span className="font-light text-gradient">Elettorali</span>
-              </h1>
-              <div className="flex items-center gap-3">
-                <h2 className="text-xl font-light opacity-80 tracking-widest uppercase">
-                  Puglia 2025
-                </h2>
-                <div className="badge badge-info gap-2 animate-pulse">
-                  <Activity size={12} /> Scrutinio in corso
-                </div>
-              </div>
-            </motion.div>
-          </header>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="card glass-card"
-            >
-              <div className="card-body">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                    <PieChart size={24} />
-                  </div>
-                  <h3 className="card-title">Affluenza Generale</h3>
-                </div>
-
-                <div className="flex justify-between items-end mb-2">
-                  <span className="opacity-70">Totale votanti</span>
-                  <span className="text-4xl font-bold">-- %</span>
-                </div>
-                <progress
-                  className="progress progress-primary w-full h-3"
-                  value={0}
-                  max="100"
-                ></progress>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="card glass-card"
-            >
-              <div className="card-body">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 rounded-xl bg-secondary/10 text-secondary">
-                    <BarChart2 size={24} />
-                  </div>
-                  <h3 className="card-title">Sezioni Scrutinate</h3>
-                </div>
-
-                <div className="flex justify-between items-end mb-2">
-                  <span className="opacity-70">Avanzamento spoglio</span>
-                  <span className="text-4xl font-bold">
-                    0 <span className="text-lg opacity-50 font-sans">/ 0</span>
-                  </span>
-                </div>
-                <progress
-                  className="progress progress-secondary w-full h-3"
-                  value={0}
-                  max="100"
-                ></progress>
-              </div>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="card glass-card overflow-hidden"
-          >
-            <div className="card-body p-0">
-              <div className="p-6 border-b border-base-content/5 bg-base-100/30">
-                <h3 className="card-title text-2xl font-bold">
-                  Riepilogo Presidente
-                </h3>
-                <p className="opacity-70 text-sm">
-                  Dati aggregati a livello regionale
-                </p>
-              </div>
-
-              <div className="p-6 space-y-6">
-                <div className="alert bg-info/10 text-info border-info/20">
-                  <AlertCircle size={20} />
-                  <span>
-                    I risultati ufficiali saranno disponibili a partire dalle
-                    ore 15:00 di lunedì.
-                  </span>
-                </div>
-
-                <div className="overflow-x-auto">
-                  <table className="table w-full">
-                    <thead>
-                      <tr className="border-b-base-content/10 text-base-content/60 uppercase text-xs tracking-wider">
-                        <th className="bg-transparent">Candidato</th>
-                        <th className="bg-transparent">Lista/Coalizione</th>
-                        <th className="text-right bg-transparent">Voti</th>
-                        <th className="text-right bg-transparent">%</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          colSpan={4}
-                          className="text-center py-12 text-base-content/40"
-                        >
-                          <div className="flex flex-col items-center gap-3">
-                            <BarChart2 size={48} className="opacity-20" />
-                            <span>Dati non ancora disponibili</span>
+        {/* Candidates Grid */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={candidates.length > 0 ? "show" : "hidden"}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          {candidates.map((candidate) => {
+            const fullName = `${candidate.nome} ${candidate.cogn}`;
+            const imageSlug = candidate.cogn.toLowerCase();
+            const percentage = parseFloat(candidate.perc) || 0;
+            
+            return (
+              <motion.div key={candidate.pos} variants={item}>
+                <div
+                  className="card glass-card hover:shadow-xl transition-all duration-300 border border-white/20 group cursor-pointer"
+                  onClick={() => setSelectedCandidate(candidate)}
+                >
+                  {/* Immagine candidato */}
+                  <figure className="relative w-full aspect-square overflow-hidden">
+                    <Image
+                      src={`/img/candidati/${imageSlug}.webp`}
+                      alt={fullName}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  </figure>
+                  
+                  <div className="card-body p-4">
+                    {/* Candidate Header */}
+                    <div className="mb-3">
+                      <h2 className="text-lg font-bold leading-tight mb-1">
+                        {fullName}
+                      </h2>
+                      {/* Liste collegate */}
+                      <div className="flex flex-wrap gap-1 mt-2 overflow-visible">
+                        {candidate.liste.map((lista) => (
+                          <div
+                            key={lista.pos}
+                            className="tooltip tooltip-top z-50"
+                            data-tip={`${lista.desc_lis_c}\nVoti: ${lista.voti.toLocaleString("it-IT")} (${lista.perc}%)`}
+                          >
+                            <div className="size-10 relative rounded border border-base-content/10 hover:border-primary/50 transition-colors">
+                              <Image
+                                src={`/img/regionali2025/${lista.img_lis_c}`}
+                                alt={lista.desc_lis_c}
+                                fill
+                                className="object-contain p-0.5"
+                                sizes="32px"
+                              />
+                            </div>
                           </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Votes and Percentage */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-baseline text-xs">
+                        <span className="opacity-60">Voti</span>
+                        <span className="font-bold font-mono">
+                          {candidate.voti.toLocaleString("it-IT")}
+                        </span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <progress
+                          className="progress progress-primary h-1.5 flex-1 mr-2"
+                          value={percentage}
+                          max="100"
+                        ></progress>
+                        <span className="text-xl font-bold text-primary">
+                          {percentage}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Info Alert */}
+      
+      </div>
+
+      {/* Modal dettaglio candidato */}
+      {selectedCandidate && (
+        <div className="modal modal-open">
+          <div className="modal-box max-w-2xl">
+            {/* Header modale */}
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <div className="avatar">
+                  <div className="w-20 h-20 rounded-lg">
+                    <Image
+                      src={`/img/candidati/${selectedCandidate.cogn.toLowerCase()}.webp`}
+                      alt={`${selectedCandidate.nome} ${selectedCandidate.cogn}`}
+                      width={80}
+                      height={80}
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    {selectedCandidate.nome} {selectedCandidate.cogn}
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    {selectedCandidate.cogn.toLowerCase() === "decaro"
+                      ? "Coalizione di CSX"
+                      : selectedCandidate.cogn.toLowerCase() === "lobuono"
+                      ? "Coalizione di CDX"
+                      : "Lista civica"}
+                  </p>
+                </div>
+              </div>
+              <button
+                className="btn btn-ghost btn-sm btn-circle"
+                onClick={() => setSelectedCandidate(null)}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Statistiche totali */}
+            <div className="stats stats-vertical lg:stats-horizontal shadow w-full mb-6">
+              <div className="stat">
+                <div className="stat-title">Voti totali</div>
+                <div className="stat-value text-primary">
+                  {selectedCandidate.voti.toLocaleString("it-IT")}
+                </div>
+                <div className="stat-desc">Somma di tutte le liste</div>
+              </div>
+              <div className="stat">
+                <div className="stat-title">Percentuale</div>
+                <div className="stat-value text-secondary">
+                  {parseFloat(selectedCandidate.perc) || 0}%
+                </div>
+                <div className="stat-desc">Sul totale dei voti</div>
               </div>
             </div>
-          </motion.div>
+
+            {/* Tabella liste */}
+            <div className="overflow-x-auto">
+              <h4 className="font-bold text-lg mb-3">Liste collegate</h4>
+              <table className="table table-zebra">
+                <thead>
+                  <tr>
+                    <th>Lista</th>
+                    <th className="text-right">Voti</th>
+                    <th className="text-right">%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedCandidate.liste.map((lista) => (
+                    <tr key={lista.pos}>
+                      <td>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 relative rounded border border-base-content/10">
+                            <Image
+                              src={`/img/regionali2025/${lista.img_lis_c}`}
+                              alt={lista.desc_lis_c}
+                              fill
+                              className="object-contain p-0.5"
+                              sizes="32px"
+                            />
+                          </div>
+                          <span className="text-sm">{lista.desc_lis_c}</span>
+                        </div>
+                      </td>
+                      <td className="text-right font-mono font-semibold">
+                        {lista.voti.toLocaleString("it-IT")}
+                      </td>
+                      <td className="text-right">
+                        <span className="badge badge-primary">{lista.perc}%</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Footer modale */}
+            <div className="modal-action">
+              <button
+                className="btn btn-primary"
+                onClick={() => setSelectedCandidate(null)}
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+          <div className="modal-backdrop" onClick={() => setSelectedCandidate(null)} />
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
-export default RisultatiPage;
+export default CandidatiPage;
