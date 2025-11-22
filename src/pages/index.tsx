@@ -45,8 +45,8 @@ const HomePage: React.FC = () => {
               </div>
 
               <h1 className="text-5xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
-                Elezioni Regionali <br />
-                <span className="text-gradient">Puglia 2025</span>
+                Elezioni Regionali {""}
+                <span className="ml-2 text-gradient">Puglia 2025</span>
               </h1>
 
              
