@@ -31,6 +31,8 @@ interface ScrutiniData {
     ele_t: number;
     vot_t: number;
     perc_vot: string;
+    sz_tot: number;
+    sz_cons: number;
   };
   cand: Candidate[];
 }
@@ -59,6 +61,8 @@ const item = {
 const CandidatiPage: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
+  const [sezioniTotali, setSezioniTotali] = useState<number>(0);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -73,6 +77,8 @@ const CandidatiPage: React.FC = () => {
       .then((data: ScrutiniData) => {
         console.log("Scrutini data fetched:", data);
         setCandidates(data.cand);
+        setSezioniScrutinate(data.int.sz_cons || 0);
+        setSezioniTotali(data.int.sz_tot || 0);
       })
       .catch((error) => {
         console.error("Error fetching scrutini data:", error);
@@ -100,17 +106,67 @@ const CandidatiPage: React.FC = () => {
           </ul>
         </div>
 
+        {/* Progress Bar Sezioni */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-2 md:hidden"
+        >
+          <div className="bg-base-200/50 rounded-lg p-2">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-xs font-semibold opacity-70">Sezioni scrutinate</span>
+              <span className="text-xs font-bold font-mono">
+                {sezioniScrutinate.toLocaleString("it-IT")} / {sezioniTotali.toLocaleString("it-IT")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <progress
+                className="progress progress-primary h-2 flex-1"
+                value={sezioniScrutinate}
+                max={sezioniTotali}
+              ></progress>
+              <span className="text-xs font-bold text-primary">
+                {sezioniTotali > 0 ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(1) : 0}%
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 text-center md:text-left"
+          className="mb-4 text-center md:text-left md:flex md:items-center md:justify-between md:gap-4"
         >
-          <h1 className="text-3xl font-bold mb-2 tracking-tight">
-            Candidati e <span className="text-gradient">Risultati</span>
-          </h1>
-         
+          <div>
+            <h1 className="text-3xl font-bold mb-2 md:mb-0 tracking-tight">
+              Candidati e <span className="text-gradient">Risultati</span>
+            </h1>
+          </div>
+          
+          {/* Progress Bar Desktop */}
+          <div className="hidden md:block md:flex-1 md:max-w-md">
+            <div className="bg-base-200/50 rounded-lg p-2">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-xs font-semibold opacity-70">Sezioni scrutinate</span>
+                <span className="text-xs font-bold font-mono">
+                  {sezioniScrutinate.toLocaleString("it-IT")} / {sezioniTotali.toLocaleString("it-IT")}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <progress
+                  className="progress progress-primary h-2 flex-1"
+                  value={sezioniScrutinate}
+                  max={sezioniTotali}
+                ></progress>
+                <span className="text-xs font-bold text-primary">
+                  {sezioniTotali > 0 ? ((sezioniScrutinate / sezioniTotali) * 100).toFixed(1) : 0}%
+                </span>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Candidates Grid */}
