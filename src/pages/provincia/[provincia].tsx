@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { GetServerSideProps } from "next";
 import { motion } from "framer-motion";
-import { capitalizeFirstLetter, translatePhase } from "../../lib/utils";
+import { capitalizeFirstLetter, formatItalianFloat, translatePhase } from "../../lib/utils";
 import {
   MapPin,
   Users,
@@ -249,7 +249,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                   </div>
                   <div className="text-3xl font-bold">
                     {affluenzaProvincia !== "--" 
-                      ? parseFloat(affluenzaProvincia.replace(',', '.')).toFixed(2) + "%"
+                      ? formatItalianFloat(parseFloat(affluenzaProvincia.replace(',', '.')  )) + "%"
                       : "--"}
                   </div>
                   <div className="text-xs opacity-50">
@@ -373,7 +373,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             <td className="text-right pr-6 py-4">
                               <div className="flex items-center justify-end gap-2">
                                 <span className="badge badge-primary font-bold text-primary-content!">
-                                  {percentage.toFixed(2)}%
+                                  {formatItalianFloat(percentage)}%
                                 </span>
                               </div>
                             </td>
@@ -498,13 +498,13 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             <td className="text-right">
                               <span className="badge badge-primary font-bold text-primary-content!">
                                 {affluenza !== "--" 
-                                  ? parseFloat(affluenza.replace(',', '.')).toFixed(2) + "%"
+                                  ? formatItalianFloat(parseFloat(affluenza.replace(',', '.'))) + "%"
                                   : "--"}
                               </span>
                             </td>
                             <td className="text-right opacity-70 font-mono text-sm">
                               {precedente !== "--"
-                                ? parseFloat(precedente.replace(',', '.')).toFixed(2) + "%"
+                                ? formatItalianFloat(parseFloat(precedente.replace(',', '.'))) + "%"
                                 : "--"}
                             </td>
                             <td className="text-right pr-6">
@@ -517,17 +517,17 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                         className="text-success"
                                       />
                                       <span className="text-success font-semibold text-sm">
-                                        +{delta}%
+                                        +{formatItalianFloat(parseFloat(delta))}%
                                       </span>
                                     </>
-                                  ) : parseFloat(delta) < 0 ? (
+                                  ) : parseFloat(formatItalianFloat(parseFloat(delta))) < 0 ? (
                                     <>
                                       <TrendingDown
                                         size={16}
                                         className="text-error"
                                       />
                                       <span className="text-error font-semibold text-sm">
-                                        {delta}%
+                                        {formatItalianFloat(parseFloat(delta))}%
                                       </span>
                                     </>
                                   ) : (

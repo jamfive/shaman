@@ -5,7 +5,6 @@ import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-reac
 import { ShamanConfig } from "@/ShamanConfig";
 import Meta from "@/components/Meta";
 import { formatItalianFloat, translatePhase } from "@/lib/utils";
-import { format } from "path";
 
 const phase = ShamanConfig.phase
 

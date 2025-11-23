@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
-import { appURL, translatePhase } from "@/lib/utils";
+import { appURL, formatItalianFloat, translatePhase } from "@/lib/utils";
 import Meta from "@/components/Meta";
 
 interface Province {
@@ -305,10 +305,11 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                 </div>
                 <div>
                   <div className="text-2xl font-bold">
-                    {regionalAvgTurnout.toFixed(2)}%
+                    {formatItalianFloat(regionalAvgTurnout)}%
                   </div>
                   <div className="text-xs uppercase tracking-wider opacity-60">
-                    Affluenza Regionale <br/> alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
+                    Affluenza Regionale <br /> alle ore{" "}
+                    {phase >= 0 ? translatePhase(phase) : "--:--"}
                   </div>
                 </div>
               </div>
@@ -367,11 +368,12 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                     <div className="mb-3">
                       <div className="flex justify-between mb-1.5 items-end">
                         <span className="text-xs font-bold uppercase tracking-wider opacity-60">
-                          Affluenza <br/> alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
+                          Affluenza <br /> alle ore{" "}
+                          {phase >= 0 ? translatePhase(phase) : "--:--"}
                         </span>
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-primary">
-                            {province.turnout}%
+                            {formatItalianFloat(province.turnout)}%
                           </span>
                           {(() => {
                             const delta =
@@ -384,7 +386,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                                     className="text-success"
                                   />
                                   <span className="text-success font-semibold text-xs">
-                                    +{delta.toFixed(1)}%
+                                    +{formatItalianFloat(delta)}%
                                   </span>
                                 </div>
                               );
@@ -396,7 +398,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                                     className="text-error"
                                   />
                                   <span className="text-error font-semibold text-xs">
-                                    {delta.toFixed(1)}%
+                                    {formatItalianFloat(delta)}%
                                   </span>
                                 </div>
                               );
@@ -422,29 +424,31 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                     </div>
 
                     {/* Top Two Candidates */}
-                    {ShamanConfig.scrutini && (<div className="pt-3 border-t border-base-content/10">
-                      <p className="text-xs opacity-60 mb-2 uppercase tracking-wider font-semibold">
-                        Candidati in testa
-                      </p>
-                      <div className="space-y-1.5">
-                        <div className="flex justify-between items-center">
-                          <span className="font-bold text-xs truncate mr-2">
-                            {province.leadingCandidate}
-                          </span>
-                          <span className="badge badge-primary badge-xs font-bold">
-                            {province.leadingPercentage}%
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="font-semibold text-xs opacity-80 truncate mr-2">
-                            {province.secondCandidate}
-                          </span>
-                          <span className="badge badge-secondary badge-xs font-bold text-white!">
-                            {province.secondPercentage}%
-                          </span>
+                    {ShamanConfig.scrutini && (
+                      <div className="pt-3 border-t border-base-content/10">
+                        <p className="text-xs opacity-60 mb-2 uppercase tracking-wider font-semibold">
+                          Candidati in testa
+                        </p>
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center">
+                            <span className="font-bold text-xs truncate mr-2">
+                              {province.leadingCandidate}
+                            </span>
+                            <span className="badge badge-primary badge-xs font-bold">
+                              {province.leadingPercentage}%
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="font-semibold text-xs opacity-80 truncate mr-2">
+                              {province.secondCandidate}
+                            </span>
+                            <span className="badge badge-secondary badge-xs font-bold text-white!">
+                              {province.secondPercentage}%
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>)}
+                    )}
 
                     {/* Link indicator */}
                     <div className="card-actions justify-end mt-3">
