@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
 import Meta from "@/components/Meta";
+import { translatePhase } from "@/lib/utils";
 
 const phase = ShamanConfig.phase
 
@@ -38,6 +39,8 @@ interface TimeStat {
   previous: string | null;
   label: string;
 }
+
+
 
 const AffluentePage: React.FC = () => {
   const [provinciesData, setProvinciesData] = useState<Province>();
@@ -256,7 +259,7 @@ const AffluentePage: React.FC = () => {
               <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex justify-between items-center">
                 <div>
                   <h3 className="card-title text-2xl font-bold">
-                    Affluenza per Provincia
+                    Affluenza per Provincia {ShamanConfig.phase >= 0 ? `(alle ore ${translatePhase(ShamanConfig.phase)})` : ""}
                   </h3>
                   <p className="opacity-70 text-sm">
                     Dati ripartiti per circoscrizione elettorale

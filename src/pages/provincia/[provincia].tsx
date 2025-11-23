@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { GetServerSideProps } from "next";
 import { motion } from "framer-motion";
-import { capitalizeFirstLetter } from "../../lib/utils";
+import { capitalizeFirstLetter, translatePhase } from "../../lib/utils";
 import {
   MapPin,
   Users,
@@ -245,7 +245,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                 </div>
                 <div>
                   <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
-                    Affluenza
+                    Affluenza alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
                   </div>
                   <div className="text-3xl font-bold">
                     {affluenzaProvincia !== "--" 

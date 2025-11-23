@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
-import { appURL } from "@/lib/utils";
+import { appURL, translatePhase } from "@/lib/utils";
 import Meta from "@/components/Meta";
 
 interface Province {
@@ -305,10 +305,10 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                 </div>
                 <div>
                   <div className="text-2xl font-bold">
-                    {regionalAvgTurnout.toFixed(1)}%
+                    {regionalAvgTurnout.toFixed(2)}%
                   </div>
                   <div className="text-xs uppercase tracking-wider opacity-60">
-                    Affluenza Regionale
+                    Affluenza Regionale <br/> alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
                   </div>
                 </div>
               </div>
@@ -367,7 +367,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                     <div className="mb-3">
                       <div className="flex justify-between mb-1.5 items-end">
                         <span className="text-xs font-bold uppercase tracking-wider opacity-60">
-                          Affluenza
+                          Affluenza <br/> alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
                         </span>
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-primary">
