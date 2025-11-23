@@ -311,14 +311,14 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                 </h3>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="table w-full">
+              <div className="overflow-hidden">
+                <table className="table w-full table-xs md:table-md">
                   <thead className="bg-base-200/50 text-base-content/70">
                     <tr>
-                      <th className="py-4 pl-6">Candidato</th>
-                      <th className="py-4">Lista/Coalizione</th>
+                      <th className="py-4 pl-2 md:pl-6">Candidato</th>
+                      <th className="py-4 hidden md:table-cell">Lista/Coalizione</th>
                       <th className="text-right py-4">Voti</th>
-                      <th className="text-right py-4 pr-6">%</th>
+                      <th className="text-right py-4 pr-2 md:pr-6">%</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -338,16 +338,16 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             key={index}
                             className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
                           >
-                            <td className="font-medium pl-6 py-4">
+                            <td className="font-medium pl-2 md:pl-6 py-4 text-xs md:text-sm">
                               {fullName}
                             </td>
-                            <td className="py-4">
+                            <td className="py-4 hidden md:table-cell">
                               <div className="flex items-center gap-2">
-                                <div className="badge badge-outline badge-sm">
+                                <div className="badge badge-outline truncate badge-sm">
                                   {coalitionLabel}
                                 </div>
                                 {/* Simboli liste */}
-                                <div className="flex flex-wrap gap-1">
+                                <div className="flex-wrap gap-1 flex">
                                   {candidate.liste.map((lista) => (
                                     <div
                                       key={lista.pos}
@@ -367,12 +367,12 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                 </div>
                               </div>
                             </td>
-                            <td className="text-right font-mono font-semibold py-4">
+                            <td className="text-right font-mono font-semibold py-4 text-xs md:text-sm">
                               {candidate.voti.toLocaleString("it-IT")}
                             </td>
-                            <td className="text-right pr-6 py-4">
+                            <td className="text-right pr-2 md:pr-6 py-4">
                               <div className="flex items-center justify-end gap-2">
-                                <span className="badge badge-primary font-bold text-primary-content!">
+                                <span className="badge badge-primary badge-xs md:badge-sm font-bold text-primary-content!">
                                   {formatItalianFloat(percentage)}%
                                 </span>
                               </div>
@@ -408,9 +408,9 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             className="card glass-card overflow-hidden"
           >
             <div className="card-body p-0">
-              <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex gap-2">
+              <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex gap-4 md:gap-2">
                 <h3 className="text-2xl font-bold flex items-center gap-2">
-                  <Vote className="text-secondary" size={24} />
+                  <Vote className="text-secondary hidden md:block" size={24} />
                   Affluenza per Comune
                 </h3>
                 <p

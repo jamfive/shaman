@@ -196,9 +196,9 @@ const CandidatiPage: React.FC = () => {
             variants={container}
             initial="hidden"
             animate={candidates.length > 0 ? "show" : "hidden"}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3"
+            className="grid grid-cols:1 md:grid-cols-2 lg:grid-cols-4 gap-3"
           >
-            {candidates.map((candidate) => {
+            {candidates.map((candidate, ix) => {
               const fullName = `${candidate.nome} ${candidate.cogn}`;
               const imageSlug = candidate.cogn.toLowerCase();
               const percentage = parseFloat(candidate.perc) || 0;
@@ -217,13 +217,14 @@ const CandidatiPage: React.FC = () => {
                         fill
                         className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 768px) 50vw, 25vw"
+                        priority={ix < 2}
                       />
                     </figure>
 
                     <div className="card-body p-3">
                       {/* Candidate Header */}
                       <div className="mb-2">
-                        <h2 className="text-lg font-bold leading-tight mb-1">
+                        <h2 className="text-lg font-bold leading-tight mb-1 truncate">
                           {fullName}
                         </h2>
                         {/* Liste collegate */}
@@ -238,7 +239,7 @@ const CandidatiPage: React.FC = () => {
                                 lista.perc
                               }%)`}
                             >
-                              <div className="size-10 relative rounded border border-base-content/10 hover:border-primary/50 transition-colors">
+                              <div className="size-10 md:size-8 lg:size-7 xl:size-10 relative rounded border border-base-content/10 hover:border-primary/50 transition-colors">
                                 <Image
                                   src={`/img/regionali2025/${lista.img_lis_c}`}
                                   alt={lista.desc_lis_c}

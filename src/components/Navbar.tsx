@@ -188,7 +188,7 @@ const Navbar: React.FC = () => {
 
           <div className="navbar-end">
             <button
-              className="btn btn-ghost btn-circle hover:bg-base-content/10 transition-colors"
+              className="btn btn-ghzost btn-circle hover:bg-base-content/10 transition-colors mr-2 md:mr-0"
               onClick={toggleDarkMode}
               title={
                 themeMode === "auto"
