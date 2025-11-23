@@ -459,7 +459,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                         const delta =
                           affluenza !== "--" && precedente !== "--"
                             ? (
-                                parseFloat(affluenza) - parseFloat(precedente)
+                                parseFloat(affluenza.replace(',', '.')) - parseFloat(precedente.replace(',', '.'))
                               ).toFixed(2)
                             : null;
 
@@ -497,13 +497,15 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             </td>
                             <td className="text-right">
                               <span className="badge badge-primary font-bold text-primary-content!">
-                                {parseFloat(affluenza).toFixed(2)}
-                                {affluenza !== "--" ? "%" : ""}
+                                {affluenza !== "--" 
+                                  ? parseFloat(affluenza.replace(',', '.')).toFixed(2) + "%"
+                                  : "--"}
                               </span>
                             </td>
                             <td className="text-right opacity-70 font-mono text-sm">
-                              {parseFloat(precedente).toFixed(2)}
-                              {precedente !== "--" ? "%" : ""}
+                              {precedente !== "--"
+                                ? parseFloat(precedente.replace(',', '.')).toFixed(2) + "%"
+                                : "--"}
                             </td>
                             <td className="text-right pr-6">
                               {delta !== null ? (
