@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import Meta from "@/components/Meta";
 import { ShamanConfig } from "@/ShamanConfig";
+import { useKonamiCode } from "@/components/useKonamiCode";
 
 interface Lista {
   pos: number;
@@ -61,6 +62,14 @@ const item = {
 };
 
 const CandidatiPage: React.FC = () => {
+  const [easterEggActivated, setEasterEggActivated] = useState(false);
+
+  useKonamiCode(() => {
+    if (!easterEggActivated) {
+      alert("Hai attivato il Konami Code Easter Egg!");
+      setEasterEggActivated(true);
+    }
+  });
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
     null
@@ -70,13 +79,16 @@ const CandidatiPage: React.FC = () => {
 
   useEffect(() => {
     const timestamp = new Date().getTime();
-    fetch(`${ShamanConfig.fetchDataURL}/data/scrutini-puglia.json?t=${timestamp}`, {
-      cache: "no-store",
-      headers: {
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-      },
-    })
+    fetch(
+      `${ShamanConfig.fetchDataURL}/data/scrutini-puglia.json?t=${timestamp}`,
+      {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data: ScrutiniData) => {
         console.log("Scrutini data fetched:", data);
@@ -87,6 +99,14 @@ const CandidatiPage: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching scrutini data:", error);
       });
+
+    // Auto-reload della pagina ogni 2 minuti (120000 ms)
+    const reloadInterval = setInterval(() => {
+      window.location.reload();
+    }, 120000);
+
+    // Cleanup: ferma l'interval quando il componente viene smontato
+    return () => clearInterval(reloadInterval);
   }, []);
 
   return (
@@ -199,8 +219,18 @@ const CandidatiPage: React.FC = () => {
             className="grid grid-cols:1 md:grid-cols-2 lg:grid-cols-4 gap-3"
           >
             {candidates.map((candidate, ix) => {
-              const fullName = `${candidate.nome} ${candidate.cogn}`;
+              const nameMap: { [key: string]: string } = {
+                'ada': 'aldo',
+                'sabino': 'sabina',
+                'antonio': 'antonietta',
+                'luigi': 'luisa'
+              };
+              const displayName = easterEggActivated && nameMap[candidate.nome.toLowerCase()]
+                ? nameMap[candidate.nome.toLowerCase()].toUpperCase()
+                : candidate.nome;
+              const fullName = `${displayName} ${candidate.cogn}`;
               const imageSlug = candidate.cogn.toLowerCase();
+              const imageSuffix = easterEggActivated ? "_f" : "";
               const percentage = parseFloat(candidate.perc) || 0;
 
               return (
@@ -212,7 +242,7 @@ const CandidatiPage: React.FC = () => {
                     {/* Immagine candidato */}
                     <figure className="relative w-full aspect-square overflow-hidden">
                       <Image
-                        src={`/img/candidati/${imageSlug}.webp`}
+                        src={`/img/candidati/${imageSlug}${imageSuffix}.webp`}
                         alt={fullName}
                         fill
                         className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
@@ -313,7 +343,7 @@ const CandidatiPage: React.FC = () => {
                   <div className="avatar">
                     <div className="w-16 h-16 rounded-lg">
                       <Image
-                        src={`/img/candidati/${selectedCandidate.cogn.toLowerCase()}.webp`}
+                        src={`/img/candidati/${selectedCandidate.cogn.toLowerCase()}${easterEggActivated ? "_f" : ""}.webp`}
                         alt={`${selectedCandidate.nome} ${selectedCandidate.cogn}`}
                         width={64}
                         height={64}
@@ -323,7 +353,18 @@ const CandidatiPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold">
-                      {selectedCandidate.nome} {selectedCandidate.cogn}
+                      {(() => {
+                        const nameMap: { [key: string]: string } = {
+                          'ada': 'aldo',
+                          'sabino': 'sabina',
+                          'antonio': 'antonietta',
+                          'luigi': 'luisa'
+                        };
+                        const displayName = easterEggActivated && nameMap[selectedCandidate.nome.toLowerCase()]
+                          ? nameMap[selectedCandidate.nome.toLowerCase()].toUpperCase()
+                          : selectedCandidate.nome;
+                        return `${displayName} ${selectedCandidate.cogn}`;
+                      })()}
                     </h3>
                     <p className="text-xs opacity-60">
                       {selectedCandidate.cogn.toLowerCase() === "decaro"
@@ -424,7 +465,6 @@ const CandidatiPage: React.FC = () => {
 
               {/* Tabella liste - Layout compatto */}
               <div className="overflow-x-auto">
-          
                 <table className="table table-sm table-zebra">
                   <thead>
                     <tr className="text-xs">
