@@ -422,7 +422,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                     </div>
 
                     {/* Top Two Candidates */}
-                    <div className="pt-3 border-t border-base-content/10">
+                    {ShamanConfig.scrutini && (<div className="pt-3 border-t border-base-content/10">
                       <p className="text-xs opacity-60 mb-2 uppercase tracking-wider font-semibold">
                         Candidati in testa
                       </p>
@@ -444,7 +444,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </div>)}
 
                     {/* Link indicator */}
                     <div className="card-actions justify-end mt-3">
