@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* Navbar fissa */}
-      <div className="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+      <div className="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300 backdrop-blur-lg">
         <div className="navbar container mx-auto max-w-screen-2xl px-0 md:px-8 h-16">
           <div className="navbar-start scale-90 md:scale-100">
             <label

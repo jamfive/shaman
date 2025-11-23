@@ -359,6 +359,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                           src={`/img/regionali2025/${lista.img_lis_c}`}
                                           alt={lista.desc_lis_c}
                                           fill
+                                          sizes="32px"
                                           className="object-contain"
                                         />
                                       </div>
@@ -411,7 +412,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
               <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex gap-4 md:gap-2">
                 <h3 className="text-2xl font-bold flex items-center gap-2">
                   <Vote className="text-secondary hidden md:block" size={24} />
-                  Affluenza per Comune
+                  Affluenza per Comune alle ore {phase >= 0 ? translatePhase(phase) : "--:--"}
                 </h3>
                 <p
                   className={`translate-y-2 ${
