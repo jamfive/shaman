@@ -248,8 +248,9 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                     Affluenza
                   </div>
                   <div className="text-3xl font-bold">
-                    {parseFloat(affluenzaProvincia).toFixed(2)}
-                    {affluenzaProvincia !== "--" ? "%" : ""}
+                    {affluenzaProvincia !== "--" 
+                      ? parseFloat(affluenzaProvincia.replace(',', '.')).toFixed(2) + "%"
+                      : "--"}
                   </div>
                   <div className="text-xs opacity-50">
                     su{" "}
@@ -330,7 +331,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             : candidate.cogn.toLowerCase() === "lobuono"
                             ? "Coalizione di CDX"
                             : "Lista civica";
-                        const percentage = parseFloat(candidate.perc) || 0;
+                        const percentage = parseFloat(candidate.perc.replace(',', '.')) || 0;
 
                         return (
                           <tr
