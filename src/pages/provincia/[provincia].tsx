@@ -89,7 +89,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
     const provinciaFileName = fileNameMap[provincia] || provincia;
     
     // Carica affluenze provincia
-    fetch(`/data/affluenze-${provincia}.json?t=${timestamp}`, {
+    fetch(`${ShamanConfig.fetchDataURL}/data/affluenze-${provincia}.json?t=${timestamp}`, {
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache',
@@ -106,7 +106,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
       });
     
     // Carica risultati candidati dalla provincia specifica
-    fetch(`/data/scrutini-provincia-${provinciaFileName}.json?t=${timestamp}`, {
+    fetch(`${ShamanConfig.fetchDataURL}/data/scrutini-provincia-${provinciaFileName}.json?t=${timestamp}`, {
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache',

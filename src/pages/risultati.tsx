@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Meta from "@/components/Meta";
+import { ShamanConfig } from "@/ShamanConfig";
 
 interface Lista {
   pos: number;
@@ -69,7 +70,7 @@ const CandidatiPage: React.FC = () => {
 
   useEffect(() => {
     const timestamp = new Date().getTime();
-    fetch(`/data/scrutini-puglia.json?t=${timestamp}`, {
+    fetch(`${ShamanConfig.fetchDataURL}/data/scrutini-puglia.json?t=${timestamp}`, {
       cache: "no-store",
       headers: {
         "Cache-Control": "no-cache",

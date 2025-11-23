@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
+import { ShamanConfig } from "@/ShamanConfig";
 import {
   Map,
   Users,
@@ -12,7 +13,6 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
-import { ShamanConfig } from "@/ShamanConfig";
 import { appURL } from "@/lib/utils";
 import Meta from "@/components/Meta";
 
@@ -113,9 +113,9 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
     };
 
     // Carica affluenze regionali
-    fetch(`/data/affluenze-puglia.json?t=${timestamp}`, {
-      cache: "no-store",
-      headers: { "Cache-Control": "no-cache", Pragma: "no-cache" },
+    fetch(`${ShamanConfig.fetchDataURL}/data/affluenze-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
     })
       .then((r) => r.json())
       .then((affluenteData: AffluenteData) => {

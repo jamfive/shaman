@@ -45,14 +45,19 @@ const AffluentePage: React.FC = () => {
   useEffect(() => {
     // Cache busting: aggiungi timestamp per evitare problemi di cache
     const timestamp = new Date().getTime();
-    fetch(`/data/affluenze-puglia.json?t=${timestamp}`, {
+    fetch(`${ShamanConfig.fetchDataURL}/data/affluenze-puglia.json?t=${timestamp}`, {
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache',
         'Pragma': 'no-cache'
       }
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log("Data fetched:", data.enti);
         setProvinciesData(data);
