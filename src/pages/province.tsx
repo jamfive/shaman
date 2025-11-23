@@ -122,7 +122,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
         // Aggiorna affluenza media regionale
         if (phase >= 0 && affluenteData.enti.ente_p.com_vot[phase]) {
           const regionalTurnout =
-            parseFloat(affluenteData.enti.ente_p.com_vot[phase].perc) || 0;
+            parseFloat(affluenteData.enti.ente_p.com_vot[phase].perc.replace(',', '.')) || 0;
           setRegionalAvgTurnout(regionalTurnout);
         }
 
@@ -168,8 +168,8 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
 
             if (provinciaData && phase >= 0) {
               const currentData = provinciaData.com_vot[phase];
-              const turnout = parseFloat(currentData.perc) || 0;
-              const turnoutPrevious = parseFloat(currentData.perc_r) || 0;
+              const turnout = parseFloat(currentData.perc.replace(',', '.')) || 0;
+              const turnoutPrevious = parseFloat(currentData.perc_r.replace(',', '.')) || 0;
               const totalVoters = provinciaData.ele_t;
               const votedCount = Math.round((totalVoters * turnout) / 100);
 
@@ -183,13 +183,13 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                   ? `${topTwoCandidates[0].nome} ${topTwoCandidates[0].cogn}`
                   : province.leadingCandidate,
                 leadingPercentage: topTwoCandidates[0]
-                  ? parseFloat(topTwoCandidates[0].perc) || 0
+                  ? parseFloat(topTwoCandidates[0].perc.replace(',', '.')) || 0
                   : province.leadingPercentage,
                 secondCandidate: topTwoCandidates[1]
                   ? `${topTwoCandidates[1].nome} ${topTwoCandidates[1].cogn}`
                   : province.secondCandidate,
                 secondPercentage: topTwoCandidates[1]
-                  ? parseFloat(topTwoCandidates[1].perc) || 0
+                  ? parseFloat(topTwoCandidates[1].perc.replace(',', '.')) || 0
                   : province.secondPercentage,
               };
             }

@@ -193,8 +193,9 @@ const AffluentePage: React.FC = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
           >
             {timeStats.map((stat, index) => {
-              const currentValue = parseFloat(stat.value) || 0;
-              const previousValue = stat.previous ? parseFloat(stat.previous) : null;
+              // Rimuove il simbolo % e converte virgola in punto per il parse
+              const currentValue = parseFloat(stat.value.replace('%', '').replace(',', '.')) || 0;
+              const previousValue = stat.previous ? parseFloat(stat.previous.replace(',', '.')) : null;
               const delta = previousValue !== null ? currentValue - previousValue : null;
               
               return (
@@ -360,11 +361,11 @@ const AffluentePage: React.FC = () => {
                           </td>
                           <td className="text-right">
                             <span className="badge badge-primary font-bold text-primary-content!">
-                              {parseFloat(affluenza).toFixed(2)}{affluenza !== "--" ? "%" : ""}
+                              {affluenza !== "--" ? parseFloat(affluenza.replace(',', '.')).toFixed(2) : "--"}{affluenza !== "--" ? "%" : ""}
                             </span>
                           </td>
                           <td className="text-right opacity-70 font-mono text-sm">
-                            {parseFloat(precedente).toFixed(2)}{precedente !== "--" ? "%" : ""}
+                            {precedente !== "--" ? parseFloat(precedente.replace(',', '.')).toFixed(2) : "--"}{precedente !== "--" ? "%" : ""}
                           </td>
                           <td className="pr-6">
                             {delta !== null ? (

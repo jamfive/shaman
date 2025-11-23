@@ -159,6 +159,16 @@ const Navbar: React.FC = () => {
                     Province
                   </summary>
                   <ul className="p-2 bg-base-100/95 backdrop-blur-md rounded-box border border-base-content/10 shadow-xl w-48">
+                    <li>
+                      <Link
+                        href="/province"
+                        onClick={() => setIsProvinceMenuOpen(false)}
+                        className="hover:bg-primary/10 hover:text-primary font-semibold"
+                      >
+                        Tutte le province
+                      </Link>
+                    </li>
+                    <li className="border-t border-base-content/10 mt-1 pt-1"></li>
                     {provinces.map((province) => (
                       <li key={province}>
                         <Link
@@ -249,6 +259,15 @@ const Navbar: React.FC = () => {
 
           <li className="menu-title mt-4">
             <span>Province</span>
+          </li>
+          <li>
+            <Link
+              href="/province"
+              className="pl-8 font-semibold"
+              onClick={closeDrawer}
+            >
+              Tutte le province
+            </Link>
           </li>
           {provinces.map((province) => (
             <li key={province}>
