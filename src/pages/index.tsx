@@ -3,10 +3,13 @@ import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Map, BarChart2, ArrowRight, Activity } from "lucide-react";
+import Meta from "@/components/Meta";
+import { appURL } from "@/lib/utils";
 
 const HomePage: React.FC = () => {
   return (
     <>
+    <Meta ogUrl={appURL} />
       <Head>
         <title>Elezioni Regionali Puglia 2025</title>
         <meta

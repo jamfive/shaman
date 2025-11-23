@@ -1,0 +1,21 @@
+{
+  "name": "Regionali Puglia 2025",
+  "short_name": "Regionali 2025",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#94a3b8",
+  "description": "Affluenze e risultati Regionali Puglia 2025",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

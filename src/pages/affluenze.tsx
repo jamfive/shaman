@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
+import Meta from "@/components/Meta";
 
 const phase = ShamanConfig.phase
 
@@ -109,13 +109,11 @@ const AffluentePage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Affluenze Elezioni Regionali Puglia 2025</title>
-        <meta
-          name="description"
-          content="Affluenze in tempo reale delle elezioni regionali della Puglia 2025 per provincia"
-        />
-      </Head>
+     <Meta
+        ogUrl="https://regionali.trmnet.work/affluenze"
+        title="Affluenze - Elezioni Regionali Puglia 2025"
+        description="Affluenze dettagliate delle elezioni regionali della Puglia 2025"
+      />
 
       <div className="min-h-screen bg-base-100 relative overflow-hidden">
         {/* Background Elements */}

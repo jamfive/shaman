@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div className={`${roboto.variable} antialiased`}>
+      
       <Providers>
         {!hideNavbar && <Navbar />}
         <Component {...pageProps} />

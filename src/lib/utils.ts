@@ -1,5 +1,5 @@
 export const appURL = process.env.NODE_ENV === 'production' 
-  ? 'https://puglia-elections.vercel.app' 
+  ? 'https://regionali.trmnet.work' 
   : 'http://localhost:3000';
 
 export function capitalizeFirstLetter(str: string): string {

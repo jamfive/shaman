@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { GetServerSideProps } from "next";
@@ -17,6 +16,7 @@ import {
   Minus,
 } from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
+import Meta from "@/components/Meta";
 
 interface ProvinciaPageProps {
   provincia: string;
@@ -175,13 +175,11 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
 
   return (
     <>
-      <Head>
-        <title>{`Provincia di ${provinciaName} - Elezioni Regionali Puglia 2025`}</title>
-        <meta
-          name="description"
-          content={`Risultati e affluenze della provincia di ${provinciaName} per le elezioni regionali della Puglia 2025`}
-        />
-      </Head>
+      <Meta
+        ogUrl={`https://regionali.trmnet.work/provincia/${provincia}`}
+        title={`Provincia di ${provinciaName} - Elezioni Regionali Puglia 2025`}
+        description={`Risultati e affluenze della provincia di ${provinciaName} per le elezioni regionali della Puglia 2025`}
+      />
 
       <div className="min-h-screen bg-base-100 relative overflow-hidden">
         {/* Background Elements */}
@@ -250,7 +248,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                     Affluenza
                   </div>
                   <div className="text-3xl font-bold">
-                    {affluenzaProvincia}
+                    {parseFloat(affluenzaProvincia).toFixed(2)}
                     {affluenzaProvincia !== "--" ? "%" : ""}
                   </div>
                   <div className="text-xs opacity-50">
@@ -414,7 +412,11 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                   <Vote className="text-secondary" size={24} />
                   Affluenza per Comune
                 </h3>
-                <p className={`translate-y-2 ${Number(sezioniPervenute) > 0 ? 'opacity-100' : 'opacity-0' }`}>
+                <p
+                  className={`translate-y-2 ${
+                    Number(sezioniPervenute) > 0 ? "opacity-100" : "opacity-0"
+                  }`}
+                >
                   Ultima rilevazione:{" "}
                   {
                     [
@@ -481,7 +483,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                     className={`w-2 h-2 rounded-full ${
                                       sezioniComplete
                                         ? "bg-success"
-                                        : "bg-error animate-pulse"
+                                        : "bg-error animate-ping"
                                     }`}
                                     title={
                                       sezioniComplete
