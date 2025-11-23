@@ -35,6 +35,7 @@ interface Province {
 interface TimeStat {
   time: string;
   value: string;
+  previous: string | null;
   label: string;
 }
 
@@ -65,21 +66,25 @@ const AffluentePage: React.FC = () => {
           {
             time: "12:00",
             value: phase >= 0 ? data.enti.ente_p.com_vot[0]?.perc+"%" || "--%": "--%",
+            previous: data.enti.ente_p.com_vot[0]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "19:00",
             value: phase >= 1 ? data.enti.ente_p.com_vot[1]?.perc+"%" || "--%": "--%",
+            previous: data.enti.ente_p.com_vot[1]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "23:00",
             value: phase >= 2 ? data.enti.ente_p.com_vot[2]?.perc+"%" || "--%": "--%",
+            previous: data.enti.ente_p.com_vot[2]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "15:00",
             value: phase >= 3 ? data.enti.ente_p.com_vot[3]?.perc+"%" || "--%": "--%",
+            previous: data.enti.ente_p.com_vot[3]?.perc_r || null,
             label: "Lunedì",
           },
         ]); 
@@ -142,15 +147,43 @@ const AffluentePage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-4 flex md:gap-4 flex-col md:flex-row  "
+            className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
-            <h1 className="text-3xl font-bold mb-4 tracking-tight text-left">
-              Affluenze{" "}
-              <span className="font-bold text-gradient">Elettorali</span>
-            </h1>
-            <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left mt-0 md:mt-2">
-              {provinciesData?.enti.ente_p.desc || "Puglia"} 2025
-            </h2>
+            <div className="flex flex-col md:flex-row md:gap-4">
+              <h1 className="text-3xl font-bold mb-2 md:mb-0 tracking-tight text-left">
+                Affluenze{" "}
+                <span className="font-bold text-gradient">Elettorali</span>
+              </h1>
+              <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left md:mt-2">
+                {provinciesData?.enti.ente_p.desc || "Puglia"} 2025
+              </h2>
+            </div>
+            
+            {/* Progress Bar Sezioni */}
+            {provinciesData && phase >= 0 && (
+              <div className="bg-base-200/50 rounded-lg p-2 md:max-w-md md:flex-1">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs font-semibold opacity-70">
+                    Sezioni rilevate
+                  </span>
+                  <span className="text-xs font-bold font-mono">
+                    {provinciesData.enti.ente_p.com_vot[phase]?.enti_p.toLocaleString("it-IT") || 0} / {provinciesData.enti.ente_p.com_vot[phase]?.enti_t.toLocaleString("it-IT") || 0}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <progress
+                    className="progress progress-primary h-2 flex-1"
+                    value={provinciesData.enti.ente_p.com_vot[phase]?.enti_p || 0}
+                    max={provinciesData.enti.ente_p.com_vot[phase]?.enti_t || 1}
+                  ></progress>
+                  <span className="text-xs font-bold text-primary">
+                    {provinciesData.enti.ente_p.com_vot[phase]?.enti_t > 0
+                      ? ((provinciesData.enti.ente_p.com_vot[phase]?.enti_p / provinciesData.enti.ente_p.com_vot[phase]?.enti_t) * 100).toFixed(1)
+                      : 0}%
+                  </span>
+                </div>
+              </div>
+            )}
           </motion.header>
 
           <motion.div
@@ -159,26 +192,57 @@ const AffluentePage: React.FC = () => {
             animate="show"
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
           >
-            {timeStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                className={`card glass-card text-center py-6 ${index <= phase ? 'opacity-100!' : 'opacity-30!'}`}
-              >
-                <div className="flex flex-col items-center gap-2">
-                  <div className="flex items-center gap-2 opacity-70 text-sm">
-                    <Clock size={14} />
-                    <span>Ore {stat.time}</span>
+            {timeStats.map((stat, index) => {
+              const currentValue = parseFloat(stat.value) || 0;
+              const previousValue = stat.previous ? parseFloat(stat.previous) : null;
+              const delta = previousValue !== null ? currentValue - previousValue : null;
+              
+              return (
+                <motion.div
+                  key={index}
+                  variants={item}
+                  className={`card glass-card text-center py-6 ${index <= phase ? 'opacity-100!' : 'opacity-30!'}`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2 opacity-70 text-sm">
+                      <Clock size={14} />
+                      <span>Ore {stat.time}</span>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-primary">
+                      {stat.value}
+                    </div>
+                    {previousValue !== null && index <= phase && (
+                      <>
+                        <div className="text-xs opacity-50">
+                          Precedente: {previousValue.toFixed(2)}%
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {delta !== null && (
+                            <>
+                              {delta > 0 ? (
+                                <TrendingUp size={14} className="text-success" />
+                              ) : delta < 0 ? (
+                                <TrendingDown size={14} className="text-error" />
+                              ) : (
+                                <Minus size={14} className="opacity-50" />
+                              )}
+                              <span className={`text-sm font-semibold ${
+                                delta > 0 ? 'text-success' : delta < 0 ? 'text-error' : 'opacity-50'
+                              }`}>
+                                {delta > 0 ? '+' : ''}{delta.toFixed(2)}%
+                              </span>
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
+                    <div className="text-xs uppercase tracking-wider opacity-50">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-primary">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs uppercase tracking-wider opacity-50">
-                    {stat.label}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <motion.div
