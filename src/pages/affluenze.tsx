@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
 import Meta from "@/components/Meta";
-import { translatePhase } from "@/lib/utils";
+import { formatItalianFloat, translatePhase } from "@/lib/utils";
+import { format } from "path";
 
 const phase = ShamanConfig.phase
 
@@ -218,7 +219,7 @@ const AffluentePage: React.FC = () => {
                     {previousValue !== null && index <= phase && (
                       <>
                         <div className="text-xs opacity-50">
-                          Precedente: {previousValue.toFixed(2)}%
+                          Precedente: {formatItalianFloat(previousValue)}%
                         </div>
                         <div className="flex items-center gap-1">
                           {delta !== null && (
@@ -233,7 +234,7 @@ const AffluentePage: React.FC = () => {
                               <span className={`text-sm font-semibold ${
                                 delta > 0 ? 'text-success' : delta < 0 ? 'text-error' : 'opacity-50'
                               }`}>
-                                {delta > 0 ? '+' : ''}{delta.toFixed(2)}%
+                                {delta > 0 ? '+' : ''}{formatItalianFloat(delta)}%
                               </span>
                             </>
                           )}
@@ -364,11 +365,11 @@ const AffluentePage: React.FC = () => {
                           </td>
                           <td className="text-right">
                             <span className="badge badge-primary font-bold text-primary-content!">
-                              {affluenza !== "--" ? parseFloat(affluenza.replace(',', '.')).toFixed(2) : "--"}{affluenza !== "--" ? "%" : ""}
+                              {affluenza !== "--" ? formatItalianFloat(parseFloat(affluenza.replace(',', '.'))) : "--"}{affluenza !== "--" ? "%" : ""}
                             </span>
                           </td>
                           <td className="text-right opacity-70 font-mono text-sm">
-                            {precedente !== "--" ? parseFloat(precedente.replace(',', '.')).toFixed(2) : "--"}{precedente !== "--" ? "%" : ""}
+                            {precedente !== "--" ? formatItalianFloat(parseFloat(precedente.replace(',', '.'))) : "--"}{precedente !== "--" ? "%" : ""}
                           </td>
                           <td className="pr-6">
                             {delta !== null ? (
@@ -376,17 +377,17 @@ const AffluentePage: React.FC = () => {
                                 {parseFloat(delta) > 0 ? (
                                   <>
                                     <TrendingUp size={16} className="text-success" />
-                                    <span className="text-success font-semibold text-sm">+{delta}%</span>
+                                    <span className="text-success font-semibold text-sm">+{formatItalianFloat(parseFloat(delta))}%</span>
                                   </>
                                 ) : parseFloat(delta) < 0 ? (
                                   <>
                                     <TrendingDown size={16} className="text-error" />
-                                    <span className="text-error font-semibold text-sm">{delta}%</span>
+                                    <span className="text-error font-semibold text-sm">{formatItalianFloat(parseFloat(delta))}%</span>
                                   </>
                                 ) : (
                                   <>
                                     <Minus size={16} className="opacity-50" />
-                                    <span className="opacity-50 font-semibold text-sm">{delta}%</span>
+                                    <span className="opacity-50 font-semibold text-sm">{formatItalianFloat(parseFloat(delta))}%</span>
                                   </>
                                 )}
                               </div>

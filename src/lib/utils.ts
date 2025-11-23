@@ -24,3 +24,7 @@ export const translatePhase = (phase: number): string => {
       return "";
   }
 };
+
+export const formatItalianFloat = (num: number): string => {
+  return num.toFixed(2).replace('.', ',');
+}
