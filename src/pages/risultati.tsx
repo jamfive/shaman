@@ -102,9 +102,9 @@ const CandidatiPage: React.FC = () => {
           <div className="absolute bottom-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary/5 blur-[100px]" />
         </div>
 
-        <div className="container mx-auto px-4 py-6 pt-20 relative z-10">
+        <div className="container mx-auto max-w-screen-2xl px-4 md:px-8 py-6 pt-20 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-1 opacity-60">
+          <div className="text-sm breadcrumbs mb-1 opacity-60 hidden">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
@@ -153,7 +153,7 @@ const CandidatiPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 text-center md:text-left md:flex md:items-center md:justify-between md:gap-4"
+            className="my-4 text-center md:text-left md:flex md:items-center md:justify-between md:gap-4"
           >
             <div>
               <h1 className="text-3xl font-bold mb-2 md:mb-0 tracking-tight">
@@ -422,9 +422,7 @@ const CandidatiPage: React.FC = () => {
 
               {/* Tabella liste - Layout compatto */}
               <div className="overflow-x-auto">
-                <h4 className="font-bold text-sm mb-2 opacity-70">
-                  Liste collegate ({selectedCandidate.liste.length})
-                </h4>
+          
                 <table className="table table-sm table-zebra">
                   <thead>
                     <tr className="text-xs">

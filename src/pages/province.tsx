@@ -216,9 +216,9 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
           <div className="absolute bottom-[10%] left-[10%] w-[60%] h-[60%] rounded-full bg-secondary/5 blur-[100px]" />
         </div>
 
-        <div className="container mx-auto px-4 py-6 pt-20 relative z-10">
+        <div className="container max-w-screen-2xl mx-auto px-4 md:px-8 py-6 pt-20 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-3 opacity-60">
+          <div className="text-sm breadcrumbs mb-3 opacity-60 hidden">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">

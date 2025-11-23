@@ -102,8 +102,8 @@ const Navbar: React.FC = () => {
     <>
       {/* Navbar fissa */}
       <div className="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
-        <div className="navbar container mx-auto px-4 h-16">
-          <div className="navbar-start">
+        <div className="navbar container mx-auto max-w-screen-2xl px-0 md:px-8 h-16">
+          <div className="navbar-start scale-90 md:scale-100">
             <label
               htmlFor="mobile-drawer"
               className="btn btn-ghost btn-circle lg:hidden"
@@ -112,9 +112,11 @@ const Navbar: React.FC = () => {
             </label>
             <Link
               href="/"
-              className="btn btn-ghost text-xl font-bold gap-2 hover:bg-transparent p-6 "
+              className="btn btn-ghost text-xl pl-0! pr-1! font-bold gap-2 hover:bg-transparent p-6 "
             >
-              <NetworkLogo />
+              <div className="">
+                <NetworkLogo />
+              </div>
               <div className="flex flex-col items-start leading-none">
                 <span className="text-lg font-bold tracking-tight">Puglia</span>
                 <span className="text-xs font-sans font-light uppercase tracking-widest opacity-70">
@@ -218,27 +220,43 @@ const Navbar: React.FC = () => {
             <span>Menu</span>
           </li>
           <li>
-            <Link href="/risultati" className="flex items-center gap-2" onClick={closeDrawer}>
+            <Link
+              href="/risultati"
+              className="flex items-center gap-2"
+              onClick={closeDrawer}
+            >
               <BarChart2 size={18} /> Risultati
             </Link>
           </li>
           <li>
-            <Link href="/affluenze" className="flex items-center gap-2" onClick={closeDrawer}>
+            <Link
+              href="/affluenze"
+              className="flex items-center gap-2"
+              onClick={closeDrawer}
+            >
               <Activity size={18} /> Affluenze
             </Link>
           </li>
           <li>
-            <Link href="/province" className="flex items-center gap-2" onClick={closeDrawer}>
+            <Link
+              href="/province"
+              className="flex items-center gap-2"
+              onClick={closeDrawer}
+            >
               <Map size={18} /> Province
             </Link>
           </li>
-          
+
           <li className="menu-title mt-4">
             <span>Province</span>
           </li>
           {provinces.map((province) => (
             <li key={province}>
-              <Link href={`/provincia/${province}`} className="pl-8" onClick={closeDrawer}>
+              <Link
+                href={`/provincia/${province}`}
+                className="pl-8"
+                onClick={closeDrawer}
+              >
                 {province.charAt(0).toUpperCase() + province.slice(1)}
               </Link>
             </li>

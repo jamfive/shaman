@@ -25,7 +25,7 @@ const Meta: React.FC<MetaProps> = ({
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       {/* <meta httpEquiv="content-language" content="it" /> */}
-      <link rel="icon" type="image/svg+xml" href="/triad-icon.svg" />
+      <link rel="icon" type="image/svg+xml" href="/apulia-icon.svg" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#94a3b8" />
       <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />

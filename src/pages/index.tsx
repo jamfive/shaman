@@ -9,7 +9,7 @@ import { appURL } from "@/lib/utils";
 const HomePage: React.FC = () => {
   return (
     <>
-    <Meta ogUrl={appURL} />
+      <Meta ogUrl={appURL} />
       <Head>
         <title>Elezioni Regionali Puglia 2025</title>
         <meta
@@ -21,14 +21,17 @@ const HomePage: React.FC = () => {
       <div className="min-h-screen bg-base-100 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px] animate-pulse" style={{animationDuration: "5s"}} />
+          <div
+            className="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px] animate-pulse"
+            style={{ animationDuration: "5s" }}
+          />
           <div
             className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[120px] animate-pulse"
             style={{ animationDelay: "2s" }}
           />
         </div>
 
-        <main className="container mx-auto px-4 py-12 pt-24 relative z-10">
+        <main className="container max-w-screen-2xl mx-auto  px-4 md:px-8 py-12 pt-24 relative z-10">
           {/* Hero Section */}
           <div className="hero min-h-[30vh] flex flex-col justify-center items-center text-center mb-16">
             <motion.div
@@ -51,8 +54,6 @@ const HomePage: React.FC = () => {
                 Elezioni Regionali {""}
                 <span className="ml-2 text-gradient">Puglia 2025</span>
               </h1>
-
-             
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Link
@@ -90,9 +91,9 @@ const HomePage: React.FC = () => {
                     <BarChart2 className="text-primary" size={24} />
                   </div>
                   <h3 className="card-title text-2xl mb-2">Risultati</h3>
-                    <p className="opacity-70 mb-4">
+                  <p className="opacity-70 mb-4">
                     Risultati in tempo reale di tutte le liste e candidati.
-                    </p>
+                  </p>
                   <div className="card-actions justify-end mt-auto">
                     <span className="btn btn-ghost btn-sm gap-2 group-hover:translate-x-2 transition-transform">
                       Esplora <ArrowRight size={16} />

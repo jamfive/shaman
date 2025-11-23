@@ -90,8 +90,6 @@ const AffluentePage: React.FC = () => {
     }
   }, [provinciesData]);
 
-  
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -122,9 +120,9 @@ const AffluentePage: React.FC = () => {
           <div className="absolute bottom-[10%] left-[10%] w-[60%] h-[60%] rounded-full bg-secondary/5 blur-[100px]" />
         </div>
 
-        <div className="container mx-auto px-4 py-8 pt-24 relative z-10">
+        <div className="container mx-auto max-w-screen-2xl px-4 md:px-8 py-8 pt-24 relative z-10">
           {/* Breadcrumb */}
-          <div className="text-sm breadcrumbs mb-4 opacity-60">
+          <div className="text-sm breadcrumbs mb-4 opacity-60 hidden">
             <ul>
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
@@ -139,13 +137,13 @@ const AffluentePage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-4"
+            className="text-center mb-4 flex md:gap-4 flex-col md:flex-row  "
           >
-            <h1 className="text-4xl font-bold mb-4 tracking-tight text-left">
+            <h1 className="text-3xl font-bold mb-4 tracking-tight text-left">
               Affluenze{" "}
               <span className="font-bold text-gradient">Elettorali</span>
             </h1>
-            <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left">
+            <h2 className="text-xl font-light opacity-80 tracking-widest uppercase text-left mt-0 md:mt-2">
               {provinciesData?.enti.ente_p.desc || "Puglia"} 2025
             </h2>
           </motion.header>
