@@ -115,7 +115,7 @@ const Widget4CandidatiPage: React.FC = () => {
             
             return (
               <motion.div key={candidate.pos} variants={item}>
-                <Link href="https://regionali.trmnet.work" target="_blank" rel="noopener noreferrer">
+                <Link href="https://regionali.trmnet.work/risultati" target="_blank" rel="noopener noreferrer">
                   <div className={`card glass-card h-full transition-all duration-300 border-2 overflow-hidden cursor-pointer hover:-translate-y-1 ${
                     isFirst ? 'border-primary shadow-lg' : 'border-white/20'
                   }`}>
