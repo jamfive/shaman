@@ -14,6 +14,7 @@ import {
   TrendingUp,
   TrendingDown,
   Minus,
+  X,
 } from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
 import Meta from "@/components/Meta";
@@ -72,6 +73,7 @@ interface ScrutiniData {
 const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
   const [provinciaData, setProvinciaData] = useState<ProvinciaData>();
   const [candidatesResults, setCandidatesResults] = useState<CandidateResult[]>([]);
+  const [selectedCandidate, setSelectedCandidate] = useState<CandidateResult | null>(null);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -315,6 +317,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                 <table className="table w-full table-xs md:table-md">
                   <thead className="bg-base-200/50 text-base-content/70">
                     <tr>
+                      <th className="py-4 pl-2 md:pl-6"></th>
                       <th className="py-4 pl-2 md:pl-6">Candidato</th>
                       <th className="py-4 hidden md:table-cell">Lista/Coalizione</th>
                       <th className="text-right py-4">Voti</th>
@@ -332,12 +335,26 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                             ? "Coalizione di CDX"
                             : "Lista civica";
                         const percentage = parseFloat(candidate.perc.replace(',', '.')) || 0;
+                        const imageSlug = candidate.cogn.toLowerCase();
 
                         return (
                           <tr
                             key={index}
                             className="hover:bg-base-content/5 transition-colors border-b-base-content/5"
                           >
+                            <td className="pl-2 md:pl-6 py-2">
+                              <div className="avatar">
+                                <div className="size-12 rounded-md">
+                                  <Image
+                                    src={`/img/candidati/${imageSlug}.webp`}
+                                    alt={fullName}
+                                    width={40}
+                                    height={40}
+                                    className="object-cover"
+                                  />
+                                </div>
+                              </div>
+                            </td>
                             <td className="font-medium pl-2 md:pl-6 py-4 text-xs md:text-sm">
                               {fullName}
                             </td>
@@ -346,15 +363,19 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                                 <div className="badge badge-outline truncate badge-sm">
                                   {coalitionLabel}
                                 </div>
-                                {/* Simboli liste */}
-                                <div className="flex-wrap gap-1 flex">
+                                {/* Simboli liste - cliccabili */}
+                                <div 
+                                  className="flex-wrap gap-1 flex cursor-pointer"
+                                  onClick={() => setSelectedCandidate(candidate)}
+                                  title="Clicca per vedere i dettagli delle liste"
+                                >
                                   {candidate.liste.map((lista) => (
                                     <div
                                       key={lista.pos}
                                       className="tooltip tooltip-top"
                                       data-tip={lista.desc_lis_c}
                                     >
-                                      <div className="size-8 relative rounded hover:opacity-80 transition-opacity">
+                                      <div className="size-8 relative rounded hover:opacity-80 hover:ring-2 hover:ring-primary transition-all">
                                         <Image
                                           src={`/img/regionali2025/${lista.img_lis_c}`}
                                           alt={lista.desc_lis_c}
@@ -383,7 +404,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                       })
                     ) : (
                       <tr>
-                        <td colSpan={4} className="py-12 text-center">
+                        <td colSpan={5} className="py-12 text-center">
                           <div className="flex flex-col items-center justify-center opacity-50 gap-3">
                             <AlertCircle size={48} className="stroke-1" />
                             <p className="text-lg">
@@ -565,6 +586,120 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             </div>
           </motion.div>
         </div>
+
+        {/* Modal dettaglio liste candidato */}
+        {selectedCandidate && (
+          <div className="modal modal-open">
+            <div className="modal-box max-w-2xl">
+              {/* Header modale */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <p className="text-xs opacity-50 uppercase tracking-wider mb-1">
+                    Provincia di {provinciaName}
+                  </p>
+                  <h3 className="text-xl font-bold">
+                    {selectedCandidate.nome} {selectedCandidate.cogn}
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    Dettaglio voti per lista
+                  </p>
+                </div>
+                <button
+                  className="btn btn-ghost btn-sm btn-circle"
+                  onClick={() => setSelectedCandidate(null)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Statistiche totali */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="card bg-primary/10 border border-primary/20 p-4">
+                  <div className="text-xs font-semibold text-primary/70 uppercase tracking-wider mb-1">
+                    Voti Candidato
+                  </div>
+                  <div className="text-2xl font-bold text-primary">
+                    {selectedCandidate.voti.toLocaleString("it-IT")}
+                  </div>
+                  <div className="badge badge-primary badge-sm mt-2 font-bold text-primary-content!">
+                    {formatItalianFloat(parseFloat(selectedCandidate.perc.replace(',', '.')))}%
+                  </div>
+                </div>
+
+                <div className="card bg-secondary/10 border border-secondary/20 p-4">
+                  <div className="text-xs font-semibold text-secondary/70 uppercase tracking-wider mb-1">
+                    Voti Liste
+                  </div>
+                  <div className="text-2xl font-bold text-secondary">
+                    {selectedCandidate.tot_vot_lis.toLocaleString("it-IT")}
+                  </div>
+                  <div className="badge badge-secondary badge-sm mt-2 font-bold text-white">
+                    {formatItalianFloat(parseFloat(selectedCandidate.perc_lis.replace(',', '.')))}%
+                  </div>
+                </div>
+              </div>
+
+              {/* Tabella liste */}
+              <div className="overflow-x-auto">
+                <table className="table table-sm">
+                  <thead>
+                    <tr className="text-xs">
+                      <th className="w-12"></th>
+                      <th>Lista</th>
+                      <th className="text-right">Voti</th>
+                      <th className="text-right">%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {selectedCandidate.liste.map((lista) => (
+                      <tr key={lista.pos} className="hover">
+                        <td>
+                          <div className="w-8 h-8 relative rounded border border-base-content/10">
+                            <Image
+                              src={`/img/regionali2025/${lista.img_lis_c}`}
+                              alt={lista.desc_lis_c}
+                              fill
+                              sizes="32px"
+                              className="object-contain p-0.5"
+                            />
+                          </div>
+                        </td>
+                        <td className="text-sm font-medium">{lista.desc_lis_c}</td>
+                        <td className="text-right font-mono text-sm font-semibold">
+                          {lista.voti.toLocaleString("it-IT")}
+                        </td>
+                        <td className="text-right">
+                          <span className="badge badge-primary badge-sm text-primary-content!">
+                            {formatItalianFloat(parseFloat(lista.perc.replace(',', '.')))}%
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="font-bold border-t-2">
+                      <td colSpan={2} className="text-sm">
+                        Totale Liste
+                      </td>
+                      <td className="text-right font-mono text-sm">
+                        {selectedCandidate.tot_vot_lis.toLocaleString("it-IT")}
+                      </td>
+                      <td className="text-right">
+                        <span className="badge badge-secondary badge-sm text-white">
+                          {formatItalianFloat(parseFloat(selectedCandidate.perc_lis.replace(',', '.')))}%
+                        </span>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            <div
+              className="modal-backdrop"
+              onClick={() => setSelectedCandidate(null)}
+            />
+          </div>
+        )}
       </div>
     </>
   );
