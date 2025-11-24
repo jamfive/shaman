@@ -6,6 +6,7 @@ import Image from "next/image";
 import Meta from "@/components/Meta";
 import { ShamanConfig } from "@/ShamanConfig";
 import { useKonamiCode } from "@/components/useKonamiCode";
+import { useKonamiTouch } from "@/components/useKonamiTouch";
 
 interface Lista {
   pos: number;
@@ -70,12 +71,21 @@ const CandidatiPage: React.FC = () => {
       setEasterEggActivated(true);
     }
   });
+
+  useKonamiTouch(() => {
+    if (!easterEggActivated) {
+      alert("Hai attivato il Konami Touch Easter Egg!");
+      setEasterEggActivated(true);
+    }
+  });
+
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
     null
   );
   const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
   const [sezioniTotali, setSezioniTotali] = useState<number>(0);
+  const [reloadProgress, setReloadProgress] = useState<number>(0);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -100,13 +110,26 @@ const CandidatiPage: React.FC = () => {
         console.error("Error fetching scrutini data:", error);
       });
 
+      
+      const durata = 120;
     // Auto-reload della pagina ogni 2 minuti (120000 ms)
     const reloadInterval = setInterval(() => {
       window.location.reload();
-    }, 120000);
+    }, durata * 1000);
 
-    // Cleanup: ferma l'interval quando il componente viene smontato
-    return () => clearInterval(reloadInterval);
+    // Progress animation per il reload
+    const progressInterval = setInterval(() => {
+      setReloadProgress((prev) => {
+        if (prev >= 100) return 0;
+        return prev + 100 / durata; // Incremento ogni secondo per 120 secondi
+      });
+    }, 1000);
+
+    // Cleanup: ferma gli interval quando il componente viene smontato
+    return () => {
+      clearInterval(reloadInterval);
+      clearInterval(progressInterval);
+    };
   }, []);
 
   return (
@@ -145,9 +168,23 @@ const CandidatiPage: React.FC = () => {
           >
             <div className="bg-base-200/50 rounded-lg p-2">
               <div className="flex justify-between items-center mb-1">
-                <span className="text-xs font-semibold opacity-70">
-                  Sezioni scrutinate
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold opacity-70">
+                    Sezioni scrutinate
+                  </span>
+                  <div
+                    className="radial-progress text-primary"
+                    style={
+                      {
+                        "--value": reloadProgress,
+                        "--size": "1.2rem",
+                        "--thickness": "2px",
+                      } as React.CSSProperties
+                    }
+                    role="progressbar"
+                    aria-label="Auto-refresh progress"
+                  ></div>
+                </div>
                 <span className="text-xs font-bold font-mono">
                   {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                   {sezioniTotali.toLocaleString("it-IT")}
@@ -186,9 +223,23 @@ const CandidatiPage: React.FC = () => {
             <div className="hidden md:block md:flex-1 md:max-w-md">
               <div className="bg-base-200/50 rounded-lg p-2">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-semibold opacity-70">
-                    Sezioni scrutinate
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold opacity-70">
+                      Sezioni scrutinate
+                    </span>
+                    <div
+                      className="radial-progress bg-primary/20 text-primary-content/80 border-primary/10 border-2"
+                      style={
+                        {
+                          "--value": reloadProgress,
+                          "--size": "0.6rem",
+                          "--thickness": "0.15rem",
+                        } as React.CSSProperties
+                      }
+                      role="progressbar"
+                      aria-label="Auto-refresh progress"
+                    ></div>
+                  </div>
                   <span className="text-xs font-bold font-mono">
                     {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                     {sezioniTotali.toLocaleString("it-IT")}
@@ -220,14 +271,15 @@ const CandidatiPage: React.FC = () => {
           >
             {candidates.map((candidate, ix) => {
               const nameMap: { [key: string]: string } = {
-                'ada': 'aldo',
-                'sabino': 'sabina',
-                'antonio': 'antonietta',
-                'luigi': 'luisa'
+                ada: "aldo",
+                sabino: "sabina",
+                antonio: "antonietta",
+                luigi: "luisa",
               };
-              const displayName = easterEggActivated && nameMap[candidate.nome.toLowerCase()]
-                ? nameMap[candidate.nome.toLowerCase()].toUpperCase()
-                : candidate.nome;
+              const displayName =
+                easterEggActivated && nameMap[candidate.nome.toLowerCase()]
+                  ? nameMap[candidate.nome.toLowerCase()].toUpperCase()
+                  : candidate.nome;
               const fullName = `${displayName} ${candidate.cogn}`;
               const imageSlug = candidate.cogn.toLowerCase();
               const imageSuffix = easterEggActivated ? "_f" : "";
@@ -343,7 +395,9 @@ const CandidatiPage: React.FC = () => {
                   <div className="avatar">
                     <div className="w-16 h-16 rounded-lg">
                       <Image
-                        src={`/img/candidati/${selectedCandidate.cogn.toLowerCase()}${easterEggActivated ? "_f" : ""}.webp`}
+                        src={`/img/candidati/${selectedCandidate.cogn.toLowerCase()}${
+                          easterEggActivated ? "_f" : ""
+                        }.webp`}
                         alt={`${selectedCandidate.nome} ${selectedCandidate.cogn}`}
                         width={64}
                         height={64}
@@ -355,14 +409,18 @@ const CandidatiPage: React.FC = () => {
                     <h3 className="text-xl font-bold">
                       {(() => {
                         const nameMap: { [key: string]: string } = {
-                          'ada': 'aldo',
-                          'sabino': 'sabina',
-                          'antonio': 'antonietta',
-                          'luigi': 'luisa'
+                          ada: "aldo",
+                          sabino: "sabina",
+                          antonio: "antonietta",
+                          luigi: "luisa",
                         };
-                        const displayName = easterEggActivated && nameMap[selectedCandidate.nome.toLowerCase()]
-                          ? nameMap[selectedCandidate.nome.toLowerCase()].toUpperCase()
-                          : selectedCandidate.nome;
+                        const displayName =
+                          easterEggActivated &&
+                          nameMap[selectedCandidate.nome.toLowerCase()]
+                            ? nameMap[
+                                selectedCandidate.nome.toLowerCase()
+                              ].toUpperCase()
+                            : selectedCandidate.nome;
                         return `${displayName} ${selectedCandidate.cogn}`;
                       })()}
                     </h3>
@@ -386,9 +444,23 @@ const CandidatiPage: React.FC = () => {
               {/* Progress Bar Sezioni nella modale */}
               <div className="bg-base-200/50 rounded-lg p-3 mb-4">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-semibold opacity-70">
-                    Sezioni scrutinate
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold opacity-70">
+                      Sezioni scrutinate
+                    </span>
+                    <div
+                      className="radial-progress text-primary"
+                      style={
+                        {
+                          "--value": reloadProgress,
+                          "--size": "1.4rem",
+                          "--thickness": "2px",
+                        } as React.CSSProperties
+                      }
+                      role="progressbar"
+                      aria-label="Auto-refresh progress"
+                    ></div>
+                  </div>
                   <span className="text-sm font-bold font-mono">
                     {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                     {sezioniTotali.toLocaleString("it-IT")}

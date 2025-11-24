@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Lista {
   pos: number;
@@ -29,6 +30,8 @@ interface ScrutiniData {
     ele_t: number;
     vot_t: number;
     perc_vot: string;
+    sz_tot: number;
+    sz_cons: number;
   };
   cand: Candidate[];
 }
@@ -56,6 +59,8 @@ const item = {
 
 const WidgetCandidatiPage: React.FC = () => {
   const [topCandidates, setTopCandidates] = useState<Candidate[]>([]);
+  const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
+  const [sezioniTotali, setSezioniTotali] = useState<number>(0);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -71,10 +76,16 @@ const WidgetCandidatiPage: React.FC = () => {
         // Ordina per voti decrescente e prendi i primi 2
         const sorted = [...data.cand].sort((a, b) => b.voti - a.voti).slice(0, 2);
         setTopCandidates(sorted);
+            setSezioniScrutinate(data.int.sz_cons || 0);
+            setSezioniTotali(data.int.sz_tot || 0);
       })
       .catch((error) => {
         console.error("Error fetching scrutini data:", error);
       });
+      const reloadInterval = setInterval(() => {
+        window.location.reload();
+      }, 120000);
+    return () => clearInterval(reloadInterval);
   }, []);
 
   return (
@@ -108,7 +119,8 @@ const WidgetCandidatiPage: React.FC = () => {
             
             return (
               <motion.div key={candidate.pos} variants={item}>
-                <div className={`card glass-card h-full transition-all duration-300 border-2 overflow-hidden ${
+                <Link href="https://regionali.trmnet.work" target="_blank" rel="noopener noreferrer">
+                <div className={`card glass-card h-full transition-all duration-300 border-2 overflow-hidden cursor-pointer hover:-translate-y-1 ${
                   isFirst ? 'border-primary shadow-xl' : 'border-white/20'
                 }`}>
                   
@@ -160,15 +172,20 @@ const WidgetCandidatiPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </motion.div>
             );
           })}
         </motion.div>
 
         {/* Footer */}
-        <div className="text-center mt-4">
+        <div className="flex justify-between mt-4">
           <p className="text-xs opacity-60">
             Dati aggiornati in tempo reale
+          </p>
+          <p className="text-xs opacity-60">
+            Sezioni scrutinate: {sezioniScrutinate} / {sezioniTotali}
+            <progress className="progress w-42 h-2 ml-2" value={sezioniScrutinate} max={sezioniTotali}></progress>
           </p>
         </div>
       </div>
