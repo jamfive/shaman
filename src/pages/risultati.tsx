@@ -111,7 +111,7 @@ const CandidatiPage: React.FC = () => {
       });
 
       
-      const durata = 120;
+      const durata = ShamanConfig.durata;
     // Auto-reload della pagina ogni 2 minuti (120000 ms)
     const reloadInterval = setInterval(() => {
       window.location.reload();
@@ -233,7 +233,7 @@ const CandidatiPage: React.FC = () => {
                         {
                           "--value": reloadProgress,
                           "--size": "0.6rem",
-                          "--thickness": "0.15rem",
+                          "--thickness": "0.1rem",
                         } as React.CSSProperties
                       }
                       role="progressbar"

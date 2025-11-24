@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Users, Clock, TrendingUp, TrendingDown, Minus, Info } from "lucide-react";
+import {
+  Users,
+  Clock,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  Info,
+} from "lucide-react";
 import { ShamanConfig } from "@/ShamanConfig";
 import Meta from "@/components/Meta";
 import { formatItalianFloat, translatePhase } from "@/lib/utils";
 
-const phase = ShamanConfig.phase
+const phase = ShamanConfig.phase;
 
 interface ComVot {
   perc_r: string;
@@ -40,22 +47,24 @@ interface TimeStat {
   label: string;
 }
 
-
-
 const AffluentePage: React.FC = () => {
   const [provinciesData, setProvinciesData] = useState<Province>();
   const [timeStats, setTimeStats] = useState<TimeStat[]>([]);
+  const [reloadProgress, setReloadProgress] = useState<number>(0);
 
   useEffect(() => {
     // Cache busting: aggiungi timestamp per evitare problemi di cache
     const timestamp = new Date().getTime();
-    fetch(`${ShamanConfig.fetchDataURL}/data/affluenze-puglia.json?t=${timestamp}`, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
+    fetch(
+      `${ShamanConfig.fetchDataURL}/data/affluenze-puglia.json?t=${timestamp}`,
+      {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
       }
-    })
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,33 +77,60 @@ const AffluentePage: React.FC = () => {
         setTimeStats([
           {
             time: "12:00",
-            value: phase >= 0 ? data.enti.ente_p.com_vot[0]?.perc+"%" || "--%": "--%",
+            value:
+              phase >= 0
+                ? data.enti.ente_p.com_vot[0]?.perc + "%" || "--%"
+                : "--%",
             previous: data.enti.ente_p.com_vot[0]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "19:00",
-            value: phase >= 1 ? data.enti.ente_p.com_vot[1]?.perc+"%" || "--%": "--%",
+            value:
+              phase >= 1
+                ? data.enti.ente_p.com_vot[1]?.perc + "%" || "--%"
+                : "--%",
             previous: data.enti.ente_p.com_vot[1]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "23:00",
-            value: phase >= 2 ? data.enti.ente_p.com_vot[2]?.perc+"%" || "--%": "--%",
+            value:
+              phase >= 2
+                ? data.enti.ente_p.com_vot[2]?.perc + "%" || "--%"
+                : "--%",
             previous: data.enti.ente_p.com_vot[2]?.perc_r || null,
             label: "Domenica",
           },
           {
             time: "15:00",
-            value: phase >= 3 ? data.enti.ente_p.com_vot[3]?.perc+"%" || "--%": "--%",
+            value:
+              phase >= 3
+                ? data.enti.ente_p.com_vot[3]?.perc + "%" || "--%"
+                : "--%",
             previous: data.enti.ente_p.com_vot[3]?.perc_r || null,
             label: "Lunedì",
           },
-        ]); 
+        ]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+    const durata = ShamanConfig.durata;
+    const progressInterval = setInterval(() => {
+      setReloadProgress((prev) => {
+        if (prev >= 100) return 0;
+        return prev + 100 / durata; // Incremento ogni secondo per 120 secondi
+      });
+    }, 1000);
+    const reloadInterval = setInterval(() => {
+      window.location.reload();
+    }, durata * 1000);
+    return () => {
+      clearInterval(reloadInterval);
+      clearInterval(progressInterval);
+    };
   }, []);
 
   useEffect(() => {
@@ -120,7 +156,7 @@ const AffluentePage: React.FC = () => {
 
   return (
     <>
-     <Meta
+      <Meta
         ogUrl="https://regionali.trmnet.work/affluenze"
         title="Affluenze - Elezioni Regionali Puglia 2025"
         description="Affluenze dettagliate delle elezioni regionali della Puglia 2025"
@@ -161,28 +197,55 @@ const AffluentePage: React.FC = () => {
                 {provinciesData?.enti.ente_p.desc || "Puglia"} 2025
               </h2>
             </div>
-            
+
             {/* Progress Bar Sezioni */}
             {provinciesData && phase >= 0 && (
               <div className="bg-base-200/50 rounded-lg p-2 md:max-w-md md:flex-1">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-semibold opacity-70">
-                    Sezioni rilevate
-                  </span>
+                  <div className="flex gap-2 items-center">
+                    <span className="text-xs font-semibold opacity-70">
+                      Sezioni rilevate
+                    </span>
+                    <div
+                      className="radial-progress bg-primary/20 text-primary-content/80 border-primary/10 border-2"
+                      style={
+                        {
+                          "--value": reloadProgress,
+                          "--size": "0.6rem",
+                          "--thickness": "0.1rem",
+                        } as React.CSSProperties
+                      }
+                      role="progressbar"
+                      aria-label="Auto-refresh progress"
+                    ></div>
+                  </div>
                   <span className="text-xs font-bold font-mono">
-                    {provinciesData.enti.ente_p.com_vot[phase]?.enti_p.toLocaleString("it-IT") || 0} / {provinciesData.enti.ente_p.com_vot[phase]?.enti_t.toLocaleString("it-IT") || 0}
+                    {provinciesData.enti.ente_p.com_vot[
+                      phase
+                    ]?.enti_p.toLocaleString("it-IT") || 0}{" "}
+                    /{" "}
+                    {provinciesData.enti.ente_p.com_vot[
+                      phase
+                    ]?.enti_t.toLocaleString("it-IT") || 0}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <progress
                     className="progress progress-primary h-2 flex-1"
-                    value={provinciesData.enti.ente_p.com_vot[phase]?.enti_p || 0}
+                    value={
+                      provinciesData.enti.ente_p.com_vot[phase]?.enti_p || 0
+                    }
                     max={provinciesData.enti.ente_p.com_vot[phase]?.enti_t || 1}
                   ></progress>
                   <span className="text-xs font-bold text-primary">
                     {provinciesData.enti.ente_p.com_vot[phase]?.enti_t > 0
-                      ? ((provinciesData.enti.ente_p.com_vot[phase]?.enti_p / provinciesData.enti.ente_p.com_vot[phase]?.enti_t) * 100).toFixed(1)
-                      : 0}%
+                      ? (
+                          (provinciesData.enti.ente_p.com_vot[phase]?.enti_p /
+                            provinciesData.enti.ente_p.com_vot[phase]?.enti_t) *
+                          100
+                        ).toFixed(1)
+                      : 0}
+                    %
                   </span>
                 </div>
               </div>
@@ -197,15 +260,21 @@ const AffluentePage: React.FC = () => {
           >
             {timeStats.map((stat, index) => {
               // Rimuove il simbolo % e converte virgola in punto per il parse
-              const currentValue = parseFloat(stat.value.replace('%', '').replace(',', '.')) || 0;
-              const previousValue = stat.previous ? parseFloat(stat.previous.replace(',', '.')) : null;
-              const delta = previousValue !== null ? currentValue - previousValue : null;
-              
+              const currentValue =
+                parseFloat(stat.value.replace("%", "").replace(",", ".")) || 0;
+              const previousValue = stat.previous
+                ? parseFloat(stat.previous.replace(",", "."))
+                : null;
+              const delta =
+                previousValue !== null ? currentValue - previousValue : null;
+
               return (
                 <motion.div
                   key={index}
                   variants={item}
-                  className={`card glass-card text-center py-6 ${index <= phase ? 'opacity-100!' : 'opacity-30!'}`}
+                  className={`card glass-card text-center py-6 ${
+                    index <= phase ? "opacity-100!" : "opacity-30!"
+                  }`}
                 >
                   <div className="flex flex-col items-center gap-2">
                     <div className="flex items-center gap-2 opacity-70 text-sm">
@@ -224,16 +293,29 @@ const AffluentePage: React.FC = () => {
                           {delta !== null && (
                             <>
                               {delta > 0 ? (
-                                <TrendingUp size={14} className="text-success" />
+                                <TrendingUp
+                                  size={14}
+                                  className="text-success"
+                                />
                               ) : delta < 0 ? (
-                                <TrendingDown size={14} className="text-error" />
+                                <TrendingDown
+                                  size={14}
+                                  className="text-error"
+                                />
                               ) : (
                                 <Minus size={14} className="opacity-50" />
                               )}
-                              <span className={`text-sm font-semibold ${
-                                delta > 0 ? 'text-success' : delta < 0 ? 'text-error' : 'opacity-50'
-                              }`}>
-                                {delta > 0 ? '+' : ''}{formatItalianFloat(delta)}%
+                              <span
+                                className={`text-sm font-semibold ${
+                                  delta > 0
+                                    ? "text-success"
+                                    : delta < 0
+                                    ? "text-error"
+                                    : "opacity-50"
+                                }`}
+                              >
+                                {delta > 0 ? "+" : ""}
+                                {formatItalianFloat(delta)}%
                               </span>
                             </>
                           )}
@@ -259,7 +341,10 @@ const AffluentePage: React.FC = () => {
               <div className="p-6 border-b border-base-content/5 bg-base-100/30 flex justify-between items-center">
                 <div>
                   <h3 className="card-title text-2xl font-bold">
-                    Affluenza per Provincia {ShamanConfig.phase >= 0 ? `(alle ore ${translatePhase(ShamanConfig.phase)})` : ""}
+                    Affluenza per Provincia{" "}
+                    {ShamanConfig.phase >= 0
+                      ? `(alle ore ${translatePhase(ShamanConfig.phase)})`
+                      : ""}
                   </h3>
                   <p className="opacity-70 text-sm">
                     Dati ripartiti per circoscrizione elettorale
@@ -275,59 +360,69 @@ const AffluentePage: React.FC = () => {
                   <thead>
                     <tr className="border-b-base-content/10 text-base-content/60 uppercase text-xs tracking-wider">
                       <th className="bg-transparent py-4 pl-6">Provincia</th>
-                      <th className="text-right bg-transparent">
-                        Comuni
-                      </th>
-                      <th className="text-right bg-transparent">
-                        Elettori
-                      </th>
+                      <th className="text-right bg-transparent">Comuni</th>
+                      <th className="text-right bg-transparent">Elettori</th>
                       <th className="text-right bg-transparent">Sezioni</th>
                       <th className="text-right bg-transparent">Affluenza %</th>
-                      <th className="text-right bg-transparent">Precedente %</th>
+                      <th className="text-right bg-transparent">
+                        Precedente %
+                      </th>
                       <th className="text-right bg-transparent pr-6">Trend</th>
                     </tr>
                   </thead>
                   <tbody>
                     {provinciesData?.enti.enti_f.map((provincia, index) => {
                       const comuniMap: { [key: string]: number } = {
-                        "BARI": 41,
+                        BARI: 41,
                         "BARLETTA-ANDRIA-TRANI": 10,
-                        "BRINDISI": 20,
-                        "FOGGIA": 61,
-                        "LECCE": 97,
-                        "TARANTO": 29
+                        BRINDISI: 20,
+                        FOGGIA: 61,
+                        LECCE: 97,
+                        TARANTO: 29,
                       };
-                      
-                      const currentData = phase >= 0 ? provincia.com_vot[phase] : null;
+
+                      const currentData =
+                        phase >= 0 ? provincia.com_vot[phase] : null;
                       const affluenza = currentData?.perc || "--";
                       const precedente = currentData?.perc_r || "--";
                       const elettori = provincia.ele_t || "--";
                       const entiTotali = currentData?.enti_t ?? "--";
                       const entiPervenuti = currentData?.enti_p ?? "--";
-                      const comuni = comuniMap[provincia.desc.toUpperCase()] || "--";
-                      
+                      const comuni =
+                        comuniMap[provincia.desc.toUpperCase()] || "--";
+
                       // Calcola il delta percentuale
-                      const delta = affluenza !== "--" && precedente !== "--" 
-                        ? (parseFloat(affluenza.replaceAll(",", ".")) - parseFloat(precedente.replaceAll(",", ".")  )).toFixed(2)
-                        : null;
-                      
+                      const delta =
+                        affluenza !== "--" && precedente !== "--"
+                          ? (
+                              parseFloat(affluenza.replaceAll(",", ".")) -
+                              parseFloat(precedente.replaceAll(",", "."))
+                            ).toFixed(2)
+                          : null;
+
                       // Converti il nome provincia in slug per il link
                       const provinciaSlugMap: { [key: string]: string } = {
-                        "BARI": "bari",
+                        BARI: "bari",
                         "BARLETTA-ANDRIA-TRANI": "bat",
-                        "BRINDISI": "brindisi",
-                        "FOGGIA": "foggia",
-                        "LECCE": "lecce",
-                        "TARANTO": "taranto"
+                        BRINDISI: "brindisi",
+                        FOGGIA: "foggia",
+                        LECCE: "lecce",
+                        TARANTO: "taranto",
                       };
-                      const provinciaSlug = provinciaSlugMap[provincia.desc.toUpperCase()];
-                      
-                      console.log(`Provincia: ${provincia.desc}, Phase: ${phase}, Affluenza: ${affluenza}`);
-                      
+                      const provinciaSlug =
+                        provinciaSlugMap[provincia.desc.toUpperCase()];
+
+                      console.log(
+                        `Provincia: ${provincia.desc}, Phase: ${phase}, Affluenza: ${affluenza}`
+                      );
+
                       return (
                         <tr
                           key={index}
-                          onClick={() => provinciaSlug && (window.location.href = `/provincia/${provinciaSlug}#affluenza-comuni`)}
+                          onClick={() =>
+                            provinciaSlug &&
+                            (window.location.href = `/provincia/${provinciaSlug}#affluenza-comuni`)
+                          }
                           className="hover:bg-base-content/5 transition-colors border-b-base-content/5 cursor-pointer"
                           title={`Vai ai dettagli di ${provincia.desc}`}
                         >
@@ -338,55 +433,80 @@ const AffluentePage: React.FC = () => {
                             {comuni}
                           </td>
                           <td className="text-right opacity-70 font-mono">
-                            {elettori !== "--" ? elettori.toLocaleString("it-IT") : "--"}
+                            {elettori !== "--"
+                              ? elettori.toLocaleString("it-IT")
+                              : "--"}
                           </td>
                           <td className="text-right">
                             <div className="flex items-center justify-end gap-2">
                               <span className="opacity-70 font-mono">
                                 {entiPervenuti}/{entiTotali}
                               </span>
-                              {entiPervenuti !== "--" && entiTotali !== "--" && (
-                                <span className="relative flex h-2 w-2">
-                                  {entiPervenuti < entiTotali ? (
-                                    <>
-                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
-                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
-                                    </>
-                                  )}
-                                </span>
-                              )}
+                              {entiPervenuti !== "--" &&
+                                entiTotali !== "--" && (
+                                  <span className="relative flex h-2 w-2">
+                                    {entiPervenuti < entiTotali ? (
+                                      <>
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
+                                      </>
+                                    )}
+                                  </span>
+                                )}
                             </div>
                           </td>
                           <td className="text-right">
                             <span className="badge badge-primary font-bold text-primary-content!">
-                              {affluenza !== "--" ? formatItalianFloat(parseFloat(affluenza.replace(',', '.'))) : "--"}{affluenza !== "--" ? "%" : ""}
+                              {affluenza !== "--"
+                                ? formatItalianFloat(
+                                    parseFloat(affluenza.replace(",", "."))
+                                  )
+                                : "--"}
+                              {affluenza !== "--" ? "%" : ""}
                             </span>
                           </td>
                           <td className="text-right opacity-70 font-mono text-sm">
-                            {precedente !== "--" ? formatItalianFloat(parseFloat(precedente.replace(',', '.'))) : "--"}{precedente !== "--" ? "%" : ""}
+                            {precedente !== "--"
+                              ? formatItalianFloat(
+                                  parseFloat(precedente.replace(",", "."))
+                                )
+                              : "--"}
+                            {precedente !== "--" ? "%" : ""}
                           </td>
                           <td className="pr-6">
                             {delta !== null ? (
                               <div className="flex items-center justify-end gap-1">
                                 {parseFloat(delta) > 0 ? (
                                   <>
-                                    <TrendingUp size={16} className="text-success" />
-                                    <span className="text-success font-semibold text-sm">+{formatItalianFloat(parseFloat(delta))}%</span>
+                                    <TrendingUp
+                                      size={16}
+                                      className="text-success"
+                                    />
+                                    <span className="text-success font-semibold text-sm">
+                                      +{formatItalianFloat(parseFloat(delta))}%
+                                    </span>
                                   </>
                                 ) : parseFloat(delta) < 0 ? (
                                   <>
-                                    <TrendingDown size={16} className="text-error" />
-                                    <span className="text-error font-semibold text-sm">{formatItalianFloat(parseFloat(delta))}%</span>
+                                    <TrendingDown
+                                      size={16}
+                                      className="text-error"
+                                    />
+                                    <span className="text-error font-semibold text-sm">
+                                      {formatItalianFloat(parseFloat(delta))}%
+                                    </span>
                                   </>
                                 ) : (
                                   <>
                                     <Minus size={16} className="opacity-50" />
-                                    <span className="opacity-50 font-semibold text-sm">{formatItalianFloat(parseFloat(delta))}%</span>
+                                    <span className="opacity-50 font-semibold text-sm">
+                                      {formatItalianFloat(parseFloat(delta))}%
+                                    </span>
                                   </>
                                 )}
                               </div>
