@@ -114,7 +114,7 @@ const WidgetCandidatiPage: React.FC = () => {
         
         
             
-            const percentage = parseFloat(candidate.perc) || 0;
+            const percentage = parseFloat(candidate.perc.replace(',', '.')) || 0;
             const isFirst = index === 0;
             
             return (

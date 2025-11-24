@@ -283,7 +283,7 @@ const CandidatiPage: React.FC = () => {
               const fullName = `${displayName} ${candidate.cogn}`;
               const imageSlug = candidate.cogn.toLowerCase();
               const imageSuffix = easterEggActivated ? "_f" : "";
-              const percentage = parseFloat(candidate.perc) || 0;
+              const percentage = parseFloat(candidate.perc.replace(',', '.')) || 0;
 
               return (
                 <motion.div key={candidate.pos} variants={item}>
@@ -367,11 +367,11 @@ const CandidatiPage: React.FC = () => {
                         <div className="flex justify-between items-center">
                           <progress
                             className="progress progress-secondary h-1.5 flex-1 mr-2"
-                            value={parseFloat(candidate.perc_lis) || 0}
+                            value={parseFloat(candidate.perc_lis.replace(',', '.')) || 0}
                             max="100"
                           ></progress>
                           <span className="text-lg font-bold text-secondary">
-                            {parseFloat(candidate.perc_lis).toFixed(2) || 0}%
+                            {parseFloat(candidate.perc_lis.replace(',', '.')).toFixed(2) || 0}%
                           </span>
                         </div>
                       </div>
@@ -492,7 +492,7 @@ const CandidatiPage: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="badge badge-primary badge-sm font-bold text-primary-content!">
-                      {parseFloat(selectedCandidate.perc).toFixed(2) || 0}%
+                      {parseFloat(selectedCandidate.perc.replace(',', '.')).toFixed(2) || 0}%
                     </div>
                     <span className="text-xs opacity-50">sul totale</span>
                   </div>
@@ -507,7 +507,7 @@ const CandidatiPage: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="badge badge-secondary badge-sm font-bold text-white">
-                      {parseFloat(selectedCandidate.perc_lis).toFixed(2) || 0}%
+                      {parseFloat(selectedCandidate.perc_lis.replace(',', '.')).toFixed(2) || 0}%
                     </div>
                     <span className="text-xs opacity-50">sul totale</span>
                   </div>
@@ -515,7 +515,7 @@ const CandidatiPage: React.FC = () => {
 
                 <div className="card bg-linear-to-br from-accent/10 to-accent/5 border border-accent/20 p-4">
                   <div className="text-xs font-semibold text-accent/70 uppercase tracking-wider mb-2">
-                    Voto Disgiunto
+                    Differenza <br/>candidato / liste
                   </div>
                   <div className="text-2xl font-bold text-accent mb-1">
                     {(
@@ -525,8 +525,8 @@ const CandidatiPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <div className="badge badge-accent badge-sm font-bold">
                       {(
-                        parseFloat(selectedCandidate.perc) -
-                        parseFloat(selectedCandidate.perc_lis)
+                        parseFloat(selectedCandidate.perc.replace(',', '.')) -
+                        parseFloat(selectedCandidate.perc_lis.replace(',', '.'))
                       ).toFixed(2)}
                       %
                     </div>
@@ -582,7 +582,7 @@ const CandidatiPage: React.FC = () => {
                       </td>
                       <td className="text-right">
                         <span className="badge badge-secondary badge-sm text-white!">
-                          {parseFloat(selectedCandidate.perc_lis) || 0}%
+                          {parseFloat(selectedCandidate.perc_lis.replace(',', '.')) || 0}%
                         </span>
                       </td>
                     </tr>
