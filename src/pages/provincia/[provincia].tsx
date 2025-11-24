@@ -265,22 +265,6 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
               </div>
             </div>
 
-            <div className="card glass-card p-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-secondary/10 text-secondary rounded-xl">
-                  <FileText size={24} />
-                </div>
-                <div>
-                  <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
-                    Sezioni
-                  </div>
-                  <div className="text-3xl font-bold">
-                    {sezioniPervenute} / {sezioniTotali}
-                  </div>
-                  <div className="text-xs opacity-50">scrutinate</div>
-                </div>
-              </div>
-            </div>
 
             <div className="card glass-card p-6">
               <div className="flex items-center gap-4">
