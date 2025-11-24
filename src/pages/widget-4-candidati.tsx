@@ -104,7 +104,7 @@ const Widget4CandidatiPage: React.FC = () => {
           variants={container}
           initial="hidden"
           animate={topCandidates.length > 0 ? "show" : "hidden"}
-          className="grid grid-cols-4 gap-2 flex-1"
+          className="grid grid-cols-4 gap-2 flex-1 widget-4"
         >
           {topCandidates.map((candidate, index) => {
             const fullName = `${candidate.nome} ${candidate.cogn}`;

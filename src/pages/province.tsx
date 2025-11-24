@@ -434,7 +434,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                             <span className="font-bold text-xs truncate mr-2">
                               {province.leadingCandidate}
                             </span>
-                            <span className="badge badge-primary badge-xs font-bold">
+                            <span className="badge badge-primary badge-xs font-bold text-primary-content!">
                               {province.leadingPercentage}%
                             </span>
                           </div>
@@ -442,7 +442,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                             <span className="font-semibold text-xs opacity-80 truncate mr-2">
                               {province.secondCandidate}
                             </span>
-                            <span className="badge badge-secondary badge-xs font-bold text-white!">
+                            <span className="badge badge-secondary badge-xs font-bold text-white! dark:text-primary-content!">
                               {province.secondPercentage}%
                             </span>
                           </div>
