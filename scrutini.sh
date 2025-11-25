@@ -209,3 +209,12 @@ curl 'https://eleapi.interno.gov.it/siel/PX/getprefeR/DE/20251123/TE/07/RE/16/CR
   -H 'sec-fetch-site: same-site' \
   -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36' -o "public/data/preferenze-provincia-barletta-andria-trani.json" \
 
+
+curl 'https://eleapi.interno.gov.it/siel/PX/elettiR/DE/20251123/TE/07/RE/16' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'Referer: https://elezioni.interno.gov.it/' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"' \
+  -H 'sec-ch-ua-mobile: ?0' -o "public/data/eletti-puglia.json" \
+  

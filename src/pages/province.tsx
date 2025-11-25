@@ -12,9 +12,11 @@ import {
   Minus,
   ChevronRight,
   Info,
+  X,
 } from "lucide-react";
 import { appURL, formatItalianFloat, translatePhase } from "@/lib/utils";
 import Meta from "@/components/Meta";
+import Image from "next/image";
 
 interface Province {
   name: string;
@@ -66,6 +68,41 @@ interface ScrutiniData {
   cand: ScrutiniCandidate[];
 }
 
+interface ElettoCandidate {
+  cod_lis: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  d_nasc: number;
+  cod_circ: number;
+  desc_circ: string;
+  sex: string;
+  l_nasc: string;
+}
+
+interface ElettiLista {
+  pos: number;
+  desc_lis: string;
+  img_lis: string;
+  n_eletti: number;
+}
+
+interface ElettiCoalition {
+  cod_coal: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  desc_lis_r: string | null;
+  img_lis_r: string | null;
+  n_eletti: number;
+  liste: ElettiLista[] | null;
+  cand: ElettoCandidate[] | null;
+}
+
+interface ElettiData {
+  coal: ElettiCoalition[];
+}
+
 interface ProvincePageProps {
   provinces: Province[];
   totalPopulation: number;
@@ -97,6 +134,8 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
   const [provinces, setProvinces] = useState<Province[]>(initialProvinces);
   const [regionalAvgTurnout, setRegionalAvgTurnout] =
     useState<number>(avgTurnout);
+  const [elettiData, setElettiData] = useState<ElettiData | null>(null);
+  const [showEletti, setShowEletti] = useState<boolean>(false);
   const phase = ShamanConfig.phase; // Primo checkpoint: 12:00
 
   useEffect(() => {
@@ -111,6 +150,20 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
       lecce: "lecce",
       taranto: "taranto",
     };
+
+    // Carica eletti regione Puglia
+    fetch(`${ShamanConfig.fetchDataURL}/data/eletti-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+    })
+      .then((r) => r.json())
+      .then((data: ElettiData) => {
+        console.log('Eletti Puglia data fetched:', data);
+        setElettiData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching eletti data:', error);
+      });
 
     // Carica affluenze regionali
     fetch(`${ShamanConfig.fetchDataURL}/data/affluenze-puglia.json?t=${timestamp}`, {
@@ -250,7 +303,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"
+            className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6"
           >
             <div className="card glass-card p-4">
               <div className="flex flex-col gap-1">
@@ -310,6 +363,29 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
                   <div className="text-xs uppercase tracking-wider opacity-60">
                     Affluenza Regionale <br /> alle ore{" "}
                     {phase >= 0 ? translatePhase(phase) : "--:--"}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pulsante Eletti Regione */}
+            <div 
+              className="card glass-card p-4 cursor-pointer hover:shadow-xl hover:scale-105 transition-all border-2 border-success/20 hover:border-success/50"
+              onClick={() => setShowEletti(true)}
+            >
+              <div className="flex flex-col gap-1">
+                <div className="p-1.5 bg-success/10 text-success rounded-lg w-fit">
+                  <Users size={16} />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold">
+                    {elettiData?.coal.reduce((sum, c) => sum + c.n_eletti, 0) || "--"}
+                  </div>
+                  <div className="text-xs uppercase tracking-wider opacity-60">
+                    Eletti Puglia
+                  </div>
+                  <div className="text-[10px] text-success font-semibold mt-1 flex items-center gap-1">
+                    <span>👆</span> Clicca per dettagli
                   </div>
                 </div>
               </div>
@@ -476,6 +552,139 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
             </span>
           </motion.div>
         </div>
+
+        {/* Modal Eletti Regione Puglia */}
+        {showEletti && elettiData && (
+          <div className="modal modal-open">
+            <div className="modal-box max-w-6xl max-h-[90vh]">
+              {/* Header modale */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    Consiglieri Eletti - Regione Puglia
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    Totale: {elettiData.coal.reduce((sum, c) => sum + c.n_eletti, 0)} consiglieri eletti
+                  </p>
+                </div>
+                <button
+                  className="btn btn-ghost btn-sm btn-circle"
+                  onClick={() => setShowEletti(false)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Sezioni per coalizione */}
+              <div className="space-y-6">
+                {elettiData.coal.map((coalizione) => {
+                  if (!coalizione.liste || !coalizione.cand) return null;
+
+                  return (
+                    <div key={coalizione.cod_coal} className="card bg-base-200/30 border border-base-content/10">
+                      {/* Header Coalizione */}
+                      <div className="p-4 bg-base-300/30 border-b border-base-content/10">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="text-lg font-bold">
+                              {coalizione.nome} {coalizione.cogn}
+                            </h4>
+                            <p className="text-xs opacity-60">Candidato Presidente</p>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-success">
+                              {coalizione.n_eletti}
+                            </div>
+                            <div className="text-xs opacity-60">eletti</div>
+                          </div>
+                        </div>
+
+                        {/* Liste della coalizione */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {coalizione.liste.map((lista) => (
+                            <div
+                              key={lista.pos}
+                              className="badge badge-outline gap-2"
+                            >
+                              <div className="w-5 h-5 relative">
+                                <Image
+                                  src={`/img/regionali2025/${lista.img_lis}`}
+                                  alt={lista.desc_lis}
+                                  fill
+                                  sizes="20px"
+                                  className="object-contain"
+                                />
+                              </div>
+                              <span className="text-xs">
+                                {lista.desc_lis} ({lista.n_eletti})
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tabella Eletti */}
+                      <div className="p-4">
+                        <table className="table table-sm">
+                          <thead>
+                            <tr className="text-xs">
+                              <th className="w-8">#</th>
+                              <th>Nome</th>
+                              <th className="hidden md:table-cell">Circoscrizione</th>
+                              <th className="hidden lg:table-cell">Nato a</th>
+                              <th className="text-center">Lista</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {coalizione.cand.map((eletto, idx) => {
+                              const lista = coalizione.liste?.find(l => l.pos === eletto.cod_lis);
+                              return (
+                                <tr key={`${eletto.cod_lis}-${eletto.cogn}-${idx}`} className="hover">
+                                  <td className="text-xs opacity-60">{idx + 1}</td>
+                                  <td className="font-semibold text-sm">
+                                    {eletto.nome} {eletto.cogn}
+                                    {eletto.a_nome && (
+                                      <span className="font-normal opacity-60 ml-1">({eletto.a_nome})</span>
+                                    )}
+                                  </td>
+                                  <td className="text-xs opacity-70 hidden md:table-cell">
+                                    {eletto.desc_circ}
+                                  </td>
+                                  <td className="text-xs opacity-60 hidden lg:table-cell">
+                                    {eletto.l_nasc}
+                                  </td>
+                                  <td className="text-center">
+                                    {lista && (
+                                      <div className="tooltip" data-tip={lista.desc_lis}>
+                                        <div className="w-6 h-6 relative mx-auto">
+                                          <Image
+                                            src={`/img/regionali2025/${lista.img_lis}`}
+                                            alt={lista.desc_lis}
+                                            fill
+                                            sizes="24px"
+                                            className="object-contain"
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div
+              className="modal-backdrop"
+              onClick={() => setShowEletti(false)}
+            />
+          </div>
+        )}
       </div>
     </>
   );

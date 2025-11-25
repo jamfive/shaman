@@ -66,6 +66,68 @@ interface CandidateResult {
   }>;
 }
 
+interface PreferenzeCandidate {
+  cod_lis: number;
+  cod_cand: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  sex: string;
+  d_nasc: number;
+  l_nasc: string;
+  voti: number;
+  ele: string;
+}
+
+interface PreferenzeLista {
+  cod: number;
+  desc: string;
+  img_lis_c: string;
+  flg_ele: string;
+  sez_perv: number;
+  sez_tot: number;
+}
+
+interface PreferenzeData {
+  liste: PreferenzeLista[];
+  cand: PreferenzeCandidate[];
+}
+
+interface ElettoCandidate {
+  cod_lis: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  d_nasc: number;
+  cod_circ: number;
+  desc_circ: string;
+  sex: string;
+  l_nasc: string;
+}
+
+interface ElettiLista {
+  pos: number;
+  desc_lis: string;
+  img_lis: string;
+  n_eletti: number;
+}
+
+interface ElettiCoalition {
+  cod_coal: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  desc_lis_r: string | null;
+  img_lis_r: string | null;
+  n_eletti: number;
+  liste: ElettiLista[] | null;
+  cand: ElettoCandidate[] | null;
+}
+
+interface ElettiData {
+  coal: ElettiCoalition[];
+}
+
 interface ScrutiniData {
   cand: CandidateResult[];
 }
@@ -74,6 +136,10 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
   const [provinciaData, setProvinciaData] = useState<ProvinciaData>();
   const [candidatesResults, setCandidatesResults] = useState<CandidateResult[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<CandidateResult | null>(null);
+  const [preferenzeData, setPreferenzeData] = useState<PreferenzeData | null>(null);
+  const [selectedCandidatePreferenze, setSelectedCandidatePreferenze] = useState<CandidateResult | null>(null);
+  const [elettiData, setElettiData] = useState<ElettiData | null>(null);
+  const [showEletti, setShowEletti] = useState<boolean>(false);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -124,6 +190,40 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
       })
       .catch((error) => {
         console.error(`Error fetching candidates data for ${provincia}:`, error);
+      });
+
+    // Carica preferenze
+    fetch(`${ShamanConfig.fetchDataURL}/data/preferenze-provincia-${provinciaFileName}.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: PreferenzeData) => {
+        console.log(`Preferenze data fetched for ${provincia}:`, data);
+        setPreferenzeData(data);
+      })
+      .catch((error) => {
+        console.error(`Error fetching preferenze data for ${provincia}:`, error);
+      });
+
+    // Carica eletti regione Puglia
+    fetch(`${ShamanConfig.fetchDataURL}/data/eletti-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: ElettiData) => {
+        console.log('Eletti Puglia data fetched:', data);
+        setElettiData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching eletti data:', error);
       });
   }, [provincia]);
 
@@ -238,7 +338,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
           >
             <div className="card glass-card p-6">
               <div className="flex items-center gap-4">
@@ -265,6 +365,22 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
               </div>
             </div>
 
+            <div className="card glass-card p-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-secondary/10 text-secondary rounded-xl">
+                  <FileText size={24} />
+                </div>
+                <div>
+                  <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
+                    Sezioni
+                  </div>
+                  <div className="text-3xl font-bold">
+                    {sezioniPervenute} / {sezioniTotali}
+                  </div>
+                  <div className="text-xs opacity-50">scrutinate</div>
+                </div>
+              </div>
+            </div>
 
             <div className="card glass-card p-6">
               <div className="flex items-center gap-4">
@@ -277,6 +393,26 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                   </div>
                   <div className="text-3xl font-bold">{numComuni}</div>
                   <div className="text-xs opacity-50">coinvolti</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pulsante Eletti Regione */}
+            <div className="card glass-card p-6 cursor-pointer hover:shadow-xl hover:scale-105 transition-all border-2 border-success/20 hover:border-success/50" onClick={() => setShowEletti(true)}>
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-success/10 text-success rounded-xl">
+                  <Users size={24} />
+                </div>
+                <div>
+                  <div className="text-sm opacity-60 uppercase tracking-wider font-semibold">
+                    Eletti Puglia
+                  </div>
+                  <div className="text-3xl font-bold">
+                    {elettiData?.coal.reduce((sum, c) => sum + c.n_eletti, 0) || "--"}
+                  </div>
+                  <div className="text-xs text-success font-semibold flex items-center gap-1">
+                    <span>👆</span> Clicca per dettagli
+                  </div>
                 </div>
               </div>
             </div>
@@ -340,7 +476,13 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                               </div>
                             </td>
                             <td className="font-medium pl-2 md:pl-6 py-4 text-xs md:text-sm">
-                              {fullName}
+                              <button 
+                                className="hover:text-primary transition-colors underline decoration-dotted cursor-pointer"
+                                onClick={() => setSelectedCandidatePreferenze(candidate)}
+                                title="Clicca per vedere le preferenze"
+                              >
+                                {fullName}
+                              </button>
                             </td>
                             <td className="py-4 hidden md:table-cell">
                               <div className="flex items-center gap-2">
@@ -681,6 +823,251 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
             <div
               className="modal-backdrop"
               onClick={() => setSelectedCandidate(null)}
+            />
+          </div>
+        )}
+
+        {/* Modal preferenze candidato */}
+        {selectedCandidatePreferenze && preferenzeData && (
+          <div className="modal modal-open">
+            <div className="modal-box max-w-4xl max-h-[90vh]">
+              {/* Header modale */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <p className="text-xs opacity-50 uppercase tracking-wider mb-1">
+                    Provincia di {provinciaName}
+                  </p>
+                  <h3 className="text-xl font-bold">
+                    Preferenze - {selectedCandidatePreferenze.nome} {selectedCandidatePreferenze.cogn}
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    Voti di preferenza per ogni lista della coalizione
+                  </p>
+                </div>
+                <button
+                  className="btn btn-ghost btn-sm btn-circle"
+                  onClick={() => setSelectedCandidatePreferenze(null)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Tabella preferenze per lista */}
+              <div className="overflow-x-auto">
+                {selectedCandidatePreferenze.liste.map((lista) => {
+                  // Filtra i candidati di questa lista
+                  const candidatiLista = preferenzeData.cand
+                    .filter((c) => c.cod_lis === lista.pos)
+                    .sort((a, b) => b.voti - a.voti);
+
+                  const listaInfo = preferenzeData.liste.find((l) => l.cod === lista.pos);
+
+                  return (
+                    <div key={lista.pos} className="mb-6">
+                      {/* Header lista */}
+                      <div className="flex items-center gap-3 mb-3 bg-base-200/50 p-3 rounded-lg">
+                        <div className="w-10 h-10 relative rounded border border-base-content/10">
+                          <Image
+                            src={`/img/regionali2025/${lista.img_lis_c}`}
+                            alt={lista.desc_lis_c}
+                            fill
+                            sizes="40px"
+                            className="object-contain p-0.5"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-sm">{lista.desc_lis_c}</h4>
+                          <p className="text-xs opacity-60">
+                            {listaInfo?.sez_perv || 0} / {listaInfo?.sez_tot || 0} sezioni pervenute
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-lg font-bold text-primary">
+                            {lista.voti.toLocaleString("it-IT")}
+                          </div>
+                          <div className="text-xs opacity-60">voti lista</div>
+                        </div>
+                      </div>
+
+                      {/* Tabella candidati */}
+                      <table className="table table-xs">
+                        <thead>
+                          <tr className="text-[10px]">
+                            <th className="w-8">#</th>
+                            <th>Candidato</th>
+                            <th className="hidden md:table-cell">Nato a</th>
+                            <th className="text-right">Voti preferenza</th>
+                            <th className="text-center hidden md:table-cell">Eletto</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {candidatiLista.map((cand, idx) => (
+                            <tr key={cand.cod_cand} className="hover">
+                              <td className="text-xs opacity-60">{idx + 1}</td>
+                              <td className="text-xs">
+                                <div className="font-semibold">
+                                  {cand.nome} {cand.cogn}
+                                  {cand.a_nome && (
+                                    <span className="font-normal opacity-60 ml-1">({cand.a_nome})</span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="text-xs opacity-60 hidden md:table-cell">{cand.l_nasc}</td>
+                              <td className="text-right font-mono text-xs font-semibold">
+                                {cand.voti.toLocaleString("it-IT")}
+                              </td>
+                              <td className="text-center hidden md:table-cell">
+                                {cand.ele === "S" ? (
+                                  <span className="badge badge-success badge-xs text-white">Eletto</span>
+                                ) : (
+                                  <span className="opacity-30 text-xs">-</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div
+              className="modal-backdrop"
+              onClick={() => setSelectedCandidatePreferenze(null)}
+            />
+          </div>
+        )}
+
+        {/* Modal Eletti Regione Puglia */}
+        {showEletti && elettiData && (
+          <div className="modal modal-open">
+            <div className="modal-box max-w-6xl max-h-[90vh]">
+              {/* Header modale */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    Consiglieri Eletti - Regione Puglia
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    Totale: {elettiData.coal.reduce((sum, c) => sum + c.n_eletti, 0)} consiglieri eletti
+                  </p>
+                </div>
+                <button
+                  className="btn btn-ghost btn-sm btn-circle"
+                  onClick={() => setShowEletti(false)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Sezioni per coalizione */}
+              <div className="space-y-6">
+                {elettiData.coal.map((coalizione) => {
+                  if (!coalizione.liste || !coalizione.cand) return null;
+
+                  return (
+                    <div key={coalizione.cod_coal} className="card bg-base-200/30 border border-base-content/10">
+                      {/* Header Coalizione */}
+                      <div className="p-4 bg-base-300/30 border-b border-base-content/10">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="text-lg font-bold">
+                              {coalizione.nome} {coalizione.cogn}
+                            </h4>
+                            <p className="text-xs opacity-60">Candidato Presidente</p>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-success">
+                              {coalizione.n_eletti}
+                            </div>
+                            <div className="text-xs opacity-60">eletti</div>
+                          </div>
+                        </div>
+
+                        {/* Liste della coalizione */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {coalizione.liste.map((lista) => (
+                            <div
+                              key={lista.pos}
+                              className="badge badge-outline gap-2"
+                            >
+                              <div className="w-5 h-5 relative">
+                                <Image
+                                  src={`/img/regionali2025/${lista.img_lis}`}
+                                  alt={lista.desc_lis}
+                                  fill
+                                  sizes="20px"
+                                  className="object-contain"
+                                />
+                              </div>
+                              <span className="text-xs">
+                                {lista.desc_lis} ({lista.n_eletti})
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tabella Eletti */}
+                      <div className="p-4">
+                        <table className="table table-sm">
+                          <thead>
+                            <tr className="text-xs">
+                              <th className="w-8">#</th>
+                              <th>Nome</th>
+                              <th className="hidden md:table-cell">Circoscrizione</th>
+                              <th className="hidden lg:table-cell">Nato a</th>
+                              <th className="text-center">Lista</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {coalizione.cand.map((eletto, idx) => {
+                              const lista = coalizione.liste?.find(l => l.pos === eletto.cod_lis);
+                              return (
+                                <tr key={`${eletto.cod_lis}-${eletto.cogn}-${idx}`} className="hover">
+                                  <td className="text-xs opacity-60">{idx + 1}</td>
+                                  <td className="font-semibold text-sm">
+                                    {eletto.nome} {eletto.cogn}
+                                    {eletto.a_nome && (
+                                      <span className="font-normal opacity-60 ml-1">({eletto.a_nome})</span>
+                                    )}
+                                  </td>
+                                  <td className="text-xs opacity-70 hidden md:table-cell">
+                                    {eletto.desc_circ}
+                                  </td>
+                                  <td className="text-xs opacity-60 hidden lg:table-cell">
+                                    {eletto.l_nasc}
+                                  </td>
+                                  <td className="text-center">
+                                    {lista && (
+                                      <div className="tooltip" data-tip={lista.desc_lis}>
+                                        <div className="w-6 h-6 relative mx-auto">
+                                          <Image
+                                            src={`/img/regionali2025/${lista.img_lis}`}
+                                            alt={lista.desc_lis}
+                                            fill
+                                            sizes="24px"
+                                            className="object-contain"
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div
+              className="modal-backdrop"
+              onClick={() => setShowEletti(false)}
             />
           </div>
         )}

@@ -41,6 +41,41 @@ interface ScrutiniData {
   cand: Candidate[];
 }
 
+interface ElettoCandidate {
+  cod_lis: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  d_nasc: number;
+  cod_circ: number;
+  desc_circ: string;
+  sex: string;
+  l_nasc: string;
+}
+
+interface ElettiLista {
+  pos: number;
+  desc_lis: string;
+  img_lis: string;
+  n_eletti: number;
+}
+
+interface ElettiCoalition {
+  cod_coal: number;
+  cogn: string;
+  nome: string;
+  a_nome: string | null;
+  desc_lis_r: string | null;
+  img_lis_r: string | null;
+  n_eletti: number;
+  liste: ElettiLista[] | null;
+  cand: ElettoCandidate[] | null;
+}
+
+interface ElettiData {
+  coal: ElettiCoalition[];
+}
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -86,6 +121,8 @@ const CandidatiPage: React.FC = () => {
   const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
   const [sezioniTotali, setSezioniTotali] = useState<number>(0);
   const [reloadProgress, setReloadProgress] = useState<number>(0);
+  const [elettiData, setElettiData] = useState<ElettiData | null>(null);
+  const [showEletti, setShowEletti] = useState<boolean>(false);
 
   useEffect(() => {
     const timestamp = new Date().getTime();
@@ -108,6 +145,23 @@ const CandidatiPage: React.FC = () => {
       })
       .catch((error) => {
         console.error("Error fetching scrutini data:", error);
+      });
+
+    // Carica eletti regione Puglia
+    fetch(`${ShamanConfig.fetchDataURL}/data/eletti-puglia.json?t=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((data: ElettiData) => {
+        console.log('Eletti Puglia data fetched:', data);
+        setElettiData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching eletti data:', error);
       });
 
       
@@ -218,6 +272,26 @@ const CandidatiPage: React.FC = () => {
                 Candidati e <span className="text-gradient">Risultati</span>
               </h1>
             </div>
+
+            {/* Pulsante Eletti - Centrato */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="mb-2 md:mb-0"
+            >
+              <button
+                className="btn btn-success btn-outline gap-2 hover:scale-105 transition-all border-2"
+                onClick={() => setShowEletti(true)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span className="hidden sm:inline">Consiglieri Eletti</span>
+                <span className="sm:hidden">Eletti</span>
+                <span className="badge badge-success badge-sm">
+                  {elettiData?.coal.reduce((sum, c) => sum + c.n_eletti, 0) || 0}
+                </span>
+              </button>
+            </motion.div>
 
             {/* Progress Bar Desktop */}
             <div className="hidden md:block md:flex-1 md:max-w-md">
@@ -603,6 +677,139 @@ const CandidatiPage: React.FC = () => {
             <div
               className="modal-backdrop"
               onClick={() => setSelectedCandidate(null)}
+            />
+          </div>
+        )}
+
+        {/* Modal Eletti Regione Puglia */}
+        {showEletti && elettiData && (
+          <div className="modal modal-open">
+            <div className="modal-box max-w-6xl max-h-[90vh]">
+              {/* Header modale */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    Consiglieri Eletti - Regione Puglia
+                  </h3>
+                  <p className="text-sm opacity-60">
+                    Totale: {elettiData.coal.reduce((sum, c) => sum + c.n_eletti, 0)} consiglieri eletti
+                  </p>
+                </div>
+                <button
+                  className="btn btn-ghost btn-sm btn-circle"
+                  onClick={() => setShowEletti(false)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Sezioni per coalizione */}
+              <div className="space-y-6">
+                {elettiData.coal.map((coalizione) => {
+                  if (!coalizione.liste || !coalizione.cand) return null;
+
+                  return (
+                    <div key={coalizione.cod_coal} className="card bg-base-200/30 border border-base-content/10">
+                      {/* Header Coalizione */}
+                      <div className="p-4 bg-base-300/30 border-b border-base-content/10">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="text-lg font-bold">
+                              {coalizione.nome} {coalizione.cogn}
+                            </h4>
+                            <p className="text-xs opacity-60">Candidato Presidente</p>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-success">
+                              {coalizione.n_eletti}
+                            </div>
+                            <div className="text-xs opacity-60">eletti</div>
+                          </div>
+                        </div>
+
+                        {/* Liste della coalizione */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {coalizione.liste.map((lista) => (
+                            <div
+                              key={lista.pos}
+                              className="badge badge-outline gap-2"
+                            >
+                              <div className="w-5 h-5 relative">
+                                <Image
+                                  src={`/img/regionali2025/${lista.img_lis}`}
+                                  alt={lista.desc_lis}
+                                  fill
+                                  sizes="20px"
+                                  className="object-contain"
+                                />
+                              </div>
+                              <span className="text-xs">
+                                {lista.desc_lis} ({lista.n_eletti})
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tabella Eletti */}
+                      <div className="p-4">
+                        <table className="table table-sm">
+                          <thead>
+                            <tr className="text-xs">
+                              <th className="w-8">#</th>
+                              <th>Nome</th>
+                              <th className="hidden md:table-cell">Circoscrizione</th>
+                              <th className="hidden lg:table-cell">Nato a</th>
+                              <th className="text-center">Lista</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {coalizione.cand.map((eletto, idx) => {
+                              const lista = coalizione.liste?.find(l => l.pos === eletto.cod_lis);
+                              return (
+                                <tr key={`${eletto.cod_lis}-${eletto.cogn}-${idx}`} className="hover">
+                                  <td className="text-xs opacity-60">{idx + 1}</td>
+                                  <td className="font-semibold text-sm">
+                                    {eletto.nome} {eletto.cogn}
+                                    {eletto.a_nome && (
+                                      <span className="font-normal opacity-60 ml-1">({eletto.a_nome})</span>
+                                    )}
+                                  </td>
+                                  <td className="text-xs opacity-70 hidden md:table-cell">
+                                    {eletto.desc_circ}
+                                  </td>
+                                  <td className="text-xs opacity-60 hidden lg:table-cell">
+                                    {eletto.l_nasc}
+                                  </td>
+                                  <td className="text-center">
+                                    {lista && (
+                                      <div className="tooltip" data-tip={lista.desc_lis}>
+                                        <div className="w-6 h-6 relative mx-auto">
+                                          <Image
+                                            src={`/img/regionali2025/${lista.img_lis}`}
+                                            alt={lista.desc_lis}
+                                            fill
+                                            sizes="24px"
+                                            className="object-contain"
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div
+              className="modal-backdrop"
+              onClick={() => setShowEletti(false)}
             />
           </div>
         )}
