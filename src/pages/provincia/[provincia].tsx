@@ -997,7 +997,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                           {coalizione.liste.map((lista) => (
                             <div
                               key={lista.pos}
-                              className="badge badge-outline gap-2"
+                              className="badge badge-sm badge-outline gap-2"
                             >
                               <div className="w-5 h-5 relative">
                                 <Image
@@ -1017,7 +1017,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                       </div>
 
                       {/* Tabella Eletti */}
-                      <div className="p-4">
+                      <div className="p-4 overflow-x-auto">
                         <table className="table table-sm">
                           <thead>
                             <tr className="text-xs">

@@ -461,8 +461,8 @@ const CandidatiPage: React.FC = () => {
 
         {/* Modal dettaglio liste */}
         {selectedCandidate && (
-          <div className="modal modal-open">
-            <div className="modal-box max-w-3xl bg-base-100 overflow-y-auto overscroll-contain" style={{touchAction: 'pan-y'}}>
+          <div className="modal modal-open  overflow-y-auto overscroll-contain">
+            <div className="modal-box max-w-3xl bg-base-100 overflow-y-auto overscroll-contain max-sm:py-20" style={{touchAction: 'pan-y'}}>
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -556,7 +556,7 @@ const CandidatiPage: React.FC = () => {
               </div>
 
               {/* Statistiche totali - Layout compatto */}
-              <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                 <div className="card bg-linear-to-br from-primary/10 to-primary/5 border border-primary/20 p-4">
                   <div className="text-xs font-semibold text-primary/70 uppercase tracking-wider mb-2">
                     Voti Candidato
@@ -732,7 +732,7 @@ const CandidatiPage: React.FC = () => {
                           {coalizione.liste.map((lista) => (
                             <div
                               key={lista.pos}
-                              className="badge badge-outline gap-2"
+                              className="badge badge-sm gap-2"
                             >
                               <div className="w-5 h-5 relative">
                                 <Image
@@ -752,7 +752,7 @@ const CandidatiPage: React.FC = () => {
                       </div>
 
                       {/* Tabella Eletti */}
-                      <div className="p-4">
+                      <div className="p-4 overflow-x-auto">
                         <table className="table table-sm">
                           <thead>
                             <tr className="text-xs">
