@@ -556,7 +556,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
         {/* Modal Eletti Regione Puglia */}
         {showEletti && elettiData && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100 overscroll-contain">
+            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100 overflow-y-auto overscroll-contain" style={{touchAction: 'pan-y'}}>
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>

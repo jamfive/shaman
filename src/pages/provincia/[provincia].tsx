@@ -723,7 +723,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
         {/* Modal dettaglio liste candidato */}
         {selectedCandidate && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-2xl bg-base-100 overscroll-contain">
+            <div className="modal-box max-w-2xl bg-base-100 overflow-y-auto overscroll-contain" style={{touchAction: 'pan-y'}}>
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -837,7 +837,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
         {/* Modal preferenze candidato */}
         {selectedCandidatePreferenze && preferenzeData && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-4xl max-h-[90vh] bg-base-100 overscroll-contain">
+            <div className="modal-box max-w-4xl max-h-[90vh] bg-base-100 overflow-y-auto overscroll-contain" style={{touchAction: 'pan-y'}}>
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -949,7 +949,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
         {/* Modal Eletti Regione Puglia */}
         {showEletti && elettiData && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100 overscroll-contain">
+            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100 overflow-y-auto overscroll-contain" style={{touchAction: 'pan-y'}}>
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>
