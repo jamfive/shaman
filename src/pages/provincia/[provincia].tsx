@@ -845,7 +845,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                     Provincia di {provinciaName}
                   </p>
                   <h3 className="text-xl font-bold">
-                    Preferenze - {selectedCandidatePreferenze.nome} {selectedCandidatePreferenze.cogn}
+                    Preferenze 
                   </h3>
                   <p className="text-sm opacity-60">
                     Voti di preferenza per ogni lista della coalizione
