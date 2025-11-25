@@ -925,7 +925,7 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
                               </td>
                               <td className="text-center hidden md:table-cell">
                                 {cand.ele === "S" ? (
-                                  <span className="badge badge-success badge-xs text-white">Eletto</span>
+                                  <span className="badge badge-success badge-xs text-white">{cand.sex === "F" ? "Eletta" : "Eletto"}</span>
                                 ) : (
                                   <span className="opacity-30 text-xs">-</span>
                                 )}
