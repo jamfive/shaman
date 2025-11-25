@@ -459,10 +459,10 @@ const CandidatiPage: React.FC = () => {
           {/* Info Alert */}
         </div>
 
-        {/* Modal dettaglio candidato */}
+        {/* Modal dettaglio liste */}
         {selectedCandidate && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-3xl">
+            <div className="modal-box max-w-3xl bg-base-100">
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -684,7 +684,7 @@ const CandidatiPage: React.FC = () => {
         {/* Modal Eletti Regione Puglia */}
         {showEletti && elettiData && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-6xl max-h-[90vh]">
+            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100">
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>

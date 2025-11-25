@@ -556,7 +556,7 @@ const ProvincePage: React.FC<ProvincePageProps> = ({
         {/* Modal Eletti Regione Puglia */}
         {showEletti && elettiData && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-6xl max-h-[90vh]">
+            <div className="modal-box max-w-6xl max-h-[90vh] bg-base-100">
               {/* Header modale */}
               <div className="flex items-start justify-between mb-4">
                 <div>
