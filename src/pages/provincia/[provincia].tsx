@@ -427,10 +427,17 @@ const ProvinciaPage: React.FC<ProvinciaPageProps> = ({ provincia, phase }) => {
           >
             <div className="card-body p-0">
               <div className="p-6 border-b border-base-content/5 bg-base-100/30">
-                <h3 className="text-2xl font-bold flex items-center gap-2">
-                  <Users className="text-primary" size={24} />
-                  Risultati per Candidato
-                </h3>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-bold flex items-center gap-2">
+                      <Users className="text-primary" size={24} />
+                      Risultati per Candidato
+                    </h3>
+                    <p className="text-xs text-primary mt-1 flex items-center gap-1">
+                      <span>👆</span> Clicca sul nome per vedere le preferenze
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="overflow-hidden">
