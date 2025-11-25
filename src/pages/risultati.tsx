@@ -120,7 +120,6 @@ const CandidatiPage: React.FC = () => {
   );
   const [sezioniScrutinate, setSezioniScrutinate] = useState<number>(0);
   const [sezioniTotali, setSezioniTotali] = useState<number>(0);
-  const [reloadProgress, setReloadProgress] = useState<number>(0);
   const [elettiData, setElettiData] = useState<ElettiData | null>(null);
   const [showEletti, setShowEletti] = useState<boolean>(false);
 
@@ -163,27 +162,6 @@ const CandidatiPage: React.FC = () => {
       .catch((error) => {
         console.error('Error fetching eletti data:', error);
       });
-
-      
-      const durata = ShamanConfig.durata;
-    // Auto-reload della pagina ogni 2 minuti (120000 ms)
-    const reloadInterval = setInterval(() => {
-      window.location.reload();
-    }, durata * 1000);
-
-    // Progress animation per il reload
-    const progressInterval = setInterval(() => {
-      setReloadProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + 100 / durata; // Incremento ogni secondo per 120 secondi
-      });
-    }, 1000);
-
-    // Cleanup: ferma gli interval quando il componente viene smontato
-    return () => {
-      clearInterval(reloadInterval);
-      clearInterval(progressInterval);
-    };
   }, []);
 
   return (
@@ -222,23 +200,9 @@ const CandidatiPage: React.FC = () => {
           >
             <div className="bg-base-200/50 rounded-lg p-2">
               <div className="flex justify-between items-center mb-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold opacity-70">
-                    Sezioni scrutinate
-                  </span>
-                  <div
-                    className="radial-progress text-primary"
-                    style={
-                      {
-                        "--value": reloadProgress,
-                        "--size": "1.2rem",
-                        "--thickness": "2px",
-                      } as React.CSSProperties
-                    }
-                    role="progressbar"
-                    aria-label="Auto-refresh progress"
-                  ></div>
-                </div>
+                <span className="text-xs font-semibold opacity-70">
+                  Sezioni scrutinate
+                </span>
                 <span className="text-xs font-bold font-mono">
                   {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                   {sezioniTotali.toLocaleString("it-IT")}
@@ -297,23 +261,9 @@ const CandidatiPage: React.FC = () => {
             <div className="hidden md:block md:flex-1 md:max-w-md">
               <div className="bg-base-200/50 rounded-lg p-2">
                 <div className="flex justify-between items-center mb-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold opacity-70">
-                      Sezioni scrutinate
-                    </span>
-                    <div
-                      className="radial-progress bg-primary/20 text-primary-content/80 border-primary/10 border-2"
-                      style={
-                        {
-                          "--value": reloadProgress,
-                          "--size": "0.6rem",
-                          "--thickness": "0.1rem",
-                        } as React.CSSProperties
-                      }
-                      role="progressbar"
-                      aria-label="Auto-refresh progress"
-                    ></div>
-                  </div>
+                  <span className="text-xs font-semibold opacity-70">
+                    Sezioni scrutinate
+                  </span>
                   <span className="text-xs font-bold font-mono">
                     {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                     {sezioniTotali.toLocaleString("it-IT")}
@@ -518,23 +468,9 @@ const CandidatiPage: React.FC = () => {
               {/* Progress Bar Sezioni nella modale */}
               <div className="bg-base-200/50 rounded-lg p-3 mb-4">
                 <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold opacity-70">
-                      Sezioni scrutinate
-                    </span>
-                    <div
-                      className="radial-progress text-primary"
-                      style={
-                        {
-                          "--value": reloadProgress,
-                          "--size": "1.4rem",
-                          "--thickness": "2px",
-                        } as React.CSSProperties
-                      }
-                      role="progressbar"
-                      aria-label="Auto-refresh progress"
-                    ></div>
-                  </div>
+                  <span className="text-sm font-semibold opacity-70">
+                    Sezioni scrutinate
+                  </span>
                   <span className="text-sm font-bold font-mono">
                     {sezioniScrutinate.toLocaleString("it-IT")} /{" "}
                     {sezioniTotali.toLocaleString("it-IT")}

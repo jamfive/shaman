@@ -50,7 +50,6 @@ interface TimeStat {
 const AffluentePage: React.FC = () => {
   const [provinciesData, setProvinciesData] = useState<Province>();
   const [timeStats, setTimeStats] = useState<TimeStat[]>([]);
-  const [reloadProgress, setReloadProgress] = useState<number>(0);
 
   useEffect(() => {
     // Cache busting: aggiungi timestamp per evitare problemi di cache
@@ -114,23 +113,8 @@ const AffluentePage: React.FC = () => {
         ]);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching affluenza data:", error);
       });
-
-    const durata = ShamanConfig.durata;
-    const progressInterval = setInterval(() => {
-      setReloadProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + 100 / durata; // Incremento ogni secondo per 120 secondi
-      });
-    }, 1000);
-    const reloadInterval = setInterval(() => {
-      window.location.reload();
-    }, durata * 1000);
-    return () => {
-      clearInterval(reloadInterval);
-      clearInterval(progressInterval);
-    };
   }, []);
 
   useEffect(() => {
@@ -202,23 +186,9 @@ const AffluentePage: React.FC = () => {
             {provinciesData && phase >= 0 && (
               <div className="bg-base-200/50 rounded-lg p-2 md:max-w-md md:flex-1">
                 <div className="flex justify-between items-center mb-1">
-                  <div className="flex gap-2 items-center">
-                    <span className="text-xs font-semibold opacity-70">
-                      Sezioni rilevate
-                    </span>
-                    <div
-                      className="radial-progress bg-primary/20 text-primary-content/80 border-primary/10 border-2"
-                      style={
-                        {
-                          "--value": reloadProgress,
-                          "--size": "0.6rem",
-                          "--thickness": "0.1rem",
-                        } as React.CSSProperties
-                      }
-                      role="progressbar"
-                      aria-label="Auto-refresh progress"
-                    ></div>
-                  </div>
+                  <span className="text-xs font-semibold opacity-70">
+                    Sezioni rilevate
+                  </span>
                   <span className="text-xs font-bold font-mono">
                     {provinciesData.enti.ente_p.com_vot[
                       phase
