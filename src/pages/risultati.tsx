@@ -688,7 +688,7 @@ const CandidatiPage: React.FC = () => {
                       </div>
 
                       {/* Tabella Eletti */}
-                      <div className="p-4 overflow-x-auto">
+                      <div className="p-4  ">
                         <table className="table table-sm">
                           <thead>
                             <tr className="text-xs">

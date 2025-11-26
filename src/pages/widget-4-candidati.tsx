@@ -159,7 +159,7 @@ const Widget4CandidatiPage: React.FC = () => {
                           <span className={`text-base font-bold text-center ${
                             isFirst ? 'text-primary' : 'text-secondary'
                           }`}>
-                            {percentage.toFixed(1)}%
+                            {percentage.toFixed(2)}%
                           </span>
                         </div>
                       </div>
