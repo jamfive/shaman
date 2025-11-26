@@ -83,11 +83,7 @@ const Widget4CandidatiPage: React.FC = () => {
         console.error("Error fetching scrutini data:", error);
       });
       
-    const reloadInterval = setInterval(() => {
-      window.location.reload();
-    }, 120000);
-    
-    return () => clearInterval(reloadInterval);
+   
   }, []);
 
   return (
