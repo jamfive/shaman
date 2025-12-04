@@ -1,5 +1,16 @@
 # Puglia Regionali 2025 - Portale Elettorale
 
+```text
+ ____  _                                       _             
+/ ___|| |__   __ _ _ __ ___   __ _ _ __       (_)_ __  _ __  
+\___ \| '_ \ / _` | '_ ` _ \ / _` | '_ \ _____| | '_ \| '_ \ 
+ ___) | | | | (_| | | | | | | (_| | | | |_____| | | | | | | |
+|____/|_| |_|\__,_|_| |_| |_|\__,_|_| |_|     |_|_| |_|_| |_|
+
+```
+
+![Shaman](public/img/shaman.webp)
+
 Applicazione web per il monitoraggio in tempo reale dei risultati delle elezioni regionali della Puglia 2025.
 
 ## 📋 Descrizione
@@ -245,10 +256,6 @@ npm run start
 ## 📄 Licenza
 
 Questo progetto è stato sviluppato per le elezioni regionali della Puglia 2025.
-
-## 👥 Contributi
-
-Progetto sviluppato con GitHub Copilot e Claude Sonnet 4.5.
 
 ---
 
